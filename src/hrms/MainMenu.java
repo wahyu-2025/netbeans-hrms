@@ -4,6 +4,16 @@
  */
 package hrms;
 
+import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import main.MenuItem;
+import model.LoginModel;
+import view.Login;
+
 /**
  *
  * @author USer
@@ -13,8 +23,17 @@ public class MainMenu extends javax.swing.JFrame {
     /**
      * Creates new form MainMenu
      */
-    public MainMenu() {
+    public MainMenu(String nik, String nama) {
         initComponents();
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        
+//        this.nik = nik;
+//        this.nama = nama;
+//        
+        System.out.println("Nik dari menu utama" + nik);
+
+          user.setText(nama);
+          executed();
     }
 
     /**
@@ -31,11 +50,16 @@ public class MainMenu extends javax.swing.JFrame {
         main_content_panel = new javax.swing.JPanel();
         headers_panel = new javax.swing.JPanel();
         logo_sts = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        user = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(204, 204, 204));
         setPreferredSize(new java.awt.Dimension(1920, 720));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(new java.awt.GridLayout());
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
@@ -61,10 +85,10 @@ public class MainMenu extends javax.swing.JFrame {
         logo_sts.setBackground(new java.awt.Color(255, 255, 255));
         logo_sts.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/STS LOGO 1 (1).png"))); // NOI18N
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/mn_user.png"))); // NOI18N
-        jLabel1.setText("USER");
+        user.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        user.setForeground(new java.awt.Color(255, 255, 255));
+        user.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/mn_user.png"))); // NOI18N
+        user.setText("USER");
 
         javax.swing.GroupLayout headers_panelLayout = new javax.swing.GroupLayout(headers_panel);
         headers_panel.setLayout(headers_panelLayout);
@@ -74,7 +98,7 @@ public class MainMenu extends javax.swing.JFrame {
                 .addGap(37, 37, 37)
                 .addComponent(logo_sts)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 557, Short.MAX_VALUE)
-                .addComponent(jLabel1)
+                .addComponent(user)
                 .addGap(28, 28, 28))
         );
         headers_panelLayout.setVerticalGroup(
@@ -85,7 +109,7 @@ public class MainMenu extends javax.swing.JFrame {
                 .addGap(9, 9, 9))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, headers_panelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
+                .addComponent(user)
                 .addGap(21, 21, 21))
         );
 
@@ -108,7 +132,7 @@ public class MainMenu extends javax.swing.JFrame {
                 .addGap(10, 10, 10)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(sidebar_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(main_content_panel, javax.swing.GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE))
+                    .addComponent(main_content_panel, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE))
                 .addGap(10, 10, 10))
         );
 
@@ -116,6 +140,13 @@ public class MainMenu extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        main_content_panel.add(new ContentBg());
+        main_content_panel.repaint();
+        main_content_panel.revalidate();
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
@@ -145,19 +176,127 @@ public class MainMenu extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MainMenu().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+//            public void run() {
+////                new MainMenu().setVisible(true);
+//            }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel headers_panel;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel logo_sts;
     private javax.swing.JPanel main_content_panel;
     private javax.swing.JPanel sidebar_panel;
+    private javax.swing.JLabel user;
     // End of variables declaration//GEN-END:variables
+    
+     private void executed() {
+        // Icon Master
+//        ImageIcon masterIcon = new ImageIcon(getClass().getResource("/asset/img/master_icon.png"));
+        ImageIcon dashboardIcon = new ImageIcon(getClass().getResource("/assets/dashboard_icon.png"));
+//        ImageIcon reportIcon = new ImageIcon(getClass().getResource("/asset/img/report_icon.png"));
+//        ImageIcon registIcon = new ImageIcon(getClass().getResource("/asset/img/regist_icon.png"));
+//        ImageIcon scheduleIcon = new ImageIcon(getClass().getResource("/asset/img/schedule_icon.png"));
+//        ImageIcon subIcon = new ImageIcon(getClass().getResource("/asset/img/sort_icon.png"));
+//        ImageIcon logoutIcon = new ImageIcon(getClass().getResource("/asset/img/logout_icon.png"));
+
+        MenuItem menuDashboard = new MenuItem(dashboardIcon, false, null, "Dasbor", new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                main_content_panel.removeAll();
+                main_content_panel.add(new ContentBg(), BorderLayout.CENTER);
+                main_content_panel.repaint();
+                main_content_panel.revalidate();
+            }
+        });
+
+        // SubMenu dan Master Data
+//        MenuItem masterUser = new MenuItem(null, true, subIcon, "Pengguna", new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                main_content_panel.removeAll();
+//                main_content_panel.add(new FormUser(), BorderLayout.CENTER);
+//                main_content_panel.repaint();
+//                main_content_panel.revalidate();
+//            }
+//        });
+//        MenuItem masterCourses = new MenuItem(null, true, subIcon, "Kursus", new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                main_content_panel.removeAll();
+//                main_content_panel.add(new FormCourses(), BorderLayout.CENTER);
+//                main_content_panel.repaint();
+//                main_content_panel.revalidate();
+//            }
+//        });
+//        MenuItem masterClass = new MenuItem(null, true, subIcon, "Kelas", new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                main_content_panel.removeAll();
+//                main_content_panel.add(new FormClasses(), BorderLayout.CENTER);
+//                main_content_panel.repaint();
+//                main_content_panel.revalidate();
+//            }
+//        });
+//        MenuItem menuMaster = new MenuItem(masterIcon, false, null, "Data Induk", null, masterUser, masterCourses, masterClass);
+
+//        MenuItem menuClassSchedule = new MenuItem(scheduleIcon, false, null, "Jadwal Kelas", new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                main_content_panel.removeAll();
+//                main_content_panel.add(new FormClassSchedule(), BorderLayout.CENTER);
+//                main_content_panel.repaint();
+//                main_content_panel.revalidate();
+//            }
+//        });
+
+//        MenuItem menuClassRegist = new MenuItem(registIcon, false, null, "Daftar Kelas", new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                main_content_panel.removeAll();
+//                main_content_panel.add(new FormClassRegist(), BorderLayout.CENTER);
+//                main_content_panel.repaint();
+//                main_content_panel.revalidate();
+//            }
+//        });
+
+        // SubMenu dan Master Report
+//        MenuItem menuReport = new MenuItem(reportIcon, false, null, "Laporan", new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                main_content_panel.removeAll();
+//                main_content_panel.add(new ReportForm(), BorderLayout.CENTER);
+//                main_content_panel.repaint();
+//                main_content_panel.revalidate();
+//            }
+//        });
+
+        // SubMenu dan Master Report
+//        MenuItem menuLogout = new MenuItem(logoutIcon, false, null, "Keluar", new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                dispose();
+//
+//                Login formLogin = new Login();
+//                formLogin.setVisible(true);
+//            }
+//        });
+
+        // MenuItem masterAttendance = new MenuItem(null, true, subIcon, "Absensi", null);
+        // MenuItem menuReport = new MenuItem(reportIcon, false, null, "Report", null, masterAttendance);
+        addMenu(menuDashboard);
+    }
+
+    private void addMenu(MenuItem... menu) {
+        for (MenuItem menu1 : menu) {
+            sidebar_panel.add(menu1);
+            ArrayList<MenuItem> subMenu = menu1.getSubMenu();
+            for (MenuItem m : subMenu) {
+                addMenu(m);
+            }
+        }
+        sidebar_panel.revalidate();
+    }
 }

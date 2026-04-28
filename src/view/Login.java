@@ -4,6 +4,14 @@
  */
 package view;
 
+import javax.swing.JOptionPane;
+import model.LoginModel;
+import dao.LoginDAO;
+import java.awt.event.KeyEvent;
+import javax.swing.JOptionPane;
+import model.LoginModel;
+import service.LoginService;
+
 /**
  *
  * @author USer
@@ -15,6 +23,8 @@ public class Login extends javax.swing.JFrame {
      */
     
     int xx, xy;
+    private LoginService loginService = new LoginDAO();
+    public static boolean tutup = false;
     public Login() {
         initComponents();
     }
@@ -35,8 +45,8 @@ public class Login extends javax.swing.JFrame {
         username_label = new javax.swing.JLabel();
         username_fields = new javax.swing.JTextField();
         password_label = new javax.swing.JLabel();
-        password_fields = new javax.swing.JTextField();
         button_sign_in = new javax.swing.JButton();
+        password_fields = new javax.swing.JPasswordField();
         jPanel4 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         logo_login = new javax.swing.JLabel();
@@ -82,17 +92,14 @@ public class Login extends javax.swing.JFrame {
         password_label.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         password_label.setText("Password");
 
-        password_fields.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                password_fieldsActionPerformed(evt);
-            }
-        });
-
         button_sign_in.setBackground(new java.awt.Color(0, 102, 255));
         button_sign_in.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         button_sign_in.setForeground(new java.awt.Color(255, 255, 255));
         button_sign_in.setText("Sign In");
         button_sign_in.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                button_sign_inMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 button_sign_inMouseEntered(evt);
             }
@@ -105,6 +112,13 @@ public class Login extends javax.swing.JFrame {
                 button_sign_inActionPerformed(evt);
             }
         });
+        button_sign_in.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                button_sign_inKeyPressed(evt);
+            }
+        });
+
+        password_fields.setText("jPasswordField1");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -124,8 +138,8 @@ public class Login extends javax.swing.JFrame {
                             .addComponent(username_label)
                             .addComponent(username_fields)
                             .addComponent(password_label)
-                            .addComponent(password_fields, javax.swing.GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE)
-                            .addComponent(button_sign_in, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(button_sign_in, javax.swing.GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE)
+                            .addComponent(password_fields))))
                 .addContainerGap(42, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -145,7 +159,7 @@ public class Login extends javax.swing.JFrame {
                 .addComponent(password_fields, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
                 .addComponent(button_sign_in, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(83, Short.MAX_VALUE))
         );
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
@@ -277,12 +291,9 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_username_fieldsActionPerformed
 
-    private void password_fieldsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_password_fieldsActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_password_fieldsActionPerformed
-
     private void button_sign_inActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_sign_inActionPerformed
         // TODO add your handling code here:
+        prosesLogin();
     }//GEN-LAST:event_button_sign_inActionPerformed
 
     private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
@@ -322,6 +333,17 @@ public class Login extends javax.swing.JFrame {
         button_sign_in.setBackground(new java.awt.Color(0, 128, 255));
     }//GEN-LAST:event_button_sign_inMouseExited
 
+    private void button_sign_inMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_button_sign_inMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_button_sign_inMouseClicked
+
+    private void button_sign_inKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_button_sign_inKeyPressed
+        // TODO add your handling code here:
+    if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            prosesLogin();
+        }
+    }//GEN-LAST:event_button_sign_inKeyPressed
+
     /**
      * @param args the command line arguments
      */
@@ -350,10 +372,8 @@ public class Login extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Login().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new Login().setVisible(true);
         });
     }
 
@@ -372,9 +392,43 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JLabel logo_login;
-    private javax.swing.JTextField password_fields;
+    private javax.swing.JPasswordField password_fields;
     private javax.swing.JLabel password_label;
     private javax.swing.JTextField username_fields;
     private javax.swing.JLabel username_label;
     // End of variables declaration//GEN-END:variables
+
+    private void prosesLogin() {
+        if (validasiInput()) {
+            String username = username_fields.getText().trim();
+            String password = new String(password_fields.getPassword()).trim();
+
+            model.LoginModel loginModel = new LoginModel();
+            loginModel.setUsername(username);
+            loginModel.setPassword(password);
+
+            loginService.prosesLogin(loginModel);
+
+            if (tutup) {
+                dispose();
+            }
+        }
+    }
+
+    private boolean validasiInput() {
+        System.out.println(username_fields.getText().trim());
+        System.out.println(password_fields.getText().trim());
+
+        if (username_fields.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Username tidak boleh kosong!");
+            return false;
+        } else if (password_fields.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Password tidak boleh kosong!");
+            return false;
+        }
+        return true;
+    }
 }
+
+    
+

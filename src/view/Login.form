@@ -94,8 +94,8 @@
                                   <Component id="username_label" min="-2" max="-2" attributes="0"/>
                                   <Component id="username_fields" max="32767" attributes="0"/>
                                   <Component id="password_label" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="password_fields" alignment="0" pref="323" max="32767" attributes="0"/>
-                                  <Component id="button_sign_in" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="button_sign_in" alignment="0" pref="323" max="32767" attributes="0"/>
+                                  <Component id="password_fields" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -120,7 +120,7 @@
                       <Component id="password_fields" min="-2" pref="33" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                       <Component id="button_sign_in" min="-2" pref="34" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="83" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -163,11 +163,6 @@
                 <Property name="text" type="java.lang.String" value="Password"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="password_fields">
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="password_fieldsActionPerformed"/>
-              </Events>
-            </Component>
             <Component class="javax.swing.JButton" name="button_sign_in">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -182,10 +177,17 @@
                 <Property name="text" type="java.lang.String" value="Sign In"/>
               </Properties>
               <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="button_sign_inMouseClicked"/>
                 <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="button_sign_inMouseEntered"/>
                 <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="button_sign_inMouseExited"/>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="button_sign_inActionPerformed"/>
+                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="button_sign_inKeyPressed"/>
               </Events>
+            </Component>
+            <Component class="javax.swing.JPasswordField" name="password_fields">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="jPasswordField1"/>
+              </Properties>
             </Component>
           </SubComponents>
         </Container>
