@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import hrms.MenuItem;
+import main.MenuItem;
 import model.LoginModel;
 import view.Login;
 
@@ -23,7 +23,7 @@ public class MainMenu extends javax.swing.JFrame {
     /**
      * Creates new form MainMenu
      */
-    public MainMenu(String name) {
+    public MainMenu(String nik, String nama) {
         initComponents();
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         
@@ -32,7 +32,7 @@ public class MainMenu extends javax.swing.JFrame {
 //        
 //        System.out.println("Nik dari menu utama" + nik);
 
-          user.setText(name);
+          user.setText(nama);
           executed();
     }
 
