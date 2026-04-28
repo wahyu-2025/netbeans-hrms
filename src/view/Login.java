@@ -58,6 +58,7 @@ public class Login extends javax.swing.JFrame {
         btn_close = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setUndecorated(true);
         addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
@@ -71,6 +72,7 @@ public class Login extends javax.swing.JFrame {
         });
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(255, 255, 255))); // NOI18N
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -83,6 +85,16 @@ public class Login extends javax.swing.JFrame {
         username_label.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         username_label.setText("Username");
 
+        username_fields.setText("Username...");
+        username_fields.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        username_fields.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                username_fieldsFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                username_fieldsFocusLost(evt);
+            }
+        });
         username_fields.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 username_fieldsActionPerformed(evt);
@@ -96,6 +108,7 @@ public class Login extends javax.swing.JFrame {
         button_sign_in.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         button_sign_in.setForeground(new java.awt.Color(255, 255, 255));
         button_sign_in.setText("Sign In");
+        button_sign_in.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1), "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 24))); // NOI18N
         button_sign_in.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 button_sign_inMouseClicked(evt);
@@ -118,7 +131,16 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        password_fields.setText("jPasswordField1");
+        password_fields.setText("Password");
+        password_fields.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder("")));
+        password_fields.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                password_fieldsFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                password_fieldsFocusLost(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -159,7 +181,7 @@ public class Login extends javax.swing.JFrame {
                 .addComponent(password_fields, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
                 .addComponent(button_sign_in, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(83, Short.MAX_VALUE))
+                .addContainerGap(81, Short.MAX_VALUE))
         );
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
@@ -238,7 +260,7 @@ public class Login extends javax.swing.JFrame {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(40, Short.MAX_VALUE)
+                .addContainerGap(38, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_close, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -248,7 +270,7 @@ public class Login extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addComponent(btn_close)
                 .addGap(0, 0, Short.MAX_VALUE))
@@ -343,6 +365,38 @@ public class Login extends javax.swing.JFrame {
             prosesLogin();
         }
     }//GEN-LAST:event_button_sign_inKeyPressed
+
+    private void username_fieldsFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_username_fieldsFocusGained
+        // TODO add your handling code here:
+        String username = username_fields.getText();
+        if(username.equals("Username...")){
+            username_fields.setText("");
+        }
+    }//GEN-LAST:event_username_fieldsFocusGained
+
+    private void username_fieldsFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_username_fieldsFocusLost
+        // TODO add your handling code here:
+        String username = username_fields.getText();
+        if(username.equals("") || username.equals("Username...")){
+            username_fields.setText("Username...");
+        }
+    }//GEN-LAST:event_username_fieldsFocusLost
+
+    private void password_fieldsFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_password_fieldsFocusGained
+        // TODO add your handling code here:
+        String password = new String(password_fields.getPassword()).trim();
+        if(password.equals("Password")) {
+            password_fields.setText("");
+        }
+    }//GEN-LAST:event_password_fieldsFocusGained
+
+    private void password_fieldsFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_password_fieldsFocusLost
+        // TODO add your handling code here:
+        String password = new String(password_fields.getPassword()).trim();
+        if(password.equals("") || password.equals("Pasword")) {
+            password_fields.setText("Password");
+        }
+    }//GEN-LAST:event_password_fieldsFocusLost
 
     /**
      * @param args the command line arguments

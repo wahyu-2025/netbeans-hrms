@@ -30,7 +30,7 @@ public class MainMenu extends javax.swing.JFrame {
 //        this.nik = nik;
 //        this.nama = nama;
 //        
-        System.out.println("Nik dari menu utama" + nik);
+//        System.out.println("Nik dari menu utama" + nik);
 
           user.setText(nama);
           executed();
