@@ -32,23 +32,21 @@ public class LoginDAO implements LoginService {
         System.out.println("MASUK SINI");
         PreparedStatement st = null;
         ResultSet rs = null;
-        String nik = null;
-        String nama = null;
+        String name = null;
 
-        String sql = "SELECT * FROM employee WHERE nik = '" + loginModel.getUsername() + "' "
-                + "AND isdeleted = 0 "
+        String sql = "SELECT * FROM roles WHERE name = '" + loginModel.getUsername() + "' "
                 + "AND password='" + loginModel.getPassword() + "'" ;
 
         try {
             st = conn.prepareStatement(sql);
             rs = st.executeQuery();
             if (rs.next()) {
-                nik = rs.getString("nik");
-                nama = rs.getString("employeename");
+                name = rs.getString("name");
+//                password = rs.getString("password");
                 
                 System.out.println("TRY");
 
-                MainMenu menu = new MainMenu(nik, nama);
+                MainMenu menu = new MainMenu(name);
                 menu.setVisible(true);
                 menu.revalidate();
 
