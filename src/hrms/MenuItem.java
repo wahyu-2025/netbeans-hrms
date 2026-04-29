@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package main;
+package hrms;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionListener;
@@ -25,24 +26,29 @@ public class MenuItem extends javax.swing.JPanel {
 
     private final ArrayList<MenuItem> subMenu = new ArrayList<>();
     private ActionListener act;
+    private Icon rightArrow;
+    private Icon downArrow;
 
-    public MenuItem(Icon icon, boolean sbm, Icon iconSub, String menuName, ActionListener act, MenuItem... subMenu) {
+    public MenuItem(Icon icon, boolean sbm, Icon iconSub, Icon rightArrow, Icon downArrow, String menuName, ActionListener act, MenuItem... subMenu) {
         initComponents();
+        this.rightArrow = rightArrow;
+        this.downArrow = downArrow;
 
         Font menuFont = new Font("Segoe UI", Font.PLAIN, 18);
         lb_icon.setIcon(icon);
         lb_menu_name.setText(menuName);
         lb_menu_name.setFont(menuFont);
         lb_icon_sub.setIcon(iconSub);
+        lb_icon_expand.setIcon(rightArrow);
         lb_icon_sub.setVisible(sbm);
 
         if (act != null) {
             this.act = act;
         }
+        
 
-        this.setSize(new Dimension(Integer.MAX_VALUE, 45));
+        this.setPreferredSize(new Dimension(250, 45));
         this.setMaximumSize(new Dimension(Integer.MAX_VALUE, 45));
-        this.setMinimumSize(new Dimension(Integer.MAX_VALUE, 45));
 
         for (MenuItem subMenu1 : subMenu) {
             this.subMenu.add(subMenu1);
@@ -62,10 +68,17 @@ public class MenuItem extends javax.swing.JPanel {
         lb_menu_name = new javax.swing.JLabel();
         lb_icon_sub = new javax.swing.JLabel();
         lb_icon = new javax.swing.JLabel();
+        lb_icon_expand = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(248, 466));
         addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                formMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                formMouseExited(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 formMousePressed(evt);
             }
@@ -88,22 +101,39 @@ public class MenuItem extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lb_icon_sub, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lb_menu_name, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE))
+                .addComponent(lb_menu_name, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lb_icon_expand, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lb_icon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(lb_icon, javax.swing.GroupLayout.DEFAULT_SIZE, 466, Short.MAX_VALUE)
             .addComponent(lb_icon_sub, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(lb_menu_name, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(lb_icon_expand, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private boolean showing = false;
+    private boolean selected = false;
+    private static MenuItem selectedMenu; 
+    
     private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
+        if(selectedMenu != null) {
+            selectedMenu.selected = false;
+            selectedMenu.setBackground(Color.white);
+        }
+        
+        selectedMenu = this;
+        selected = true;
+        selectedMenu.setBackground(new java.awt.Color(51, 153, 255));
+        
         if (showing) {
             hideMenu();
+            lb_icon_expand.setIcon(rightArrow);
         } else {
             showMenu();
+            lb_icon_expand.setIcon(downArrow);
         }
 
         if (act != null) {
@@ -111,9 +141,24 @@ public class MenuItem extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_formMousePressed
 
+    private void formMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseEntered
+        // TODO add your handling code here:
+        if(!selected) {
+        setBackground(new java.awt.Color(224, 224, 224));
+        }
+    }//GEN-LAST:event_formMouseEntered
+
+    private void formMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseExited
+        // TODO add your handling code here:
+        if(!selected) {   
+        setBackground(Color.white);
+        }
+    }//GEN-LAST:event_formMouseExited
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel lb_icon;
+    private javax.swing.JLabel lb_icon_expand;
     private javax.swing.JLabel lb_icon_sub;
     private javax.swing.JLabel lb_menu_name;
     // End of variables declaration//GEN-END:variables

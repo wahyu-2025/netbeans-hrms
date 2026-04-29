@@ -10,6 +10,8 @@
     </Property>
   </Properties>
   <Events>
+    <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="formMouseEntered"/>
+    <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="formMouseExited"/>
     <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="formMousePressed"/>
   </Events>
   <AuxValues>
@@ -33,15 +35,18 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="lb_icon_sub" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="lb_menu_name" pref="156" max="32767" attributes="0"/>
+              <Component id="lb_menu_name" pref="96" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="lb_icon_expand" min="-2" pref="54" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="lb_icon" alignment="0" max="32767" attributes="0"/>
+          <Component id="lb_icon" alignment="0" pref="466" max="32767" attributes="0"/>
           <Component id="lb_icon_sub" alignment="0" max="32767" attributes="0"/>
           <Component id="lb_menu_name" alignment="0" max="32767" attributes="0"/>
+          <Component id="lb_icon_expand" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -67,6 +72,8 @@
           <Dimension value="[37, 30]"/>
         </Property>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lb_icon_expand">
     </Component>
   </SubComponents>
 </Form>

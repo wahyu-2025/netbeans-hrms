@@ -4,13 +4,18 @@
  */
 package hrms;
 
+import config.Koneksi;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import main.MenuItem;
+import javax.swing.BoxLayout;
 import model.LoginModel;
 import view.Login;
 
@@ -19,21 +24,25 @@ import view.Login;
  * @author USer
  */
 public class MainMenu extends javax.swing.JFrame {
+    private String nik;
+    private String nama;
+    private final Connection conn = Koneksi.koneksi();
 
     /**
      * Creates new form MainMenu
      */
     public MainMenu(String nik, String nama) {
         initComponents();
+        menu_panel.setLayout(new BoxLayout(menu_panel, javax.swing.BoxLayout.Y_AXIS));
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         
-//        this.nik = nik;
-//        this.nama = nama;
+        this.nik = nik;
+        this.nama = nama;
 //        
 //        System.out.println("Nik dari menu utama" + nik);
 
           user.setText(nama);
-          executed();
+          executed(nik);
     }
 
     /**
@@ -47,6 +56,7 @@ public class MainMenu extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         sidebar_panel = new javax.swing.JPanel();
+        menu_panel = new javax.swing.JPanel();
         main_content_panel = new javax.swing.JPanel();
         headers_panel = new javax.swing.JPanel();
         logo_sts = new javax.swing.JLabel();
@@ -60,21 +70,28 @@ public class MainMenu extends javax.swing.JFrame {
                 formWindowOpened(evt);
             }
         });
-        getContentPane().setLayout(new java.awt.GridLayout());
+        getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
 
         sidebar_panel.setBackground(new java.awt.Color(255, 255, 255));
+        sidebar_panel.setPreferredSize(new java.awt.Dimension(300, 300));
+
+        menu_panel.setBackground(new java.awt.Color(255, 255, 255));
+        menu_panel.setPreferredSize(new java.awt.Dimension(300, 300));
+        menu_panel.setLayout(new javax.swing.BoxLayout(menu_panel, javax.swing.BoxLayout.LINE_AXIS));
 
         javax.swing.GroupLayout sidebar_panelLayout = new javax.swing.GroupLayout(sidebar_panel);
         sidebar_panel.setLayout(sidebar_panelLayout);
         sidebar_panelLayout.setHorizontalGroup(
             sidebar_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 168, Short.MAX_VALUE)
+            .addGroup(sidebar_panelLayout.createSequentialGroup()
+                .addComponent(menu_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         sidebar_panelLayout.setVerticalGroup(
             sidebar_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addComponent(menu_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         main_content_panel.setBackground(new java.awt.Color(255, 255, 255));
@@ -131,7 +148,7 @@ public class MainMenu extends javax.swing.JFrame {
                 .addComponent(headers_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(sidebar_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(sidebar_panel, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)
                     .addComponent(main_content_panel, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE))
                 .addGap(10, 10, 10))
         );
@@ -188,21 +205,24 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel logo_sts;
     private javax.swing.JPanel main_content_panel;
+    private javax.swing.JPanel menu_panel;
     private javax.swing.JPanel sidebar_panel;
     private javax.swing.JLabel user;
     // End of variables declaration//GEN-END:variables
     
-     private void executed() {
+     private void executed(String nik) {
         // Icon Master
-//        ImageIcon masterIcon = new ImageIcon(getClass().getResource("/asset/img/master_icon.png"));
+        ImageIcon masterIcon = new ImageIcon(getClass().getResource("/assets/master_icon.png"));
         ImageIcon dashboardIcon = new ImageIcon(getClass().getResource("/assets/dashboard_icon.png"));
 //        ImageIcon reportIcon = new ImageIcon(getClass().getResource("/asset/img/report_icon.png"));
 //        ImageIcon registIcon = new ImageIcon(getClass().getResource("/asset/img/regist_icon.png"));
 //        ImageIcon scheduleIcon = new ImageIcon(getClass().getResource("/asset/img/schedule_icon.png"));
-//        ImageIcon subIcon = new ImageIcon(getClass().getResource("/asset/img/sort_icon.png"));
+//        ImageIcon subIcon = new ImageIcon(getClass().getResource("/assets/sort_icon.png"));
 //        ImageIcon logoutIcon = new ImageIcon(getClass().getResource("/asset/img/logout_icon.png"));
+        ImageIcon rightArrow = new ImageIcon(getClass().getResource("/assets/next.png"));
+        ImageIcon downArrow = new ImageIcon(getClass().getResource("/assets/down.png"));
 
-        MenuItem menuDashboard = new MenuItem(dashboardIcon, false, null, "Dasbor", new ActionListener() {
+        MenuItem menuDashboard = new MenuItem(dashboardIcon, false, null, null, null, "Dasbor", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 main_content_panel.removeAll();
@@ -213,34 +233,52 @@ public class MainMenu extends javax.swing.JFrame {
         });
 
         // SubMenu dan Master Data
-//        MenuItem masterUser = new MenuItem(null, true, subIcon, "Pengguna", new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                main_content_panel.removeAll();
+        MenuItem masterEmployee = new MenuItem(null, true, null, null, null, "Employee", new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                main_content_panel.removeAll();
 //                main_content_panel.add(new FormUser(), BorderLayout.CENTER);
-//                main_content_panel.repaint();
-//                main_content_panel.revalidate();
-//            }
-//        });
-//        MenuItem masterCourses = new MenuItem(null, true, subIcon, "Kursus", new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                main_content_panel.removeAll();
+                main_content_panel.repaint();
+                main_content_panel.revalidate();
+            }
+        });
+        MenuItem masterPosition = new MenuItem(null, true, null, null, null, "Position", new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                main_content_panel.removeAll();
 //                main_content_panel.add(new FormCourses(), BorderLayout.CENTER);
-//                main_content_panel.repaint();
-//                main_content_panel.revalidate();
-//            }
-//        });
-//        MenuItem masterClass = new MenuItem(null, true, subIcon, "Kelas", new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                main_content_panel.removeAll();
+                main_content_panel.repaint();
+                main_content_panel.revalidate();
+            }
+        });
+        MenuItem masterDepartement = new MenuItem(null, true, null, null, null, "Departement", new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                main_content_panel.removeAll();
 //                main_content_panel.add(new FormClasses(), BorderLayout.CENTER);
-//                main_content_panel.repaint();
-//                main_content_panel.revalidate();
-//            }
-//        });
-//        MenuItem menuMaster = new MenuItem(masterIcon, false, null, "Data Induk", null, masterUser, masterCourses, masterClass);
+                main_content_panel.repaint();
+                main_content_panel.revalidate();
+            }
+        });
+        MenuItem masterSalary = new MenuItem(null, true, null, null, null, "Salary", new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                main_content_panel.removeAll();
+//                main_content_panel.add(new FormClasses(), BorderLayout.CENTER);
+                main_content_panel.repaint();
+                main_content_panel.revalidate();
+            }
+        });
+        MenuItem masterAttendanceLimit = new MenuItem(null, true, null, null, null, "Attendance Limit", new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                main_content_panel.removeAll();
+//                main_content_panel.add(new FormClasses(), BorderLayout.CENTER);
+                main_content_panel.repaint();
+                main_content_panel.revalidate();
+            }
+        });
+        MenuItem menuMaster = new MenuItem(masterIcon, false, null, rightArrow, downArrow, "Master Data", null, masterEmployee, masterPosition, masterDepartement, masterSalary, masterAttendanceLimit);
 
 //        MenuItem menuClassSchedule = new MenuItem(scheduleIcon, false, null, "Jadwal Kelas", new ActionListener() {
 //            @Override
@@ -286,17 +324,35 @@ public class MainMenu extends javax.swing.JFrame {
 
         // MenuItem masterAttendance = new MenuItem(null, true, subIcon, "Absensi", null);
         // MenuItem menuReport = new MenuItem(reportIcon, false, null, "Report", null, masterAttendance);
-        addMenu(menuDashboard);
+//        addMenu(menuDashboard, menuMaster);
+        try {
+            String sql = "SELECT idlevelemployee FROM employee WHERE isdeleted = 0 AND nik = ?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, nik);
+
+            ResultSet hasil = stmt.executeQuery();
+            if (hasil.next()) {
+                int levelId = hasil.getInt("idlevelemployee");
+                if (levelId == 6) {
+                    addMenu(menuDashboard);
+                } else {
+                    addMenu(menuDashboard, menuMaster);
+                }
+
+            }
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     private void addMenu(MenuItem... menu) {
         for (MenuItem menu1 : menu) {
-            sidebar_panel.add(menu1);
+            menu_panel.add(menu1);
             ArrayList<MenuItem> subMenu = menu1.getSubMenu();
             for (MenuItem m : subMenu) {
                 addMenu(m);
             }
         }
-        sidebar_panel.revalidate();
+        menu_panel.revalidate();
     }
 }

@@ -36,7 +36,6 @@ public class LoginDAO implements LoginService {
         String nama = null;
 
         String sql = "SELECT * FROM employee WHERE nik = '" + loginModel.getUsername() + "' "
-                + "AND isdeleted = 0 "
                 + "AND password='" + loginModel.getPassword() + "'" ;
 
         try {
