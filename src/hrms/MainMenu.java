@@ -17,6 +17,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.BoxLayout;
 import model.LoginModel;
+import view.Employee;
 import view.Login;
 
 /**
@@ -222,7 +223,7 @@ public class MainMenu extends javax.swing.JFrame {
         ImageIcon rightArrow = new ImageIcon(getClass().getResource("/assets/next.png"));
         ImageIcon downArrow = new ImageIcon(getClass().getResource("/assets/down.png"));
 
-        MenuItem menuDashboard = new MenuItem(dashboardIcon, false, null, null, null, "Dasbor", new ActionListener() {
+        MenuItem menuDashboard = new MenuItem(dashboardIcon, false, null, null, null, "Dashboard", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 main_content_panel.removeAll();
@@ -237,7 +238,7 @@ public class MainMenu extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 main_content_panel.removeAll();
-//                main_content_panel.add(new FormUser(), BorderLayout.CENTER);
+                main_content_panel.add(new Employee(), BorderLayout.CENTER);
                 main_content_panel.repaint();
                 main_content_panel.revalidate();
             }
