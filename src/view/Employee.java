@@ -4,19 +4,113 @@
  */
 package view;
 
+import config.Koneksi;
+import dao.EmployeeDAO;
+import java.sql.Connection;
 import javax.swing.Popup;
+import service.EmployeeService;
+import tableModel.EmployeeTableModel;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
+import javax.swing.JOptionPane;
+import model.EmployeeModel;
+
 
 /**
  *
  * @author USer
  */
+
+class ComboItemDept {
+    private int id;
+    private String name;
+
+    public ComboItemDept(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    @Override
+    public String toString() {
+        return name; // akan muncul di combobox
+    }
+}
+
+class ComboItemLevel {
+    private int id;
+    private String name;
+
+    public ComboItemLevel(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    @Override
+    public String toString() {
+        return name; // akan muncul di combobox
+    }
+}
+
 public class Employee extends javax.swing.JPanel {
 
     /**
      * Creates new form Employee
      */
+    
+    private EmployeeService userService = new EmployeeDAO();
+    private EmployeeTableModel userTableModel = new EmployeeTableModel();
+    private Connection conn = Koneksi.koneksi();
+    
     public Employee() {
         initComponents();
+
+        departement_dropdown.removeAllItems();
+        level_dropdown.removeAllItems();
+        
+        String sqlDept = "select iddept, deptname from departement where isdeleted = 0";
+        String sqlLevel = "select idlevel, levelname from level where isdeleted = 0";
+        
+        
+        
+        try {
+            PreparedStatement stDept = conn.prepareStatement(sqlDept);
+            ResultSet rsDept = stDept.executeQuery();
+            
+            PreparedStatement stLevel = conn.prepareStatement(sqlLevel);
+            ResultSet rsLevel = stLevel.executeQuery();
+            
+            while (rsDept.next()) {
+                int idDept = rsDept.getInt("iddept");
+                String nameDept = rsDept.getString("deptname");
+                departement_dropdown.addItem(new ComboItemDept(idDept, nameDept).toString());
+            }
+            
+            while (rsLevel.next()) {
+                int idLevel = rsLevel.getInt("idlevel");
+                String nameLevel = rsLevel.getString("levelname");
+                level_dropdown.addItem(new ComboItemLevel(idLevel, nameLevel).toString());
+            }
+            
+            stDept.close();
+            rsDept.close();
+            stLevel.close();
+            rsLevel.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } 
+        
+        table_user.setModel(userTableModel);
+        loadData();
     }
 
     /**
@@ -39,8 +133,7 @@ public class Employee extends javax.swing.JPanel {
         departement_dropdown = new javax.swing.JComboBox<>();
         level_dropdown = new javax.swing.JComboBox<>();
         level_label = new javax.swing.JLabel();
-        departement_level = new javax.swing.JLabel();
-        password_fields = new javax.swing.JTextField();
+        departement_label = new javax.swing.JLabel();
         password_label = new javax.swing.JLabel();
         no_telp_fields = new javax.swing.JTextField();
         no_telp_label = new javax.swing.JLabel();
@@ -48,6 +141,7 @@ public class Employee extends javax.swing.JPanel {
         alamat_label = new javax.swing.JLabel();
         add_on_modal = new javax.swing.JButton();
         cancel_on_modal = new javax.swing.JButton();
+        password_fields = new javax.swing.JPasswordField();
         jScrollPane1 = new javax.swing.JScrollPane();
         table_user = new javax.swing.JTable();
         crud_panel = new javax.swing.JPanel();
@@ -95,14 +189,8 @@ public class Employee extends javax.swing.JPanel {
         level_label.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         level_label.setText("Level");
 
-        departement_level.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        departement_level.setText("Departement");
-
-        password_fields.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                password_fieldsActionPerformed(evt);
-            }
-        });
+        departement_label.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        departement_label.setText("Departement");
 
         password_label.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         password_label.setText("Password");
@@ -171,16 +259,14 @@ public class Employee extends javax.swing.JPanel {
                                         .addComponent(level_dropdown, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addGap(35, 35, 35)))
                                 .addGroup(add_dialog_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(departement_level, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(departement_label, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(departement_dropdown, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(add_dialog_panelLayout.createSequentialGroup()
                                 .addGroup(add_dialog_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(password_fields, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(alamat_label, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(password_label, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, add_dialog_panelLayout.createSequentialGroup()
-                                        .addComponent(alamat_label, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(266, 266, 266)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(password_fields))
+                                .addGap(35, 35, 35)
                                 .addGroup(add_dialog_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(no_telp_fields, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(no_telp_label, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -211,7 +297,7 @@ public class Employee extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(add_dialog_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(level_label)
-                    .addComponent(departement_level))
+                    .addComponent(departement_label))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(add_dialog_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(departement_dropdown, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -222,7 +308,7 @@ public class Employee extends javax.swing.JPanel {
                         .addComponent(no_telp_label)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(no_telp_fields, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, add_dialog_panelLayout.createSequentialGroup()
+                    .addGroup(add_dialog_panelLayout.createSequentialGroup()
                         .addComponent(password_label)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(password_fields, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -248,7 +334,7 @@ public class Employee extends javax.swing.JPanel {
             .addComponent(add_dialog_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        setPreferredSize(new java.awt.Dimension(400, 696));
+        setPreferredSize(new java.awt.Dimension(400, 600));
 
         table_user.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -261,6 +347,7 @@ public class Employee extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        table_user.setPreferredSize(null);
         jScrollPane1.setViewportView(table_user);
 
         crud_panel.setBackground(new java.awt.Color(255, 255, 255));
@@ -336,11 +423,87 @@ public class Employee extends javax.swing.JPanel {
                 .addComponent(header_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(crud_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 543, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, 0)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 447, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void dataTabel() {
+//        dataUser.setVisible(false);
+//        addUser.setVisible(true);
+//           add_dialog.setModal(true);
+
+        int row = table_user.getSelectedRow();
+        if (row == -1) {
+            JOptionPane.showMessageDialog(null, "Pilih data dari tabel terlebih dahulu.");
+            return;
+        }
+
+//        jLabel2.setText("Perbarui Data Karyawan");
+
+        // Ambil ID user dari tabel
+        Object value = table_user.getModel().getValueAt(row, 0);
+        int userId;
+        if (value instanceof Integer) {
+            userId = (int) value;
+        } else {
+            userId = Integer.parseInt(value.toString());
+        }
+
+        // Ambil data employee berdasarkan ID
+        EmployeeModel userModel = userService.getById(userId);
+        if (userModel == null) {
+            JOptionPane.showMessageDialog(null, "Data user tidak ditemukan.");
+            return;
+        }
+
+        // Query untuk ambil nama departemen dan level berdasarkan ID
+        String sqldept = "SELECT deptname FROM departement WHERE iddept = ? AND isdeleted = 0";
+        String sqllevel = "SELECT levelname FROM level WHERE idlevel = ? AND isdeleted = 0";
+
+        String deptName = "";
+        String levelName = "";
+
+        try (
+            PreparedStatement psDept = conn.prepareStatement(sqldept);
+            PreparedStatement psLevel = conn.prepareStatement(sqllevel)
+        ) {
+            // Ambil deptname
+            psDept.setInt(1, userModel.getIdDept());
+            try (ResultSet rsDept = psDept.executeQuery()) {
+                if (rsDept.next()) {
+                    deptName = rsDept.getString("deptname");
+                }
+            }
+
+            // Ambil levelname
+            psLevel.setInt(1, userModel.getIdLevel());
+            try (ResultSet rsLevel = psLevel.executeQuery()) {
+                if (rsLevel.next()) {
+                    levelName = rsLevel.getString("levelname");
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null,
+                "Terjadi kesalahan saat mengambil data departemen/level:\n" + e.getMessage());
+        }
+         // Set nilai ke input 
+        password_fields.setText(""); // kosongkan password untuk keamanan
+        employee_name_fields.setText(userModel.getEmployeeName());
+        nik_fields.setText(userModel.getNik());
+        alamat_fields.setText(userModel.getAddress());
+        no_telp_fields.setText(userModel.getPhoneNumber());
+        departement_dropdown.setSelectedItem(deptName);
+        level_dropdown.setSelectedItem(levelName);
+
+        // Aktifkan input form
+//        active();
+        add_on_modal.setText("Perbarui");
+        cancel_on_modal.setVisible(true);
+    }
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here
         add_dialog.pack();
@@ -361,10 +524,6 @@ public class Employee extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_level_dropdownActionPerformed
 
-    private void password_fieldsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_password_fieldsActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_password_fieldsActionPerformed
-
     private void no_telp_fieldsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_no_telp_fieldsActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_no_telp_fieldsActionPerformed
@@ -375,6 +534,7 @@ public class Employee extends javax.swing.JPanel {
 
     private void add_on_modalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_on_modalActionPerformed
         // TODO add your handling code here:
+        createData();
     }//GEN-LAST:event_add_on_modalActionPerformed
 
     private void cancel_on_modalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancel_on_modalActionPerformed
@@ -387,6 +547,103 @@ public class Employee extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1MouseClicked
 
+    private void loadData() {
+//        btnHapus.setVisible(false);
+//        btnBatal.setVisible(false);
+        List<EmployeeModel> list = userService.getData();
+        userTableModel.setData(list);
+        userTableModel.fireTableDataChanged();
+
+        table_user.getColumnModel().getColumn(0).setMinWidth(0);
+        table_user.getColumnModel().getColumn(0).setMaxWidth(0);
+        table_user.getColumnModel().getColumn(0).setWidth(0);
+    }
+    
+    private void createData() {
+        if(validasiInput()) {
+            String nik = nik_fields.getText();
+            String employeeName = employee_name_fields.getText();
+            String address = alamat_fields.getText();
+            String phoneNumber = no_telp_fields.getText();
+            String deptName = departement_dropdown.getSelectedItem().toString();
+            String levelName = level_dropdown.getSelectedItem().toString();
+            String password = password_fields.getText();
+            
+            String sqlDept = "select iddept from departement where deptname=? and isdeleted=0";
+            String sqlLevel = "select idlevel from level where levelname=? and isdeleted=0";
+            
+            Integer idDept = null;
+            Integer idLevel = null;
+            
+            try {
+                try(PreparedStatement stDept = conn.prepareStatement(sqlDept)) {
+                    stDept.setString(1, deptName);
+                    try(ResultSet rsDept = stDept.executeQuery()) {
+                        if(rsDept.next()) {
+                            idDept = rsDept.getInt("iddept");
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Departement cannot found on database!");
+                            return;
+                        }
+                    }
+                } 
+               
+             
+                 try(PreparedStatement stLevel = conn.prepareStatement(sqlLevel)) {
+                     stLevel.setString(1, levelName);
+                     try(ResultSet rsLevel = stLevel.executeQuery()) {
+                         if(rsLevel.next()) {
+                             idLevel = rsLevel.getInt("idlevel");
+                         } else {
+                             JOptionPane.showMessageDialog(null, "Level cannot found on database!");
+                             return;
+                         }
+                     } 
+                 }
+                  
+                EmployeeModel employeeModel = new EmployeeModel();
+                employeeModel.setNik(nik);
+                employeeModel.setAddress(address);
+                employeeModel.setEmployeeName(employeeName);
+                employeeModel.setIdDept(idDept);
+                employeeModel.setIdLevel(idLevel);
+                employeeModel.setPassword(password);
+                employeeModel.setPhoneNumber(phoneNumber);
+                
+                userService.addEmployee(employeeModel);
+                userTableModel.addUser(employeeModel);
+                
+                loadData();
+                add_dialog.dispose();
+                resetForm();
+           } catch (Exception e) {
+               e.printStackTrace();
+               JOptionPane.showMessageDialog(null, "Failed Add Employee.");
+           }
+        }
+    }
+
+    
+    private boolean validasiInput() {
+        boolean valid = false;
+        if(nik_fields.getText().isEmpty() || nik_fields.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "NIK cannot be null!");
+        } else {
+            valid = true;
+        }
+        
+        return valid;
+    }
+    
+    private void resetForm() {
+        nik_fields.setText("");
+        employee_name_fields.setText("");
+        alamat_fields.setText("");
+        no_telp_fields.setText("");
+        password_fields.setText("");
+        departement_dropdown.setSelectedIndex(0);
+        level_dropdown.setSelectedIndex(0);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDialog add_dialog;
@@ -397,7 +654,7 @@ public class Employee extends javax.swing.JPanel {
     private javax.swing.JButton cancel_on_modal;
     private javax.swing.JPanel crud_panel;
     private javax.swing.JComboBox<String> departement_dropdown;
-    private javax.swing.JLabel departement_level;
+    private javax.swing.JLabel departement_label;
     private javax.swing.JTextField employee_name_fields;
     private javax.swing.JLabel employee_name_label;
     private javax.swing.JLabel header_new_employee;
@@ -412,7 +669,7 @@ public class Employee extends javax.swing.JPanel {
     private javax.swing.JLabel nik_label;
     private javax.swing.JTextField no_telp_fields;
     private javax.swing.JLabel no_telp_label;
-    private javax.swing.JTextField password_fields;
+    private javax.swing.JPasswordField password_fields;
     private javax.swing.JLabel password_label;
     private javax.swing.JTable table_user;
     // End of variables declaration//GEN-END:variables

@@ -47,6 +47,7 @@ public class Login extends javax.swing.JFrame {
         password_label = new javax.swing.JLabel();
         button_sign_in = new javax.swing.JButton();
         password_fields = new javax.swing.JPasswordField();
+        button_cancel = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         logo_login = new javax.swing.JLabel();
@@ -142,6 +143,32 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
+        button_cancel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        button_cancel.setForeground(new java.awt.Color(51, 0, 0));
+        button_cancel.setText("Cancel");
+        button_cancel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(""), "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 24))); // NOI18N
+        button_cancel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                button_cancelMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                button_cancelMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                button_cancelMouseExited(evt);
+            }
+        });
+        button_cancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button_cancelActionPerformed(evt);
+            }
+        });
+        button_cancel.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                button_cancelKeyPressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -161,7 +188,8 @@ public class Login extends javax.swing.JFrame {
                             .addComponent(username_fields)
                             .addComponent(password_label)
                             .addComponent(button_sign_in, javax.swing.GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE)
-                            .addComponent(password_fields))))
+                            .addComponent(password_fields)
+                            .addComponent(button_cancel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE))))
                 .addContainerGap(42, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -181,7 +209,9 @@ public class Login extends javax.swing.JFrame {
                 .addComponent(password_fields, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
                 .addComponent(button_sign_in, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(81, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(button_cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
@@ -398,6 +428,28 @@ public class Login extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_password_fieldsFocusLost
 
+    private void button_cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_button_cancelMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_button_cancelMouseClicked
+
+    private void button_cancelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_button_cancelMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_button_cancelMouseEntered
+
+    private void button_cancelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_button_cancelMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_button_cancelMouseExited
+
+    private void button_cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_cancelActionPerformed
+        // TODO add your handling code here:
+        username_fields.setText("Username...");
+        password_fields.setText("Password");
+    }//GEN-LAST:event_button_cancelActionPerformed
+
+    private void button_cancelKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_button_cancelKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_button_cancelKeyPressed
+
     /**
      * @param args the command line arguments
      */
@@ -433,6 +485,7 @@ public class Login extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btn_close;
+    private javax.swing.JButton button_cancel;
     private javax.swing.JButton button_sign_in;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

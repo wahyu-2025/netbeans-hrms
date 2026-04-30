@@ -5,7 +5,11 @@
         <group>
             <file>file:/C:/Users/USer/Documents/NetBeansProjects/HRMS/src/view/Login.java</file>
             <file>file:/C:/Users/USer/Documents/NetBeansProjects/HRMS/src/hrms/MainMenu.java</file>
-            <file>file:/C:/Users/USer/Documents/NetBeansProjects/HRMS/src/hrms/MenuItem.java</file>
+            <file>file:/C:/Users/USer/Documents/NetBeansProjects/HRMS/src/view/Employee.java</file>
+            <file>file:/C:/Users/USer/Documents/NetBeansProjects/HRMS/src/model/EmployeeModel.java</file>
+            <file>file:/C:/Users/USer/Documents/NetBeansProjects/HRMS/src/tableModel/EmployeeTableModel.java</file>
+            <file>file:/C:/Users/USer/Documents/NetBeansProjects/HRMS/src/service/EmployeeService.java</file>
+            <file>file:/C:/Users/USer/Documents/NetBeansProjects/HRMS/src/DAO/EmployeeDAO.java</file>
             <file>file:/C:/Users/USer/Documents/NetBeansProjects/HRMS/src/DAO/LoginDAO.java</file>
         </group>
     </open-files>
