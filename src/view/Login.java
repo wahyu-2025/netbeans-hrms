@@ -101,6 +101,11 @@ public class Login extends javax.swing.JFrame {
                 username_fieldsActionPerformed(evt);
             }
         });
+        username_fields.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                username_fieldsKeyPressed(evt);
+            }
+        });
 
         password_label.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         password_label.setText("Password");
@@ -140,6 +145,11 @@ public class Login extends javax.swing.JFrame {
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 password_fieldsFocusLost(evt);
+            }
+        });
+        password_fields.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                password_fieldsKeyPressed(evt);
             }
         });
 
@@ -402,6 +412,7 @@ public class Login extends javax.swing.JFrame {
         if(username.equals("Username...")){
             username_fields.setText("");
         }
+        
     }//GEN-LAST:event_username_fieldsFocusGained
 
     private void username_fieldsFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_username_fieldsFocusLost
@@ -449,6 +460,20 @@ public class Login extends javax.swing.JFrame {
     private void button_cancelKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_button_cancelKeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_button_cancelKeyPressed
+
+    private void username_fieldsKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_username_fieldsKeyPressed
+        // TODO add your handling code here:
+         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            prosesLogin();
+        }
+    }//GEN-LAST:event_username_fieldsKeyPressed
+
+    private void password_fieldsKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_password_fieldsKeyPressed
+        // TODO add your handling code here:
+         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            prosesLogin();
+        }
+    }//GEN-LAST:event_password_fieldsKeyPressed
 
     /**
      * @param args the command line arguments

@@ -19,6 +19,7 @@ import javax.swing.BoxLayout;
 import model.LoginModel;
 import view.Employee;
 import view.Login;
+import view.Level;
 
 /**
  *
@@ -247,7 +248,7 @@ public class MainMenu extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 main_content_panel.removeAll();
-//                main_content_panel.add(new FormCourses(), BorderLayout.CENTER);
+                main_content_panel.add(new Level(), BorderLayout.CENTER);
                 main_content_panel.repaint();
                 main_content_panel.revalidate();
             }

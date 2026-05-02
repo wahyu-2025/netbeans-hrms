@@ -67,7 +67,7 @@ public class EmployeeTableModel extends AbstractTableModel {
         return list.size();
     }
 
-    private final String[] columnNames = {"Id", "NIK", "Nama","Alamat","Nomor Telepon", "Departemen", "Level"};
+    private final String[] columnNames = {"Id", "No", "NIK", "Nama","Alamat","Nomor Telepon", "Departemen", "Level"};
 
     @Override
     public int getColumnCount() {
@@ -76,20 +76,23 @@ public class EmployeeTableModel extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
+        System.out.println("EMOLYEE COLUMN INDEX " + columnIndex);
         return switch (columnIndex) {
             case 0 ->
                 list.get(rowIndex).getId();  
             case 1 ->
-                list.get(rowIndex).getNik();
+                " " + (rowIndex + 1); 
             case 2 ->
-                list.get(rowIndex).getEmployeeName();
+                list.get(rowIndex).getNik();
             case 3 ->
-                list.get(rowIndex).getAddress();
+                list.get(rowIndex).getEmployeeName();
             case 4 ->
-                list.get(rowIndex).getPhoneNumber();
+                list.get(rowIndex).getAddress();
             case 5 ->
-                list.get(rowIndex).getDeptName();
+                list.get(rowIndex).getPhoneNumber();
             case 6 ->
+                list.get(rowIndex).getDeptName();
+            case 7 ->
                 list.get(rowIndex).getLevelName();
             default ->
                 null;
