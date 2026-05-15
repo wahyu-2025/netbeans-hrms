@@ -1,1 +1,16 @@
-/dist/
+# Build output
+build/
+dist/
+
+# Java compiled files
+*.class
+
+# NetBeans private config
+nbproject/private/
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
