@@ -21,7 +21,7 @@ import view.Departement;
 import view.Employee;
 import view.Login;
 import view.Level;
-
+import view.FormSalary;
 /**
  *
  * @author USer
@@ -267,7 +267,7 @@ public class MainMenu extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 main_content_panel.removeAll();
-//                main_content_panel.add(new FormClasses(), BorderLayout.CENTER);
+                main_content_panel.add(new FormSalary(), BorderLayout.CENTER);
                 main_content_panel.repaint();
                 main_content_panel.revalidate();
             }

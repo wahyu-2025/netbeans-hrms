@@ -13,8 +13,8 @@ public class Koneksi {
 
     public static Connection koneksi() {
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection koneksi = DriverManager.getConnection("jdbc:mysql://localhost/db_salary_employee", "root", "");
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection koneksi = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_salary_employee?useSSL=false&serverTimezone=UTC", "root", "");
             System.out.println("Koneksi" + koneksi);
             return koneksi;
         } catch (ClassNotFoundException | SQLException e) {
