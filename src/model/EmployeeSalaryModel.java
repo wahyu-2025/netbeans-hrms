@@ -2,15 +2,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package model;
+package model;  
 
 /**
  *
- * @author myama
+ * @author USer
  */
-public class EmployeSalaryModel {
-    
-     private Integer id;
+public class EmployeeSalaryModel {
+
+    private Integer id;
     private String employeename;
     private Integer basicsalary;
     private Integer overtimebonus;
@@ -22,7 +22,8 @@ public class EmployeSalaryModel {
     private String levelname;  
     private String getmonth;
     private String getyear;
-  public Integer getId() {
+
+    public Integer getId() {
         return id;
     }
 

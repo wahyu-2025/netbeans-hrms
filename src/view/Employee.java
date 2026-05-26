@@ -622,6 +622,117 @@ public class Employee extends javax.swing.JPanel {
            }
         }
     }
+    
+        private void updateData() {
+        int row = table_user.getSelectedRow();
+        if (row != -1) {
+            int userId = (int) table_user.getModel().getValueAt(row, 0);
+            EmployeeModel getUser = userService.getById(userId);
+
+            if (getUser == null) {
+                JOptionPane.showMessageDialog(null, "Data karyawan tidak ditemukan di database.");
+                return;
+            }
+
+            if (validasiInput()) {
+                String nik = nik_fields.getText();
+                String getlevel = level_dropdown.getSelectedItem().toString();
+                String nama = employee_name_fields.getText();
+                String getdepartemen = departement_dropdown.getSelectedItem().toString();
+                String address = alamat_fields.getText();
+                String phonenumber = no_telp_fields.getText();
+
+                String sqldept = "SELECT iddept FROM departement WHERE deptname = ? AND isdeleted = 0";
+                String sqllevel = "SELECT idlevel FROM level WHERE levelname = ? AND isdeleted = 0";
+
+                Integer idDept = null;
+                Integer idLevel = null;
+
+                try {
+                    // 🔹 Ambil iddept dari nama departemen
+                    try (PreparedStatement psDept = conn.prepareStatement(sqldept)) {
+                        psDept.setString(1, getdepartemen);
+                        try (ResultSet rsDept = psDept.executeQuery()) {
+                            if (rsDept.next()) {
+                                idDept = rsDept.getInt("iddept");
+                            } else {
+                                JOptionPane.showMessageDialog(null, "Departemen tidak ditemukan di database!");
+                                return;
+                            }
+                        }
+                    }
+
+                    // 🔹 Ambil idlevel dari nama level
+                    try (PreparedStatement psLevel = conn.prepareStatement(sqllevel)) {
+                        psLevel.setString(1, getlevel);
+                        try (ResultSet rsLevel = psLevel.executeQuery()) {
+                            if (rsLevel.next()) {
+                                idLevel = rsLevel.getInt("idlevel");
+                            } else {
+                                JOptionPane.showMessageDialog(null, "Level tidak ditemukan di database!");
+                                return;
+                            }
+                        }
+                    }
+
+                    // 🔹 Jika password kosong, gunakan yang lama
+                    String password = password_fields.getPassword().length == 0
+                            ? getUser.getPassword()
+                            : new String (password_fields.getPassword());
+
+                    // 🔹 Buat objek model baru untuk update
+                    EmployeeModel userModel = new EmployeeModel();
+                    userModel.setId(userId);
+                    userModel.setEmployeeName(nama);
+                    userModel.setNik(nik);
+                    userModel.setIdLevel(idLevel); // gunakan integer id
+                    userModel.setIdDept(idDept);   // gunakan integer id
+                    userModel.setPassword(password);
+                    userModel.setAddress(address);
+                    userModel.setPhoneNumber(phonenumber);
+
+                    // 🔹 Simpan perubahan
+                    userService.editEmployee(userModel);
+                    userTableModel.editUser(row, userModel);
+
+                    loadData();
+                    resetForm();
+                    add_dialog.dispose();
+//                    showPanel();
+//                    btnSimpan.setText("Tambah");
+
+                    JOptionPane.showMessageDialog(null, "Data karyawan berhasil diperbarui.");
+
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                    JOptionPane.showMessageDialog(null,
+                            "Terjadi kesalahan saat memperbarui data karyawan:\n" + e.getMessage());
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Pilih data dari tabel terlebih dahulu!");
+        }
+    }
+
+
+    private void deleteData() {
+        int index = table_user.getSelectedRow();
+        if (index != -1) {
+            int userId = (int) table_user.getModel().getValueAt(index, 0);
+            EmployeeModel getUser = userService.getById(userId);
+
+            EmployeeModel userModel = getUser;
+
+            if (JOptionPane.showConfirmDialog(null, "Yakin data akan dihapus?", "Konfirmasi", JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION) {
+                userService.deleteEmployee(userModel);
+                userTableModel.deleteUser(index);
+                loadData();
+                resetForm();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Pilih dahulu record yang akan dihapus");
+        }
+    }
 
     
     private boolean validasiInput() {

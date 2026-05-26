@@ -3,12 +3,19 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/myama/Documents/kuliah/netbeans-hrms/src/service/AttendanceService.java</file>
             <file>file:/C:/Users/myama/Documents/kuliah/netbeans-hrms/src/DAO/AttendanceDAO.java</file>
             <file>file:/C:/Users/myama/Documents/kuliah/netbeans-hrms/src/config/Koneksi.java</file>
             <file>file:/C:/Users/myama/Documents/kuliah/netbeans-hrms/src/view/FormNewSalary.java</file>
             <file>file:/C:/Users/myama/Documents/kuliah/netbeans-hrms/src/view/FormAttendanceLimit.java</file>
             <file>file:/C:/Users/myama/Documents/kuliah/netbeans-hrms/src/hrms/MainMenu.java</file>
+=======
+            <file>file:/C:/Users/USer/Documents/NetBeansProjects/HRMS/src/view/Login.java</file>
+            <file>file:/C:/Users/USer/Documents/NetBeansProjects/HRMS/src/hrms/MainMenu.java</file>
+            <file>file:/C:/Users/USer/Documents/NetBeansProjects/HRMS/src/view/Departement.java</file>
+            <file>file:/C:/Users/USer/Documents/NetBeansProjects/HRMS/src/view/Employee.java</file>
+>>>>>>> a4b8120dc8b37f39f807fa30b98630bf257e6c32
         </group>
     </open-files>
 </project-private>
