@@ -276,7 +276,10 @@ public class MainMenu extends javax.swing.JFrame {
         MenuItem masterAttendanceLimit = new MenuItem(null, true, null, null, null, "Attendance Limit", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                
+                 main_content_panel.removeAll();
+                main_content_panel.add(new FormAttendanceLimit(), BorderLayout.CENTER);
+                main_content_panel.repaint();
+                main_content_panel.revalidate();   
             }
         });
         MenuItem menuMaster = new MenuItem(masterIcon, false, null, rightArrow, downArrow, "Master Data", null, masterEmployee, masterPosition, masterDepartement, masterSalary, masterAttendanceLimit);
