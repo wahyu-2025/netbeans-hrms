@@ -76,7 +76,6 @@ public class EmployeeTableModel extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        System.out.println("EMOLYEE COLUMN INDEX " + columnIndex);
         return switch (columnIndex) {
             case 0 ->
                 list.get(rowIndex).getId();  

@@ -222,7 +222,7 @@ public class MainMenu extends javax.swing.JFrame {
 //        ImageIcon registIcon = new ImageIcon(getClass().getResource("/asset/img/regist_icon.png"));
 //        ImageIcon scheduleIcon = new ImageIcon(getClass().getResource("/asset/img/schedule_icon.png"));
 //        ImageIcon subIcon = new ImageIcon(getClass().getResource("/assets/sort_icon.png"));
-//        ImageIcon logoutIcon = new ImageIcon(getClass().getResource("/asset/img/logout_icon.png"));
+        ImageIcon logoutIcon = new ImageIcon(getClass().getResource("/assets/logout.png"));
         ImageIcon rightArrow = new ImageIcon(getClass().getResource("/assets/next.png"));
         ImageIcon downArrow = new ImageIcon(getClass().getResource("/assets/down.png"));
 
@@ -276,10 +276,7 @@ public class MainMenu extends javax.swing.JFrame {
         MenuItem masterAttendanceLimit = new MenuItem(null, true, null, null, null, "Attendance Limit", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                main_content_panel.removeAll();
-                main_content_panel.add(new FormAttendanceLimit(), BorderLayout.CENTER);
-                main_content_panel.repaint();
-                main_content_panel.revalidate();
+                
             }
         });
         MenuItem menuMaster = new MenuItem(masterIcon, false, null, rightArrow, downArrow, "Master Data", null, masterEmployee, masterPosition, masterDepartement, masterSalary, masterAttendanceLimit);
@@ -315,6 +312,16 @@ public class MainMenu extends javax.swing.JFrame {
 //            }
 //        });
 
+        MenuItem logout = new MenuItem(logoutIcon, false, null, null, null, "Logout", new ActionListener() {
+                   @Override
+                   public void actionPerformed(ActionEvent e) {
+                    dispose();
+
+                    Login formLogin = new Login();
+                    formLogin.setVisible(true);
+                   }
+               });
+
         // SubMenu dan Master Report
 //        MenuItem menuLogout = new MenuItem(logoutIcon, false, null, "Keluar", new ActionListener() {
 //            @Override
@@ -338,9 +345,9 @@ public class MainMenu extends javax.swing.JFrame {
             if (hasil.next()) {
                 int levelId = hasil.getInt("idlevelemployee");
                 if (levelId == 6) {
-                    addMenu(menuDashboard);
+                    addMenu(menuDashboard, logout);
                 } else {
-                    addMenu(menuDashboard, menuMaster);
+                    addMenu(menuDashboard, menuMaster, logout);
                 }
 
             }

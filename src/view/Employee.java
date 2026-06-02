@@ -146,6 +146,8 @@ public class Employee extends javax.swing.JPanel {
         table_user = new javax.swing.JTable();
         crud_panel = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         header_panel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
 
@@ -348,6 +350,11 @@ public class Employee extends javax.swing.JPanel {
             }
         ));
         table_user.setPreferredSize(null);
+        table_user.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                table_userMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(table_user);
 
         crud_panel.setBackground(new java.awt.Color(255, 255, 255));
@@ -368,6 +375,32 @@ public class Employee extends javax.swing.JPanel {
             }
         });
 
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/delete (1).png"))); // NOI18N
+        jButton2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton3.setText("Cancel");
+        jButton3.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
+            }
+        });
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout crud_panelLayout = new javax.swing.GroupLayout(crud_panel);
         crud_panel.setLayout(crud_panelLayout);
         crud_panelLayout.setHorizontalGroup(
@@ -375,13 +408,21 @@ public class Employee extends javax.swing.JPanel {
             .addGroup(crud_panelLayout.createSequentialGroup()
                 .addGap(31, 31, 31)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         crud_panelLayout.setVerticalGroup(
             crud_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(crud_panelLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(crud_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(crud_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
@@ -439,7 +480,7 @@ public class Employee extends javax.swing.JPanel {
             return;
         }
 
-//        jLabel2.setText("Perbarui Data Karyawan");
+        header_new_employee.setText("Edit Employee");
 
         // Ambil ID user dari tabel
         Object value = table_user.getModel().getValueAt(row, 0);
@@ -452,6 +493,7 @@ public class Employee extends javax.swing.JPanel {
 
         // Ambil data employee berdasarkan ID
         EmployeeModel userModel = userService.getById(userId);
+        
         if (userModel == null) {
             JOptionPane.showMessageDialog(null, "Data user tidak ditemukan.");
             return;
@@ -490,7 +532,7 @@ public class Employee extends javax.swing.JPanel {
                 "Terjadi kesalahan saat mengambil data departemen/level:\n" + e.getMessage());
         }
          // Set nilai ke input 
-        password_fields.setText(""); // kosongkan password untuk keamanan
+        password_fields.setText(userModel.getPassword());
         employee_name_fields.setText(userModel.getEmployeeName());
         nik_fields.setText(userModel.getNik());
         alamat_fields.setText(userModel.getAddress());
@@ -500,12 +542,18 @@ public class Employee extends javax.swing.JPanel {
 
         // Aktifkan input form
 //        active();
-        add_on_modal.setText("Perbarui");
+        add_on_modal.setText("Update");
         cancel_on_modal.setVisible(true);
     }
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here
+        if(jButton1.getText().equals("Edit Employee")) {
+            add_on_modal.setText("Update");
+            dataTabel();
+        } else {
+            add_on_modal.setText("Add");
+        }
         add_dialog.pack();
         add_dialog.setLocationRelativeTo(null);
         add_dialog.setModal(true);
@@ -534,22 +582,61 @@ public class Employee extends javax.swing.JPanel {
 
     private void add_on_modalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_on_modalActionPerformed
         // TODO add your handling code here:
-        createData();
+        if(add_on_modal.getText().equals("Add")) {
+            createData();
+        } else {
+            updateData();
+        }
     }//GEN-LAST:event_add_on_modalActionPerformed
 
     private void cancel_on_modalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancel_on_modalActionPerformed
         // TODO add your handling code here:
 //        add_dialog.setModal(false);
         add_dialog.dispose();
+        resetForm();
     }//GEN-LAST:event_cancel_on_modalActionPerformed
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
+//        if (jButton1.getText().equals("Edit Employee")) {
+//            dataTabel();
+//        }
     }//GEN-LAST:event_jButton1MouseClicked
 
+    private void table_userMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_userMouseClicked
+        // TODO add your handling code here:
+        if(jButton1.getText().equals("Add Employee")) {
+            jButton1.setText("Edit Employee");
+        }
+        
+        jButton2.setVisible(true);
+        jButton3.setVisible(true);
+    }//GEN-LAST:event_table_userMouseClicked
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2MouseClicked
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        deleteData();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3MouseClicked
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        loadData();
+        resetForm();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     private void loadData() {
-//        btnHapus.setVisible(false);
-//        btnBatal.setVisible(false);
+        jButton2.setVisible(false);
+        jButton3.setVisible(false);
+        jButton1.setText("Add Employee");
+        add_on_modal.setText("Add");
         List<EmployeeModel> list = userService.getData();
         userTableModel.setData(list);
         userTableModel.fireTableDataChanged();
@@ -748,6 +835,7 @@ public class Employee extends javax.swing.JPanel {
     
     private void resetForm() {
         nik_fields.setText("");
+        header_new_employee.setText("Add Employee");
         employee_name_fields.setText("");
         alamat_fields.setText("");
         no_telp_fields.setText("");
@@ -771,6 +859,8 @@ public class Employee extends javax.swing.JPanel {
     private javax.swing.JLabel header_new_employee;
     private javax.swing.JPanel header_panel;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JComboBox<String> level_dropdown;

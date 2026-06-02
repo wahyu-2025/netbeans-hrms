@@ -248,6 +248,7 @@ public class EmployeeDAO implements EmployeeService {
         user.setPhoneNumber(rs.getString("phonenumber"));
         user.setDeptName(rs.getString("deptname"));
         user.setLevelName(rs.getString("levelname"));
+        user.setPassword(rs.getString("password"));
         user.setIdDept(rs.getInt("iddeptemployee"));
         user.setIdLevel(rs.getInt("idlevelemployee"));
         return user;
