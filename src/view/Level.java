@@ -61,6 +61,8 @@ public class Level extends javax.swing.JPanel {
         table_position = new javax.swing.JTable();
         crud_panel = new javax.swing.JPanel();
         add_button = new javax.swing.JButton();
+        delete_button = new javax.swing.JButton();
+        cancel_button = new javax.swing.JButton();
         header_panel = new javax.swing.JPanel();
         header_name = new javax.swing.JLabel();
 
@@ -168,6 +170,11 @@ public class Level extends javax.swing.JPanel {
             }
         ));
         table_position.setPreferredSize(null);
+        table_position.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                table_positionMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(table_position);
 
         crud_panel.setBackground(new java.awt.Color(255, 255, 255));
@@ -188,6 +195,32 @@ public class Level extends javax.swing.JPanel {
             }
         });
 
+        delete_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/delete (1).png"))); // NOI18N
+        delete_button.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        delete_button.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                delete_buttonMouseClicked(evt);
+            }
+        });
+        delete_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                delete_buttonActionPerformed(evt);
+            }
+        });
+
+        cancel_button.setText("Cancel");
+        cancel_button.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        cancel_button.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cancel_buttonMouseClicked(evt);
+            }
+        });
+        cancel_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancel_buttonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout crud_panelLayout = new javax.swing.GroupLayout(crud_panel);
         crud_panel.setLayout(crud_panelLayout);
         crud_panelLayout.setHorizontalGroup(
@@ -195,13 +228,21 @@ public class Level extends javax.swing.JPanel {
             .addGroup(crud_panelLayout.createSequentialGroup()
                 .addGap(31, 31, 31)
                 .addComponent(add_button, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(delete_button, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cancel_button, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         crud_panelLayout.setVerticalGroup(
             crud_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(crud_panelLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(add_button, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(crud_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cancel_button, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(crud_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(add_button, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(delete_button, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
@@ -274,6 +315,13 @@ public class Level extends javax.swing.JPanel {
     
     private void add_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_buttonActionPerformed
         // TODO add your handling code here
+        if(add_button.getText().equals("Edit Position")) {
+            add_on_modal.setText("Update");
+            header_new_position.setText("Edit Position");
+            dataTabel();
+        } else {
+            add_on_modal.setText("Add");
+        }
         add_dialog.pack();
         add_dialog.setLocationRelativeTo(null);
         add_dialog.setModal(true);
@@ -286,22 +334,58 @@ public class Level extends javax.swing.JPanel {
 
     private void add_on_modalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_on_modalActionPerformed
         // TODO add your handling code here:
-        createData();
+       if(add_on_modal.getText().equals("Add")) {
+            createData();
+        } else {
+            updateData();
+        }
     }//GEN-LAST:event_add_on_modalActionPerformed
 
     private void cancel_on_modalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancel_on_modalActionPerformed
         // TODO add your handling code here:
 //        add_dialog.setModal(false);
         add_dialog.dispose();
+        loadData();
+        resetForm();
     }//GEN-LAST:event_cancel_on_modalActionPerformed
 
     private void add_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_add_buttonMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_add_buttonMouseClicked
 
+    private void delete_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_delete_buttonMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_delete_buttonMouseClicked
+
+    private void delete_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delete_buttonActionPerformed
+        // TODO add your handling code here:
+        deleteData();
+    }//GEN-LAST:event_delete_buttonActionPerformed
+
+    private void cancel_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancel_buttonMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cancel_buttonMouseClicked
+
+    private void cancel_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancel_buttonActionPerformed
+        // TODO add your handling code here:
+        loadData();
+        resetForm();
+    }//GEN-LAST:event_cancel_buttonActionPerformed
+
+    private void table_positionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_positionMouseClicked
+        // TODO add your handling code here:
+        if(add_button.getText().equals("Add Position")) {
+            add_button.setText("Edit Position");
+        }
+        
+        delete_button.setVisible(true);
+        cancel_button.setVisible(true);
+    }//GEN-LAST:event_table_positionMouseClicked
+
     private void loadData() {
-//        btnHapus.setVisible(false);
-//        btnBatal.setVisible(false);
+        delete_button.setVisible(false);
+        cancel_button.setVisible(false);
+        add_button.setText("Add Position");
         List<LevelModel> list = levelService.getData();
         System.out.println("LIST" + list);
         levelTableModel.setData(list);
@@ -328,6 +412,44 @@ public class Level extends javax.swing.JPanel {
            } 
         }
     
+    private void updateData() {
+        int row = table_position.getSelectedRow();
+        if (row != -1) {
+            if (validasiInput() == true) {
+                String nama = position_fields.getText();
+                LevelModel levelmodel = new LevelModel();
+                levelmodel.setId((int) table_position.getModel().getValueAt(row, 0));
+                levelmodel.setLevelName(nama);
+
+                levelService.editLevel(levelmodel);
+                levelTableModel.editLevel(row, levelmodel);
+                loadData();
+                resetForm();
+                add_dialog.dispose();
+//                showPanel();
+            }
+        }
+    }
+    
+    private void deleteData() {
+        int index = table_position.getSelectedRow();
+        if (index != -1) {
+            int levelId = (int) table_position.getModel().getValueAt(index, 0);
+            LevelModel getLevel= levelService.getById(levelId);
+            
+            LevelModel levelmodel = getLevel;
+            
+            if (JOptionPane.showConfirmDialog(null, "Yakin data akan dihapus?", "Konfirmasi", JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION) {
+                levelService.deleteLevel(levelmodel);
+                levelTableModel.deleteLevel(index);
+                loadData();
+                resetForm();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Pilih dahulu record yang akan dihapus");
+        }
+    }
+    
 
     
     private boolean validasiInput() {
@@ -350,8 +472,10 @@ public class Level extends javax.swing.JPanel {
     private javax.swing.JDialog add_dialog;
     private javax.swing.JPanel add_dialog_panel;
     private javax.swing.JButton add_on_modal;
+    private javax.swing.JButton cancel_button;
     private javax.swing.JButton cancel_on_modal;
     private javax.swing.JPanel crud_panel;
+    private javax.swing.JButton delete_button;
     private javax.swing.JLabel header_name;
     private javax.swing.JLabel header_new_position;
     private javax.swing.JPanel header_panel;

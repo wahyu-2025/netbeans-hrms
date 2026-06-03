@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.BoxLayout;
+import javax.swing.JOptionPane;
 import model.LoginModel;
 import view.Departement;
 import view.Employee;
@@ -318,10 +319,13 @@ public class MainMenu extends javax.swing.JFrame {
         MenuItem logout = new MenuItem(logoutIcon, false, null, null, null, "Logout", new ActionListener() {
                    @Override
                    public void actionPerformed(ActionEvent e) {
-                    dispose();
+                       if (JOptionPane.showConfirmDialog(null, "Are you sure?", "Confirm", JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION) {
+                
+                        dispose();
 
-                    Login formLogin = new Login();
-                    formLogin.setVisible(true);
+                        Login formLogin = new Login();
+                        formLogin.setVisible(true);
+                       }
                    }
                });
 

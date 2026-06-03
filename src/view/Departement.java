@@ -36,7 +36,7 @@ public class Departement extends javax.swing.JPanel {
     public Departement() {
         initComponents();
         
-        table_position.setModel(departementTableModel);
+        table_departement.setModel(departementTableModel);
         loadData();
     }
 
@@ -51,16 +51,18 @@ public class Departement extends javax.swing.JPanel {
 
         add_dialog = new javax.swing.JDialog();
         add_dialog_panel = new javax.swing.JPanel();
-        header_new_position = new javax.swing.JLabel();
+        header_new_departement = new javax.swing.JLabel();
         line_icon = new javax.swing.JLabel();
-        position_fields = new javax.swing.JTextField();
-        position_label = new javax.swing.JLabel();
+        departement_fields = new javax.swing.JTextField();
+        departement_label = new javax.swing.JLabel();
         add_on_modal = new javax.swing.JButton();
         cancel_on_modal = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        table_position = new javax.swing.JTable();
+        table_departement = new javax.swing.JTable();
         crud_panel = new javax.swing.JPanel();
         add_button = new javax.swing.JButton();
+        delete_button = new javax.swing.JButton();
+        cancel_button = new javax.swing.JButton();
         header_panel = new javax.swing.JPanel();
         header_name = new javax.swing.JLabel();
 
@@ -68,19 +70,19 @@ public class Departement extends javax.swing.JPanel {
 
         add_dialog_panel.setBackground(new java.awt.Color(255, 255, 255));
 
-        header_new_position.setFont(new java.awt.Font("Liberation Sans", 1, 14)); // NOI18N
-        header_new_position.setText("New Departement");
+        header_new_departement.setFont(new java.awt.Font("Liberation Sans", 1, 14)); // NOI18N
+        header_new_departement.setText("New Departement");
 
         line_icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/pipe.png"))); // NOI18N
 
-        position_fields.addActionListener(new java.awt.event.ActionListener() {
+        departement_fields.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                position_fieldsActionPerformed(evt);
+                departement_fieldsActionPerformed(evt);
             }
         });
 
-        position_label.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        position_label.setText("Departement Name");
+        departement_label.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        departement_label.setText("Departement Name");
 
         add_on_modal.setText("Add");
         add_on_modal.addActionListener(new java.awt.event.ActionListener() {
@@ -104,17 +106,17 @@ public class Departement extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(line_icon, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(header_new_position, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(header_new_departement, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(add_dialog_panelLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addGroup(add_dialog_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(add_dialog_panelLayout.createSequentialGroup()
-                        .addComponent(position_label, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(departement_label, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(add_dialog_panelLayout.createSequentialGroup()
                         .addGroup(add_dialog_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(position_fields)
+                            .addComponent(departement_fields)
                             .addGroup(add_dialog_panelLayout.createSequentialGroup()
                                 .addGap(0, 543, Short.MAX_VALUE)
                                 .addComponent(add_on_modal, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -128,11 +130,11 @@ public class Departement extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(add_dialog_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(line_icon)
-                    .addComponent(header_new_position, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(header_new_departement, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(position_label)
+                .addComponent(departement_label)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(position_fields, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(departement_fields, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 31, Short.MAX_VALUE)
                 .addGroup(add_dialog_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancel_on_modal, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -153,7 +155,7 @@ public class Departement extends javax.swing.JPanel {
 
         setPreferredSize(new java.awt.Dimension(400, 600));
 
-        table_position.setModel(new javax.swing.table.DefaultTableModel(
+        table_departement.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -164,8 +166,13 @@ public class Departement extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        table_position.setPreferredSize(null);
-        jScrollPane1.setViewportView(table_position);
+        table_departement.setPreferredSize(null);
+        table_departement.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                table_departementMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(table_departement);
 
         crud_panel.setBackground(new java.awt.Color(255, 255, 255));
         crud_panel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -185,6 +192,32 @@ public class Departement extends javax.swing.JPanel {
             }
         });
 
+        delete_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/delete (1).png"))); // NOI18N
+        delete_button.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        delete_button.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                delete_buttonMouseClicked(evt);
+            }
+        });
+        delete_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                delete_buttonActionPerformed(evt);
+            }
+        });
+
+        cancel_button.setText("Cancel");
+        cancel_button.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        cancel_button.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cancel_buttonMouseClicked(evt);
+            }
+        });
+        cancel_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancel_buttonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout crud_panelLayout = new javax.swing.GroupLayout(crud_panel);
         crud_panel.setLayout(crud_panelLayout);
         crud_panelLayout.setHorizontalGroup(
@@ -192,13 +225,21 @@ public class Departement extends javax.swing.JPanel {
             .addGroup(crud_panelLayout.createSequentialGroup()
                 .addGap(31, 31, 31)
                 .addComponent(add_button, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(delete_button, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cancel_button, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         crud_panelLayout.setVerticalGroup(
             crud_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(crud_panelLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(add_button, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(crud_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cancel_button, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(crud_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(add_button, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(delete_button, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
@@ -246,72 +287,110 @@ public class Departement extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void dataTabel() {
-//        dataUser.setVisible(false);
-//        addUser.setVisible(true);
-//           add_dialog.setModal(true);
-
-        int row = table_position.getSelectedRow();
+        
+        int row = table_departement.getSelectedRow();
         if (row == -1) {
             JOptionPane.showMessageDialog(null, "Pilih data dari tabel terlebih dahulu.");
             return;
         }
 
-//        jLabel2.setText("Perbarui Data Karyawan");
+        header_new_departement.setText("Edit Departement");
 
         // Ambil ID user dari tabel
-        int levelId = (int) table_position.getModel().getValueAt(row, 0);
+        int levelId = (int) table_departement.getModel().getValueAt(row, 0);
         DeptModel departementModel = departementService.getById(levelId);
-        position_fields.setText(departementModel.getDeptName());
+        departement_fields.setText(departementModel.getDeptName());
 
         // Aktifkan input form
 //        active();
-        add_on_modal.setText("Perbarui");
+//        add_on_modal.setText("Perbarui");
         cancel_on_modal.setVisible(true);
     }
     
     private void add_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_buttonActionPerformed
         // TODO add your handling code here
+        if(add_button.getText().equals("Edit Departement")) {
+            add_on_modal.setText("Update");
+            dataTabel();
+        } else {
+            add_on_modal.setText("Add");
+        }
         add_dialog.pack();
         add_dialog.setLocationRelativeTo(null);
         add_dialog.setModal(true);
         add_dialog.setVisible(true);
     }//GEN-LAST:event_add_buttonActionPerformed
 
-    private void position_fieldsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_position_fieldsActionPerformed
+    private void departement_fieldsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_departement_fieldsActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_position_fieldsActionPerformed
+    }//GEN-LAST:event_departement_fieldsActionPerformed
 
     private void add_on_modalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_on_modalActionPerformed
         // TODO add your handling code here:
-        createData();
+        if(add_on_modal.getText().equals("Add")) {
+            createData();
+        } else {
+            updateData();
+        }
     }//GEN-LAST:event_add_on_modalActionPerformed
 
     private void cancel_on_modalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancel_on_modalActionPerformed
         // TODO add your handling code here:
 //        add_dialog.setModal(false);
         add_dialog.dispose();
+        loadData();
+        resetForm();
     }//GEN-LAST:event_cancel_on_modalActionPerformed
 
     private void add_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_add_buttonMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_add_buttonMouseClicked
 
+    private void delete_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_delete_buttonMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_delete_buttonMouseClicked
+
+    private void delete_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delete_buttonActionPerformed
+        // TODO add your handling code here:
+        deleteData();
+    }//GEN-LAST:event_delete_buttonActionPerformed
+
+    private void cancel_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancel_buttonMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cancel_buttonMouseClicked
+
+    private void cancel_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancel_buttonActionPerformed
+        // TODO add your handling code here:
+        loadData();
+        resetForm();
+    }//GEN-LAST:event_cancel_buttonActionPerformed
+
+    private void table_departementMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_departementMouseClicked
+        // TODO add your handling code here:
+        if(add_button.getText().equals("Add Departement")) {
+            add_button.setText("Edit Departement");
+        }
+        delete_button.setVisible(true);
+        cancel_button.setVisible(true);
+    }//GEN-LAST:event_table_departementMouseClicked
+
     private void loadData() {
-//        btnHapus.setVisible(false);
-//        btnBatal.setVisible(false);
+        delete_button.setVisible(false);
+        cancel_button.setVisible(false);
+        add_button.setText("Add Departement");
         List<DeptModel> list = departementService.getData();
         System.out.println("LIST" + list);
         departementTableModel.setData(list);
         departementTableModel.fireTableDataChanged();
 
-        table_position.getColumnModel().getColumn(0).setMinWidth(0);
-        table_position.getColumnModel().getColumn(0).setMaxWidth(0);
-        table_position.getColumnModel().getColumn(0).setWidth(0);
+        table_departement.getColumnModel().getColumn(0).setMinWidth(0);
+        table_departement.getColumnModel().getColumn(0).setMaxWidth(0);
+        table_departement.getColumnModel().getColumn(0).setWidth(0);
     }
     
     private void createData() {
         if(validasiInput()) {
-            String position = position_fields.getText();
+            String position = departement_fields.getText();
                   
                 DeptModel departementModel = new DeptModel();
                 departementModel.setDeptName(position);
@@ -325,12 +404,51 @@ public class Departement extends javax.swing.JPanel {
            } 
         }
     
+     private void updateData() {
+        int row = table_departement.getSelectedRow();
+        if (row != -1) {
+            if (validasiInput() == true) {
+                String deptname = departement_fields.getText();
+
+                DeptModel deptmodel = new DeptModel();
+                deptmodel.setId((int) table_departement.getModel().getValueAt(row, 0));
+                deptmodel.setDeptName(deptname);
+
+                departementService.editDept(deptmodel);
+                departementTableModel.editDept(row, deptmodel);
+                loadData();
+                resetForm();
+                add_dialog.dispose();
+//                showPanel();
+            }
+        }
+    }
+    
+    private void deleteData() {
+        int index = table_departement.getSelectedRow();
+        if (index != -1) {
+            int deptId = (int) table_departement.getModel().getValueAt(index, 0);
+            DeptModel getDept = departementService.getById(deptId);
+
+            DeptModel deptmodel = getDept;
+
+            if (JOptionPane.showConfirmDialog(null, "Yakin data akan dihapus?", "Konfirmasi", JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION) {
+                departementService.deleteDept(deptmodel);
+                departementTableModel.deleteDept(index);
+                loadData();
+                resetForm();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Pilih dahulu record yang akan dihapus");
+        }
+    }
+    
 
     
     private boolean validasiInput() {
         boolean valid = false;
-        if(position_fields.getText().isEmpty() || position_fields.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Position Name cannot be null!");
+        if(departement_fields.getText().isEmpty() || departement_fields.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Departement Name cannot be null!");
         } else {
             valid = true;
         }
@@ -339,7 +457,8 @@ public class Departement extends javax.swing.JPanel {
     }
     
     private void resetForm() {
-        position_fields.setText("");
+        departement_fields.setText("");
+        header_new_departement.setText("Add Departement");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -347,15 +466,17 @@ public class Departement extends javax.swing.JPanel {
     private javax.swing.JDialog add_dialog;
     private javax.swing.JPanel add_dialog_panel;
     private javax.swing.JButton add_on_modal;
+    private javax.swing.JButton cancel_button;
     private javax.swing.JButton cancel_on_modal;
     private javax.swing.JPanel crud_panel;
+    private javax.swing.JButton delete_button;
+    private javax.swing.JTextField departement_fields;
+    private javax.swing.JLabel departement_label;
     private javax.swing.JLabel header_name;
-    private javax.swing.JLabel header_new_position;
+    private javax.swing.JLabel header_new_departement;
     private javax.swing.JPanel header_panel;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel line_icon;
-    private javax.swing.JTextField position_fields;
-    private javax.swing.JLabel position_label;
-    private javax.swing.JTable table_position;
+    private javax.swing.JTable table_departement;
     // End of variables declaration//GEN-END:variables
 }
