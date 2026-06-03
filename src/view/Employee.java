@@ -23,6 +23,25 @@ import model.EmployeeModel;
  * @author USer
  */
 
+class ComboItem {
+    private int id;
+    private String name;
+
+    public ComboItem(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    @Override
+    public String toString() {
+        return name; // akan muncul di combobox
+    }
+}
+
 class ComboItemDept {
     private int id;
     private String name;
