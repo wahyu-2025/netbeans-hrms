@@ -34,7 +34,7 @@ public class EmployeeSalaryTableModel extends AbstractTableModel {
     public void deleteEmployeeSalary(int id) {
         list.remove(id);
         fireTableRowsDeleted(id, id);
-        JOptionPane.showMessageDialog(null, "Data Berhasil dihapus");
+        JOptionPane.showMessageDialog(null, "Success delete data!");
     }
 
     public void clear() {

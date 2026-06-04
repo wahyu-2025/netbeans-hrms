@@ -26,19 +26,19 @@ public class ResignTableModel extends AbstractTableModel {
     public void addResign(ResignModel resignmodel) {
         list.add(resignmodel);
         fireTableRowsInserted(list.size() - 1, list.size() - 1);
-        JOptionPane.showMessageDialog(null, "Data Berhasil ditambahkan");
+        JOptionPane.showMessageDialog(null, "Success add data!");
     }
 
     public void editResign(int id, ResignModel resignmodel) {
         list.add(id, resignmodel);
         fireTableDataChanged();
-        JOptionPane.showMessageDialog(null, "Data Berhasil diperbarui");
+        JOptionPane.showMessageDialog(null, "Success update data!");
     }
 
     public void deleteResign(int id) {
         list.remove(id);
         fireTableRowsDeleted(id, id);
-        JOptionPane.showMessageDialog(null, "Data Berhasil dihapus");
+        JOptionPane.showMessageDialog(null, "Success delete data!");
     }
 
     public void clear() {

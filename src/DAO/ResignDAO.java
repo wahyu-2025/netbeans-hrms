@@ -49,7 +49,7 @@ public class ResignDAO implements ResignService {
             stUpdate.executeUpdate();
 
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Tambah data gagal");
+            JOptionPane.showMessageDialog(null, "Failed add data.");
             System.err.println("Error add user: " + e);
         } finally {
             try {
@@ -75,7 +75,7 @@ public class ResignDAO implements ResignService {
 
             st.executeUpdate();
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Perbarui data gagal");
+            JOptionPane.showMessageDialog(null, "Failed update data.");
             System.err.println("Error edit user : " + e);
         } finally {
             if (st != null) {
@@ -100,7 +100,7 @@ public class ResignDAO implements ResignService {
 
             st.executeUpdate();
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Hapus data gagal");
+            JOptionPane.showMessageDialog(null, "Failed delete data.");
             System.err.println("Error ddelete employee : " + e);
         } finally {
             if (st != null) {

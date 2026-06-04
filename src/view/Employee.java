@@ -208,7 +208,7 @@ public class Employee extends javax.swing.JPanel {
         });
 
         level_label.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        level_label.setText("Level");
+        level_label.setText("Position");
 
         departement_label.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         departement_label.setText("Departement");

@@ -58,7 +58,7 @@ public class EmployeeSalaryDAO implements EmployeeSalaryService {
             st.setInt(6, employeesalary.getIdEmployee());
             st.executeUpdate();
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Tambah data gagal");
+            JOptionPane.showMessageDialog(null, "Failed add data");
             System.err.println("Error add user : " + e);
         } finally {
             if (st != null) {
@@ -83,14 +83,14 @@ public class EmployeeSalaryDAO implements EmployeeSalaryService {
 
             st.executeUpdate();
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Hapus data gagal");
+            JOptionPane.showMessageDialog(null, "Failed delete data");
             System.err.println("Error delete overtime : " + e);
         } finally {
             if (st != null) {
                 try {
                     st.close();
                 } catch (SQLException e) {
-                    System.err.println("Error finally hapus user : " + e);
+                    System.err.println("Error finally delete user : " + e);
                 }
             }
         }

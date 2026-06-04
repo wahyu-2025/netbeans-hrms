@@ -26,19 +26,19 @@ public class OvertimeTableModel extends AbstractTableModel {
     public void addOvertime(OvertimeModel overtimemodel) {
         list.add(overtimemodel);
         fireTableRowsInserted(list.size() - 1, list.size() - 1);
-        JOptionPane.showMessageDialog(null, "Data Berhasil ditambahkan");
+        JOptionPane.showMessageDialog(null, "Success add data!");
     }
 
     public void editOvertime(int id, OvertimeModel overtimemodel) {
         list.add(id, overtimemodel);
         fireTableDataChanged();
-        JOptionPane.showMessageDialog(null, "Data Berhasil diperbarui");
+        JOptionPane.showMessageDialog(null, "Success update data!");
     }
 
     public void deleteOvertime(int id) {
         list.remove(id);
         fireTableRowsDeleted(id, id);
-        JOptionPane.showMessageDialog(null, "Data Berhasil dihapus");
+        JOptionPane.showMessageDialog(null, "Success delete data!");
     }
 
     public void clear() {
@@ -67,7 +67,7 @@ public class OvertimeTableModel extends AbstractTableModel {
         return list.size();
     }
 
-    private final String[] columnNames = {"Id", "Nama Karyawan","Alasan","Jam Mulai Lembur","Jam Selesai Lembur","Durasi","Tanggal Lembur"};
+    private final String[] columnNames = {"Id", "Employees Name","Reason","Start Overtime","End Overtime","Duration","Overtime Date"};
 
     @Override
     public int getColumnCount() {

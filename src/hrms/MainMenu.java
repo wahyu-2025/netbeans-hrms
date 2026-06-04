@@ -17,7 +17,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.BoxLayout;
 import javax.swing.JOptionPane;
-import model.LoginModel;
 import view.Departement;
 import view.Employee;
 import view.EmployeeSalaryPerMonth;
@@ -302,7 +301,7 @@ public class MainMenu extends javax.swing.JFrame {
             }
         });
         
-        MenuItem menuSalaryPerMonth = new MenuItem(salaryIcon, false, null, null, null, "Monthly Employee Salary", new ActionListener() {
+        MenuItem menuSalaryPerMonth = new MenuItem(salaryIcon, false, null, null, null, "Monthly Employees Salary", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 main_content_panel.removeAll();

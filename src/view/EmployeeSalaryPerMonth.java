@@ -36,7 +36,7 @@ public class EmployeeSalaryPerMonth extends javax.swing.JPanel {
 
     public EmployeeSalaryPerMonth() {
         initComponents();
-        tblBasicSalary.setModel(employeesalarytablemodel);
+        table__monthly_salary.setModel(employeesalarytablemodel);
         loadData();
     }
 
@@ -49,34 +49,107 @@ public class EmployeeSalaryPerMonth extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        mainPanel = new javax.swing.JPanel();
-        dataUser = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tblBasicSalary = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
-        btnTambah = new javax.swing.JButton();
-        btnHapus = new javax.swing.JButton();
-        btnBatal = new javax.swing.JButton();
-        addUser = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        btnSimpan = new javax.swing.JButton();
-        btnBatalTambah = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
+        add_dialog = new javax.swing.JDialog();
+        add_dialog_panel = new javax.swing.JPanel();
+        header_new_monthly_salary = new javax.swing.JLabel();
+        line_icon = new javax.swing.JLabel();
+        monthly_salary_label = new javax.swing.JLabel();
+        add_on_modal = new javax.swing.JButton();
+        cancel_on_modal = new javax.swing.JButton();
         dategenerate = new com.toedter.calendar.JDateChooser();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        table__monthly_salary = new javax.swing.JTable();
+        crud_panel = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        header_panel = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(255, 255, 255));
-        setPreferredSize(new java.awt.Dimension(899, 620));
-        setLayout(new java.awt.CardLayout());
+        add_dialog.setBackground(new java.awt.Color(255, 255, 255));
 
-        mainPanel.setBackground(new java.awt.Color(255, 255, 255));
-        mainPanel.setLayout(new java.awt.CardLayout());
+        add_dialog_panel.setBackground(new java.awt.Color(255, 255, 255));
 
-        dataUser.setBackground(new java.awt.Color(255, 255, 255));
+        header_new_monthly_salary.setText("New Monthly Salary");
+        header_new_monthly_salary.setFont(new java.awt.Font("Liberation Sans", 1, 14)); // NOI18N
 
-        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
+        line_icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/pipe.png"))); // NOI18N
 
-        tblBasicSalary.setModel(new javax.swing.table.DefaultTableModel(
+        monthly_salary_label.setText("Monthly Employees Salary");
+        monthly_salary_label.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        add_on_modal.setText("Add");
+        add_on_modal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                add_on_modalActionPerformed(evt);
+            }
+        });
+
+        cancel_on_modal.setText("Cancel");
+        cancel_on_modal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancel_on_modalActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout add_dialog_panelLayout = new javax.swing.GroupLayout(add_dialog_panel);
+        add_dialog_panel.setLayout(add_dialog_panelLayout);
+        add_dialog_panelLayout.setHorizontalGroup(
+            add_dialog_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(add_dialog_panelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(line_icon, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(header_new_monthly_salary, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(add_dialog_panelLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addGroup(add_dialog_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(add_dialog_panelLayout.createSequentialGroup()
+                        .addComponent(monthly_salary_label, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(add_dialog_panelLayout.createSequentialGroup()
+                        .addGroup(add_dialog_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(dategenerate, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(add_dialog_panelLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 543, Short.MAX_VALUE)
+                                .addComponent(add_on_modal, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(cancel_on_modal, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(16, 16, 16))))
+        );
+        add_dialog_panelLayout.setVerticalGroup(
+            add_dialog_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(add_dialog_panelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(add_dialog_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(header_new_monthly_salary, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(line_icon))
+                .addGap(24, 24, 24)
+                .addComponent(monthly_salary_label)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(dategenerate, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(add_dialog_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cancel_on_modal, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(add_on_modal, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21))
+        );
+
+        javax.swing.GroupLayout add_dialogLayout = new javax.swing.GroupLayout(add_dialog.getContentPane());
+        add_dialog.getContentPane().setLayout(add_dialogLayout);
+        add_dialogLayout.setHorizontalGroup(
+            add_dialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(add_dialog_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        add_dialogLayout.setVerticalGroup(
+            add_dialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(add_dialog_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        setPreferredSize(new java.awt.Dimension(400, 600));
+
+        table__monthly_salary.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -87,154 +160,140 @@ public class EmployeeSalaryPerMonth extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        tblBasicSalary.addMouseListener(new java.awt.event.MouseAdapter() {
+        table__monthly_salary.setPreferredSize(null);
+        table__monthly_salary.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblBasicSalaryMouseClicked(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                tblBasicSalaryMousePressed(evt);
+                table__monthly_salaryMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(tblBasicSalary);
+        jScrollPane1.setViewportView(table__monthly_salary);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 30)); // NOI18N
-        jLabel1.setText("Data Gaji Karyawan");
+        crud_panel.setBackground(new java.awt.Color(255, 255, 255));
+        crud_panel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        crud_panel.setForeground(new java.awt.Color(204, 204, 204));
 
-        btnTambah.setText("Tambah");
-        btnTambah.setPreferredSize(new java.awt.Dimension(85, 30));
-        btnTambah.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/plus.png"))); // NOI18N
+        jButton1.setText("Add");
+        jButton1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTambahActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
 
-        btnHapus.setText("Hapus");
-        btnHapus.setPreferredSize(new java.awt.Dimension(85, 30));
-        btnHapus.addActionListener(new java.awt.event.ActionListener() {
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/delete (1).png"))); // NOI18N
+        jButton2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnHapusActionPerformed(evt);
+                jButton2ActionPerformed(evt);
             }
         });
 
-        btnBatal.setText("Batal");
-        btnBatal.setPreferredSize(new java.awt.Dimension(85, 30));
-        btnBatal.addActionListener(new java.awt.event.ActionListener() {
+        jButton3.setText("Cancel");
+        jButton3.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
+            }
+        });
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBatalActionPerformed(evt);
+                jButton3ActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout dataUserLayout = new javax.swing.GroupLayout(dataUser);
-        dataUser.setLayout(dataUserLayout);
-        dataUserLayout.setHorizontalGroup(
-            dataUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
-            .addGroup(dataUserLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(dataUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(dataUserLayout.createSequentialGroup()
-                        .addComponent(btnTambah, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnHapus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnBatal, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 887, javax.swing.GroupLayout.PREFERRED_SIZE))
+        javax.swing.GroupLayout crud_panelLayout = new javax.swing.GroupLayout(crud_panel);
+        crud_panel.setLayout(crud_panelLayout);
+        crud_panelLayout.setHorizontalGroup(
+            crud_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(crud_panelLayout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        dataUserLayout.setVerticalGroup(
-            dataUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dataUserLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(26, 26, 26)
-                .addGroup(dataUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnTambah, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnHapus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBatal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 691, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        mainPanel.add(dataUser, "card2");
-
-        addUser.setBackground(new java.awt.Color(255, 255, 255));
-        addUser.setLayout(null);
-
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 30)); // NOI18N
-        jLabel2.setText("Tambah Data Karyawan");
-        addUser.add(jLabel2);
-        jLabel2.setBounds(6, 6, 887, 36);
-
-        btnSimpan.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnSimpan.setText("Tambah");
-        btnSimpan.setPreferredSize(new java.awt.Dimension(74, 30));
-        btnSimpan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSimpanActionPerformed(evt);
-            }
-        });
-        addUser.add(btnSimpan);
-        btnSimpan.setBounds(708, 73, 85, 30);
-
-        btnBatalTambah.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnBatalTambah.setText("Batal");
-        btnBatalTambah.setPreferredSize(new java.awt.Dimension(85, 30));
-        btnBatalTambah.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBatalTambahActionPerformed(evt);
-            }
-        });
-        addUser.add(btnBatalTambah);
-        btnBatalTambah.setBounds(811, 73, 85, 30);
-
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
-        jLabel3.setText("Bulan Gaji Karyawan");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        crud_panelLayout.setVerticalGroup(
+            crud_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(crud_panelLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(dategenerate, javax.swing.GroupLayout.PREFERRED_SIZE, 456, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addContainerGap(426, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(jLabel3)
-                .addGap(18, 18, 18)
-                .addComponent(dategenerate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(746, Short.MAX_VALUE))
+                .addGroup(crud_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
-        addUser.add(jPanel1);
-        jPanel1.setBounds(0, 121, 902, 830);
+        header_panel.setBackground(new java.awt.Color(255, 255, 255));
 
-        mainPanel.add(addUser, "card2");
+        jLabel1.setText("Monthly Employees Salary");
+        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel1.setFont(new java.awt.Font("Liberation Sans", 1, 24)); // NOI18N
 
-        add(mainPanel, "card2");
+        javax.swing.GroupLayout header_panelLayout = new javax.swing.GroupLayout(header_panel);
+        header_panel.setLayout(header_panelLayout);
+        header_panelLayout.setHorizontalGroup(
+            header_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(header_panelLayout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        header_panelLayout.setVerticalGroup(
+            header_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(header_panelLayout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(jLabel1)
+                .addContainerGap(20, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+            .addComponent(crud_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(header_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(header_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(crud_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 447, Short.MAX_VALUE))
+        );
     }// </editor-fold>//GEN-END:initComponents
 
     private void dataTabel() {
-        dataUser.setVisible(false);
-        addUser.setVisible(true);
+//        dataUser.setVisible(false);
+//        addUser.setVisible(true);
 
-        int row = tblBasicSalary.getSelectedRow();
+        jButton1.setVisible(false);
+
+        int row = table__monthly_salary.getSelectedRow();
         if (row == -1) {
             JOptionPane.showMessageDialog(null, "Pilih data dari tabel terlebih dahulu.");
             return;
         }
 
-        jLabel2.setText("Perbarui Data Gaji Bulanan");
+//        header_new_monthly_salary.setText("Edit Monthly Salary");
 
-        int userId = (int) tblBasicSalary.getModel().getValueAt(row, 0);
+        int userId = (int) table__monthly_salary.getModel().getValueAt(row, 0);
         EmployeeSalaryModel employeesalarymodel = employeesalaryservice.getById(userId);
 
         if (employeesalarymodel == null) {
@@ -243,87 +302,81 @@ public class EmployeeSalaryPerMonth extends javax.swing.JPanel {
         }
 
 
-        active();
-        btnSimpan.setText("Perbarui");
-        btnSimpan.setVisible(false);
-        btnBatalTambah.setVisible(true);
+//        active();
+//        add_on_modal.setText("Perbarui");
+        add_on_modal.setVisible(false);
+//        btnBatalTambah.setVisible(true);
     }
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here
+        add_dialog.pack();
+        add_dialog.setLocationRelativeTo(null);
+        add_dialog.setModal(true);
+        add_dialog.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void btnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahActionPerformed
-        mainPanel.removeAll();
-        mainPanel.repaint();
-        mainPanel.revalidate();
+    private void add_on_modalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_on_modalActionPerformed
+        // TODO add your handling code here:
+        createData();
+    }//GEN-LAST:event_add_on_modalActionPerformed
 
-        mainPanel.add(addUser);
-        mainPanel.repaint();
-        mainPanel.revalidate();
+    private void cancel_on_modalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancel_on_modalActionPerformed
+        // TODO add your handling code here:
+//        add_dialog.setModal(false);
+        add_dialog.dispose();
+        resetForm();
+    }//GEN-LAST:event_cancel_on_modalActionPerformed
 
-        btnSimpan.setText("Simpan");
-        if (btnTambah.getText().equals("Ubah")) {
-            dataTabel();
-        }
-    }//GEN-LAST:event_btnTambahActionPerformed
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+//        if (jButton1.getText().equals("Edit Employee")) {
+//            dataTabel();
+//        }
+    }//GEN-LAST:event_jButton1MouseClicked
 
-    private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
+    private void table__monthly_salaryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table__monthly_salaryMouseClicked
+        // TODO add your handling code here:
+        jButton1.setVisible(false);
+        jButton2.setVisible(true);
+        jButton3.setVisible(true);
+    }//GEN-LAST:event_table__monthly_salaryMouseClicked
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2MouseClicked
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
         deleteData();
-    }//GEN-LAST:event_btnHapusActionPerformed
+    }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void btnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBatalActionPerformed
-        showPanel();
-        loadData();
-    }//GEN-LAST:event_btnBatalActionPerformed
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3MouseClicked
 
-    private void btnBatalTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBatalTambahActionPerformed
-        showPanel();
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
         loadData();
         resetForm();
-    }//GEN-LAST:event_btnBatalTambahActionPerformed
+    }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
-        switch (btnSimpan.getText()) {
-            case "Tambah" ->
-                btnSimpan.setText("Simpan");
-            case "Simpan" ->
-                createData();
-            default -> {
-            }
-        }
-    }//GEN-LAST:event_btnSimpanActionPerformed
-
-    private void tblBasicSalaryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblBasicSalaryMouseClicked
-        if (btnTambah.getText().equals("Tambah")) {
-            btnTambah.setText("Ubah");
-        }
-
-        btnHapus.setVisible(true);
-        btnTambah.setVisible(false);
-        btnBatal.setVisible(true);
-    }//GEN-LAST:event_tblBasicSalaryMouseClicked
-
-    private void tblBasicSalaryMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblBasicSalaryMousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tblBasicSalaryMousePressed
-
-    private void active() {
-        dategenerate.setEnabled(true);
-    }
-
-    private void loadData() {
-        btnHapus.setVisible(false);
-        btnBatal.setVisible(false);
+private void loadData() {
+        jButton2.setVisible(false);
+        jButton3.setVisible(false);
+        jButton1.setVisible(true);
         List<EmployeeSalaryModel> list = employeesalaryservice.getData();
         employeesalarytablemodel.setData(list);
 
-        tblBasicSalary.getColumnModel().getColumn(0).setMinWidth(0);
-        tblBasicSalary.getColumnModel().getColumn(0).setMaxWidth(0);
-        tblBasicSalary.getColumnModel().getColumn(0).setWidth(0);
+        table__monthly_salary.getColumnModel().getColumn(0).setMinWidth(0);
+        table__monthly_salary.getColumnModel().getColumn(0).setMaxWidth(0);
+        table__monthly_salary.getColumnModel().getColumn(0).setWidth(0);
     }
 
     private void createData() {
         Date selectedDate = dategenerate.getDate();
         if (selectedDate == null) {
-            JOptionPane.showMessageDialog(null, "Tanggal belum dipilih!");
+            JOptionPane.showMessageDialog(null, "Please select date!");
             return;
         }
 
@@ -415,64 +468,57 @@ public class EmployeeSalaryPerMonth extends javax.swing.JPanel {
             // Refresh UI dan tampilkan pesan
             loadData();
             resetForm();
-            showPanel();
-            btnSimpan.setText("Tambah");
-            JOptionPane.showMessageDialog(null, "Data gaji berhasil diproses.");
+//            showPanel();
+            add_dialog.dispose();
+            JOptionPane.showMessageDialog(null, "Success proccess salary data.");
 
         } catch (SQLException e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Terjadi kesalahan saat memproses data gaji:\n" + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Failed proccess salary:\n" + e.getMessage());
         }
     }
 
 
     private void deleteData() {
-        int index = tblBasicSalary.getSelectedRow();
+        int index = table__monthly_salary.getSelectedRow();
         if (index != -1) {
-            int employeesalaryid = (int) tblBasicSalary.getModel().getValueAt(index, 0);
+            int employeesalaryid = (int) table__monthly_salary.getModel().getValueAt(index, 0);
             EmployeeSalaryModel getemployeesalary = employeesalaryservice.getById(employeesalaryid);
 
             EmployeeSalaryModel employeesalarymodel = getemployeesalary;
 
-            if (JOptionPane.showConfirmDialog(null, "Yakin data akan dihapus?", "Konfirmasi", JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION) {
+            if (JOptionPane.showConfirmDialog(null, "Are you sure, you want delete this data?", "Confirm", JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION) {
                 employeesalaryservice.deleteEmployeeSalary(employeesalarymodel);
                 employeesalarytablemodel.deleteEmployeeSalary(index);
                 loadData();
                 resetForm();
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Pilih dahulu record yang akan dihapus");
+            JOptionPane.showMessageDialog(null, "Please select");
         }
     }
 
-
-    private void showPanel() {
-        mainPanel.removeAll();
-        mainPanel.add(new EmployeeSalaryPerMonth());
-        mainPanel.repaint();
-        mainPanel.revalidate();
-    }
-
     private void resetForm() {
-        btnTambah.requestFocus();
-        btnTambah.setText("Tambah");
+//        btnTambah.requestFocus();
+        dategenerate.setDate(null);
     }
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel addUser;
-    private javax.swing.JButton btnBatal;
-    private javax.swing.JButton btnBatalTambah;
-    private javax.swing.JButton btnHapus;
-    private javax.swing.JButton btnSimpan;
-    private javax.swing.JButton btnTambah;
-    private javax.swing.JPanel dataUser;
+    private javax.swing.JDialog add_dialog;
+    private javax.swing.JPanel add_dialog_panel;
+    private javax.swing.JButton add_on_modal;
+    private javax.swing.JButton cancel_on_modal;
+    private javax.swing.JPanel crud_panel;
     private com.toedter.calendar.JDateChooser dategenerate;
+    private javax.swing.JLabel header_new_monthly_salary;
+    private javax.swing.JPanel header_panel;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JPanel mainPanel;
-    private javax.swing.JTable tblBasicSalary;
+    private javax.swing.JLabel line_icon;
+    private javax.swing.JLabel monthly_salary_label;
+    private javax.swing.JTable table__monthly_salary;
     // End of variables declaration//GEN-END:variables
 }

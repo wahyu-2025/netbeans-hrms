@@ -51,10 +51,10 @@ public class Resign extends javax.swing.JPanel {
         //ADD DEPARTEMENT & LEVEL COMBO BOX
         employee.removeAllItems(); 
 
-        String sqllevel = "SELECT idemployee,employeename from employee where isdeleted=0";
+        String sqlEmployee = "SELECT idemployee,employeename from employee where isdeleted=0";
 
         try {
-            PreparedStatement ps2 = conn.prepareStatement(sqllevel);
+            PreparedStatement ps2 = conn.prepareStatement(sqlEmployee);
             ResultSet rs2 = ps2.executeQuery();
             
             while (rs2.next()) {
@@ -70,7 +70,7 @@ public class Resign extends javax.swing.JPanel {
             e.printStackTrace();
         }
 
-        tblResign.setModel(resigntablemodel);
+        table_resign.setModel(resigntablemodel);
         loadData();
     }
 
@@ -83,36 +83,126 @@ public class Resign extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        mainPanel = new javax.swing.JPanel();
-        dataUser = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tblResign = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
-        btnTambah = new javax.swing.JButton();
-        btnHapus = new javax.swing.JButton();
-        btnBatal = new javax.swing.JButton();
-        addUser = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        btnSimpan = new javax.swing.JButton();
-        btnBatalTambah = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
+        add_dialog = new javax.swing.JDialog();
+        add_dialog_panel = new javax.swing.JPanel();
+        header_resign = new javax.swing.JLabel();
+        line_icon = new javax.swing.JLabel();
+        reason_label = new javax.swing.JLabel();
+        add_on_modal = new javax.swing.JButton();
+        cancel_on_modal = new javax.swing.JButton();
         employee = new javax.swing.JComboBox<>();
-        txtNotes = new javax.swing.JTextField();
+        employee_label = new javax.swing.JLabel();
+        reason_field = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        table_resign = new javax.swing.JTable();
+        crud_panel = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        header_panel = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(255, 255, 255));
-        setPreferredSize(new java.awt.Dimension(899, 620));
-        setLayout(new java.awt.CardLayout());
+        add_dialog.setBackground(new java.awt.Color(255, 255, 255));
 
-        mainPanel.setBackground(new java.awt.Color(255, 255, 255));
-        mainPanel.setLayout(new java.awt.CardLayout());
+        add_dialog_panel.setBackground(new java.awt.Color(255, 255, 255));
 
-        dataUser.setBackground(new java.awt.Color(255, 255, 255));
+        header_resign.setFont(new java.awt.Font("Liberation Sans", 1, 14)); // NOI18N
+        header_resign.setText("New Employees Resign");
 
-        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
+        line_icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/pipe.png"))); // NOI18N
 
-        tblResign.setModel(new javax.swing.table.DefaultTableModel(
+        reason_label.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        reason_label.setText("Reason");
+
+        add_on_modal.setText("Add");
+        add_on_modal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                add_on_modalActionPerformed(evt);
+            }
+        });
+
+        cancel_on_modal.setText("Cancel");
+        cancel_on_modal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancel_on_modalActionPerformed(evt);
+            }
+        });
+
+        employee.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        employee.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                employeeActionPerformed(evt);
+            }
+        });
+
+        employee_label.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        employee_label.setText("Employees Name");
+
+        javax.swing.GroupLayout add_dialog_panelLayout = new javax.swing.GroupLayout(add_dialog_panel);
+        add_dialog_panel.setLayout(add_dialog_panelLayout);
+        add_dialog_panelLayout.setHorizontalGroup(
+            add_dialog_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(add_dialog_panelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(add_on_modal, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(cancel_on_modal, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16))
+            .addGroup(add_dialog_panelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(add_dialog_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(add_dialog_panelLayout.createSequentialGroup()
+                        .addComponent(line_icon, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(header_resign, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 543, Short.MAX_VALUE))
+                    .addGroup(add_dialog_panelLayout.createSequentialGroup()
+                        .addGroup(add_dialog_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(employee, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(add_dialog_panelLayout.createSequentialGroup()
+                                .addGroup(add_dialog_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(employee_label, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(reason_label, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(reason_field))
+                        .addContainerGap())))
+        );
+        add_dialog_panelLayout.setVerticalGroup(
+            add_dialog_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(add_dialog_panelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(add_dialog_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(header_resign, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(line_icon))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addComponent(employee_label)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(employee, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(reason_label)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(reason_field, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6)
+                .addGroup(add_dialog_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cancel_on_modal, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(add_on_modal, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21))
+        );
+
+        javax.swing.GroupLayout add_dialogLayout = new javax.swing.GroupLayout(add_dialog.getContentPane());
+        add_dialog.getContentPane().setLayout(add_dialogLayout);
+        add_dialogLayout.setHorizontalGroup(
+            add_dialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(add_dialog_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        add_dialogLayout.setVerticalGroup(
+            add_dialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(add_dialog_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        setPreferredSize(new java.awt.Dimension(400, 600));
+
+        table_resign.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -123,273 +213,226 @@ public class Resign extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        tblResign.addMouseListener(new java.awt.event.MouseAdapter() {
+        table_resign.setPreferredSize(null);
+        table_resign.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblResignMouseClicked(evt);
+                table_resignMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(tblResign);
+        jScrollPane1.setViewportView(table_resign);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 30)); // NOI18N
-        jLabel1.setText("Data Pengajuan Pemberhentian");
+        crud_panel.setBackground(new java.awt.Color(255, 255, 255));
+        crud_panel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        crud_panel.setForeground(new java.awt.Color(204, 204, 204));
 
-        btnTambah.setText("Tambah");
-        btnTambah.setPreferredSize(new java.awt.Dimension(85, 30));
-        btnTambah.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/plus.png"))); // NOI18N
+        jButton1.setText("Add");
+        jButton1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTambahActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
 
-        btnHapus.setText("Hapus");
-        btnHapus.setPreferredSize(new java.awt.Dimension(85, 30));
-        btnHapus.addActionListener(new java.awt.event.ActionListener() {
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/delete (1).png"))); // NOI18N
+        jButton2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnHapusActionPerformed(evt);
+                jButton2ActionPerformed(evt);
             }
         });
 
-        btnBatal.setText("Batal");
-        btnBatal.setPreferredSize(new java.awt.Dimension(85, 30));
-        btnBatal.addActionListener(new java.awt.event.ActionListener() {
+        jButton3.setText("Cancel");
+        jButton3.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
+            }
+        });
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBatalActionPerformed(evt);
+                jButton3ActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout dataUserLayout = new javax.swing.GroupLayout(dataUser);
-        dataUser.setLayout(dataUserLayout);
-        dataUserLayout.setHorizontalGroup(
-            dataUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
-            .addGroup(dataUserLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(dataUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(dataUserLayout.createSequentialGroup()
-                        .addComponent(btnTambah, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnHapus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnBatal, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 887, javax.swing.GroupLayout.PREFERRED_SIZE))
+        javax.swing.GroupLayout crud_panelLayout = new javax.swing.GroupLayout(crud_panel);
+        crud_panel.setLayout(crud_panelLayout);
+        crud_panelLayout.setHorizontalGroup(
+            crud_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(crud_panelLayout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        dataUserLayout.setVerticalGroup(
-            dataUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dataUserLayout.createSequentialGroup()
-                .addContainerGap()
+        crud_panelLayout.setVerticalGroup(
+            crud_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(crud_panelLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(crud_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(20, Short.MAX_VALUE))
+        );
+
+        header_panel.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel1.setFont(new java.awt.Font("Liberation Sans", 1, 24)); // NOI18N
+        jLabel1.setText("Monthly Employees Salary");
+
+        javax.swing.GroupLayout header_panelLayout = new javax.swing.GroupLayout(header_panel);
+        header_panel.setLayout(header_panelLayout);
+        header_panelLayout.setHorizontalGroup(
+            header_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(header_panelLayout.createSequentialGroup()
+                .addGap(23, 23, 23)
                 .addComponent(jLabel1)
-                .addGap(26, 26, 26)
-                .addGroup(dataUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnTambah, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnHapus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBatal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 691, Short.MAX_VALUE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        header_panelLayout.setVerticalGroup(
+            header_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(header_panelLayout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(jLabel1)
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
-        mainPanel.add(dataUser, "card2");
-
-        addUser.setBackground(new java.awt.Color(255, 255, 255));
-        addUser.setLayout(null);
-
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 30)); // NOI18N
-        jLabel2.setText("Pengajuan Pengunduran Diri Karyawan");
-        addUser.add(jLabel2);
-        jLabel2.setBounds(6, 6, 887, 41);
-
-        btnSimpan.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnSimpan.setText("Tambah");
-        btnSimpan.setPreferredSize(new java.awt.Dimension(74, 30));
-        btnSimpan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSimpanActionPerformed(evt);
-            }
-        });
-        addUser.add(btnSimpan);
-        btnSimpan.setBounds(708, 73, 85, 30);
-
-        btnBatalTambah.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnBatalTambah.setText("Batal");
-        btnBatalTambah.setPreferredSize(new java.awt.Dimension(85, 30));
-        btnBatalTambah.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBatalTambahActionPerformed(evt);
-            }
-        });
-        addUser.add(btnBatalTambah);
-        btnBatalTambah.setBounds(811, 73, 85, 30);
-
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
-        jLabel5.setText("Alasan Mengundurkan Diri");
-
-        jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
-        jLabel12.setText("Nama Karyawan");
-
-        employee.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        employee.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                employeeActionPerformed(evt);
-            }
-        });
-
-        txtNotes.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtNotes.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(76, 122, 227)));
-        txtNotes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNotesActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(23, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel12)
-                    .addComponent(employee, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5)
-                    .addComponent(txtNotes, javax.swing.GroupLayout.PREFERRED_SIZE, 862, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(17, 17, 17))
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+            .addComponent(crud_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(header_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel12)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(employee, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtNotes, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(660, Short.MAX_VALUE))
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(header_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(crud_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 447, Short.MAX_VALUE))
         );
-
-        addUser.add(jPanel1);
-        jPanel1.setBounds(0, 121, 902, 830);
-
-        mainPanel.add(addUser, "card2");
-
-        add(mainPanel, "card2");
     }// </editor-fold>//GEN-END:initComponents
 
-    private void dataTabel() {
-        dataUser.setVisible(false);
-        addUser.setVisible(true);
+   private void dataTabel() {
+//        dataUser.setVisible(false);
+//        addUser.setVisible(true);
 
-        int row = tblResign.getSelectedRow();
+        int row = table_resign.getSelectedRow();
         if (row == -1) {
-            JOptionPane.showMessageDialog(null, "Pilih data dari tabel terlebih dahulu.");
+            JOptionPane.showMessageDialog(null, "Please select.");
             return;
         }
 
-        jLabel2.setText("Perbarui Data Pengunduran Karyawan");
+//        jLabel2.setText("Perbarui Data Pengunduran Karyawan");
 
-        int userId = (int) tblResign.getModel().getValueAt(row, 0);
+        int userId = (int) table_resign.getModel().getValueAt(row, 0);
         ResignModel resignmodel = resignservice.getById(userId);
 
         if (resignmodel == null) {
-            JOptionPane.showMessageDialog(null, "Data Karyawan yang keluar tidak ditemukan.");
+            JOptionPane.showMessageDialog(null, "Data not found.");
             return;
         }
 
         // Set nilai ke input form
-        txtNotes.setText(resignmodel.getEmployeename());
+        reason_field.setText(resignmodel.getEmployeename());
         employee.setSelectedItem(resignmodel.getNotes());
 
-        active();
-        btnSimpan.setText("Perbarui");
-        btnBatalTambah.setVisible(true);
+//        btnBatalTambah.setVisible(true);
     }
 
 
-    private void btnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahActionPerformed
-        mainPanel.removeAll();
-        mainPanel.repaint();
-        mainPanel.revalidate();
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here
+        add_dialog.pack();
+        add_dialog.setLocationRelativeTo(null);
+        add_dialog.setModal(true);
+        add_dialog.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
-        mainPanel.add(addUser);
-        mainPanel.repaint();
-        mainPanel.revalidate();
+    private void add_on_modalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_on_modalActionPerformed
+        // TODO add your handling code here:
+        createData();
+    }//GEN-LAST:event_add_on_modalActionPerformed
 
-        btnSimpan.setText("Simpan");
-        if (btnTambah.getText().equals("Ubah")) {
-            dataTabel();
-        }
-    }//GEN-LAST:event_btnTambahActionPerformed
+    private void cancel_on_modalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancel_on_modalActionPerformed
+        // TODO add your handling code here:
+//        add_dialog.setModal(false);
+        add_dialog.dispose();
+        resetForm();
+    }//GEN-LAST:event_cancel_on_modalActionPerformed
 
-    private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+//        if (jButton1.getText().equals("Edit Employee")) {
+//            dataTabel();
+//        }
+    }//GEN-LAST:event_jButton1MouseClicked
+
+    private void table_resignMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_resignMouseClicked
+        // TODO add your handling code here:
+        jButton1.setVisible(false);
+        jButton2.setVisible(true);
+        jButton3.setVisible(true);
+    }//GEN-LAST:event_table_resignMouseClicked
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2MouseClicked
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
         deleteData();
-    }//GEN-LAST:event_btnHapusActionPerformed
+    }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void btnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBatalActionPerformed
-        showPanel();
-        loadData();
-    }//GEN-LAST:event_btnBatalActionPerformed
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3MouseClicked
 
-    private void btnBatalTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBatalTambahActionPerformed
-        showPanel();
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
         loadData();
         resetForm();
-    }//GEN-LAST:event_btnBatalTambahActionPerformed
-
-    private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
-        switch (btnSimpan.getText()) {
-            case "Tambah" ->
-                btnSimpan.setText("Simpan");
-            case "Simpan" ->
-                createData();
-            case "Perbarui" ->
-                updateData();
-            default -> {
-            }
-        }
-    }//GEN-LAST:event_btnSimpanActionPerformed
-
-    private void tblResignMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblResignMouseClicked
-        if (btnTambah.getText().equals("Tambah")) {
-            btnTambah.setText("Ubah");
-            btnTambah.setVisible(false);
-        }
-
-        btnHapus.setVisible(true);
-        btnBatal.setVisible(true);
-    }//GEN-LAST:event_tblResignMouseClicked
-
-    private void txtNotesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNotesActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNotesActionPerformed
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     private void employeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_employeeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_employeeActionPerformed
 
-    private void active() {
-        employee.setEnabled(true);
-        txtNotes.setEnabled(true);
-    }
-
     private void loadData() {
-        btnHapus.setVisible(false);
-        btnBatal.setVisible(false);
+        jButton2.setVisible(false);
+        jButton3.setVisible(false);
+        jButton1.setVisible(true);
         List<ResignModel> list = resignservice.getData();
         resigntablemodel.setData(list);
 
-        tblResign.getColumnModel().getColumn(0).setMinWidth(0);
-        tblResign.getColumnModel().getColumn(0).setMaxWidth(0);
-        tblResign.getColumnModel().getColumn(0).setWidth(0);
+        table_resign.getColumnModel().getColumn(0).setMinWidth(0);
+        table_resign.getColumnModel().getColumn(0).setMaxWidth(0);
+        table_resign.getColumnModel().getColumn(0).setWidth(0);
     }
 
     private void createData() {
-//        if (validasiInput() == true) {
+        if (validasiInput() == true) {
             String getname = employee.getSelectedItem().toString();
-            String notes = txtNotes.getText();
+            String notes = reason_field.getText();
 
             ResignModel resignmodel = new ResignModel();
             resignmodel.setEmployeename(getname);
@@ -399,23 +442,24 @@ public class Resign extends javax.swing.JPanel {
             resigntablemodel.addResign(resignmodel);
             loadData();
             resetForm();
-            showPanel();
-            btnSimpan.setText("Tambah");
+            add_dialog.dispose();
+//            showPanel();
+//            btnSimpan.setText("Tambah");
 
-//        }
+        }
     }
 
     private void updateData() {
-        int row = tblResign.getSelectedRow();
+        int row = table_resign.getSelectedRow();
         if (row != -1) {
-            int resignid = (int) tblResign.getModel().getValueAt(row, 0);
-            ResignModel um = resigntablemodel.getData(tblResign.convertRowIndexToModel(row));
+            int resignid = (int) table_resign.getModel().getValueAt(row, 0);
+            ResignModel um = resigntablemodel.getData(table_resign.convertRowIndexToModel(row));
 
             ResignModel getresign = resignservice.getById(resignid);
 
 //            if (validasiInput() == true) {
                 String getname = employee.getSelectedItem().toString();
-                String notes = txtNotes.getText();
+                String notes = reason_field.getText();
                 
                 
                 ResignModel resignmodel = new ResignModel();
@@ -427,15 +471,16 @@ public class Resign extends javax.swing.JPanel {
                 resigntablemodel.editResign(row, resignmodel);
                 loadData();
                 resetForm();
-                showPanel();
+                
+//                showPanel();
 //            }
         }
     }
 
     private void deleteData() {
-        int index = tblResign.getSelectedRow();
+        int index = table_resign.getSelectedRow();
         if (index != -1) {
-            int resignid = (int) tblResign.getModel().getValueAt(index, 0);
+            int resignid = (int) table_resign.getModel().getValueAt(index, 0);
             ResignModel getresign = resignservice.getById(resignid);
 
             ResignModel resignmodel = getresign;
@@ -451,48 +496,43 @@ public class Resign extends javax.swing.JPanel {
         }
     }
 
-//    private boolean validasiInput() {
-//        boolean valid = false;
-//        if (txtNotes.getText().trim().isEmpty()) {
-//            JOptionPane.showMessageDialog(null, "Notes tidak boleh kosong");
-//        } else {
-//            valid = true;
-//        }
-//
-//        return valid;
-//    }
+    private boolean validasiInput() {
+        boolean valid = false;
+        if (reason_field.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Please fill all field");
+        } else {
+            valid = true;
+        }
 
-    private void showPanel() {
-        mainPanel.removeAll();
-        mainPanel.add(new Resign());
-        mainPanel.repaint();
-        mainPanel.revalidate();
+        return valid;
     }
 
     private void resetForm() {
-        btnTambah.requestFocus();
-        btnTambah.setText("Tambah");
+//        btnTambah.requestFocus();
+//        btnTambah.setText("Tambah");
         employee.setSelectedIndex(0);
-        txtNotes.setText("");
+        reason_field.setText("");
     }
 
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel addUser;
-    private javax.swing.JButton btnBatal;
-    private javax.swing.JButton btnBatalTambah;
-    private javax.swing.JButton btnHapus;
-    private javax.swing.JButton btnSimpan;
-    private javax.swing.JButton btnTambah;
-    private javax.swing.JPanel dataUser;
+    private javax.swing.JDialog add_dialog;
+    private javax.swing.JPanel add_dialog_panel;
+    private javax.swing.JButton add_on_modal;
+    private javax.swing.JButton cancel_on_modal;
+    private javax.swing.JPanel crud_panel;
     private javax.swing.JComboBox<String> employee;
+    private javax.swing.JLabel employee_label;
+    private javax.swing.JPanel header_panel;
+    private javax.swing.JLabel header_resign;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JPanel mainPanel;
-    private javax.swing.JTable tblResign;
-    private javax.swing.JTextField txtNotes;
+    private javax.swing.JLabel line_icon;
+    private javax.swing.JTextField reason_field;
+    private javax.swing.JLabel reason_label;
+    private javax.swing.JTable table_resign;
     // End of variables declaration//GEN-END:variables
 }
