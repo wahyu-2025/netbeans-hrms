@@ -65,7 +65,7 @@ public class EmployeeSalaryTableModel extends AbstractTableModel {
         return list.size();
     }
 
-    private final String[] columnNames = {"Id","NIK", "Nama","Departemen","Level", "Gaji Utama Karyawan","Bonus Lembur","Potongan Terlambat","Gaji Bulan Ini","Bulan","Tahun"};
+    private final String[] columnNames = {"Id","NIK", "Employee Name","Departemen","Position", "Salary","Overtime Bonus","Late Cut","Total Salary","Month","Year"};
 
     @Override
     public int getColumnCount() {

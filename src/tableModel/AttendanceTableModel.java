@@ -43,7 +43,7 @@ public class AttendanceTableModel extends AbstractTableModel {
         return list.size();
     }
 
-    private final String[] columnNames = {"Id","NIK", "Nama Karyawan","Departemen","Level","Tanggal Absensi","Terlambat","Tepat Waktu","Waktu Datang","Waktu Pulang"};
+    private final String[] columnNames = {"Id","NIK", "Employee Name","Department","Position","Date Of Absence","Late","On Time","Time Comes","Time To Go"};
 
     @Override
     public int getColumnCount() {

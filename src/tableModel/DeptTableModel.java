@@ -26,19 +26,19 @@ public class DeptTableModel extends AbstractTableModel {
     public void addDept(DeptModel deptmodel) {
         list.add(deptmodel);
         fireTableRowsInserted(list.size() - 1, list.size() - 1);
-        JOptionPane.showMessageDialog(null, "Data Berhasil ditambahkan");
+        JOptionPane.showMessageDialog(null, "Success Add Data!");
     }
 
     public void editDept(int id, DeptModel deptmodel) {
         list.add(id, deptmodel);
         fireTableDataChanged();
-        JOptionPane.showMessageDialog(null, "Data Berhasil diperbarui");
+        JOptionPane.showMessageDialog(null, "Success Update Data!");
     }
 
     public void deleteDept(int id) {
         list.remove(id);
         fireTableRowsDeleted(id, id);
-        JOptionPane.showMessageDialog(null, "Data Berhasil dihapus");
+        JOptionPane.showMessageDialog(null, "Success Delete Data!");
     }
 
     public void clear() {
@@ -67,7 +67,7 @@ public class DeptTableModel extends AbstractTableModel {
         return list.size();
     }
 
-    private final String[] columnNames = {"Id", "Nama Departemen"};
+    private final String[] columnNames = {"Id", "Department Name"};
 
     @Override
     public int getColumnCount() {

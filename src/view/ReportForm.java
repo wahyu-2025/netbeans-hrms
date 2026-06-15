@@ -56,14 +56,11 @@ public class ReportForm extends javax.swing.JPanel {
         jPanel8 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         jButton6 = new javax.swing.JButton();
-        jPanel9 = new javax.swing.JPanel();
-        jLabel13 = new javax.swing.JLabel();
-        jButton7 = new javax.swing.JButton();
 
         jPanel1.setLayout(new java.awt.CardLayout());
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setPreferredSize(new java.awt.Dimension(400, 696));
+        jPanel2.setPreferredSize(new java.awt.Dimension(1025, 696));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 30)); // NOI18N
         jLabel2.setText("Report");
@@ -74,9 +71,9 @@ public class ReportForm extends javax.swing.JPanel {
         jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(76, 122, 227)));
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel9.setText("Lembur");
+        jLabel9.setText("Overtime");
 
-        jButton3.setText("Export Data Lembur");
+        jButton3.setText("Export Overtime Data");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -93,7 +90,7 @@ public class ReportForm extends javax.swing.JPanel {
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(jLabel9)
                         .addGap(0, 139, Short.MAX_VALUE))
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE))
+                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -110,9 +107,9 @@ public class ReportForm extends javax.swing.JPanel {
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(76, 122, 227)));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel7.setText("Kehadiran");
+        jLabel7.setText("Attendance");
 
-        jButton1.setText("Export Data Kehadiran");
+        jButton1.setText("Export Attendance Data");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -146,9 +143,9 @@ public class ReportForm extends javax.swing.JPanel {
         jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(76, 122, 227)));
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel11.setText("Gaji");
+        jLabel11.setText("Salary");
 
-        jButton4.setText("Export Data Gaji");
+        jButton4.setText("Export Salary Data");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -165,7 +162,7 @@ public class ReportForm extends javax.swing.JPanel {
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(jLabel11)
                         .addGap(0, 156, Short.MAX_VALUE))
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE))
+                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
@@ -205,9 +202,9 @@ public class ReportForm extends javax.swing.JPanel {
         jPanel8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(76, 122, 227)));
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel12.setText("Keterlambatan");
+        jLabel12.setText("Late");
 
-        jButton6.setText("Export Data Keterlambatan");
+        jButton6.setText("Export Late Data");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
@@ -237,42 +234,6 @@ public class ReportForm extends javax.swing.JPanel {
                 .addContainerGap(19, Short.MAX_VALUE))
         );
 
-        jPanel9.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(76, 122, 227)));
-
-        jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel13.setText("Employee");
-
-        jButton7.setText("Export Employee");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
-        jPanel9.setLayout(jPanel9Layout);
-        jPanel9Layout.setHorizontalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel9Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addComponent(jLabel13)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        jPanel9Layout.setVerticalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel9Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel13)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
-        );
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -287,21 +248,16 @@ public class ReportForm extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(86, 86, 86)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(52, 52, 52)
-                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(389, Short.MAX_VALUE))
         );
 
@@ -314,18 +270,17 @@ public class ReportForm extends javax.swing.JPanel {
             .addGap(0, 1025, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 75, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 874, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 76, Short.MAX_VALUE)))
+                    .addContainerGap()
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1019, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 696, Short.MAX_VALUE)
+            .addGap(0, 708, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -347,21 +302,14 @@ public class ReportForm extends javax.swing.JPanel {
         attendanceservice.exportLate();
     }//GEN-LAST:event_jButton6ActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
-        employeeservice.exportEmployee();
-    }//GEN-LAST:event_jButton7ActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
@@ -372,6 +320,5 @@ public class ReportForm extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel8;
-    private javax.swing.JPanel jPanel9;
     // End of variables declaration//GEN-END:variables
 }

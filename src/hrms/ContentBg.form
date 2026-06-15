@@ -174,7 +174,7 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Segoe UI" size="18" style="1"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Pegawai Masuk"/>
+                    <Property name="text" type="java.lang.String" value="Employees In"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel10">
@@ -232,7 +232,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel13" min="-2" pref="25" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jLabel14" pref="46" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
@@ -246,7 +246,7 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Segoe UI" size="18" style="1"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Pegawai Berhenti"/>
+                    <Property name="text" type="java.lang.String" value="Employees Resign"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel14">
@@ -318,7 +318,7 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Segoe UI" size="18" style="1"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Pegawai Aktif"/>
+                    <Property name="text" type="java.lang.String" value="Active Employees"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel8">
@@ -353,7 +353,7 @@
               <Font name="Segoe UI" size="30" style="1"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="Selamat Datang"/>
+            <Property name="text" type="java.lang.String" value="WELCOME STS HRMS!"/>
           </Properties>
         </Component>
       </SubComponents>

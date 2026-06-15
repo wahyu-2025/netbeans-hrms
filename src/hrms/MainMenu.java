@@ -231,6 +231,11 @@ public class MainMenu extends javax.swing.JFrame {
         ImageIcon salaryIcon = new ImageIcon(getClass().getResource("/assets/accounting.png"));
         ImageIcon resignIcon = new ImageIcon(getClass().getResource("/assets/resign_1.png"));
         ImageIcon attendanceIcon = new ImageIcon(getClass().getResource("/assets/attendance.png"));
+        ImageIcon attendanceLimitIcon = new ImageIcon(getClass().getResource("/assets/limit.png"));
+        ImageIcon employeeIcon = new ImageIcon(getClass().getResource("/assets/division.png"));
+        ImageIcon positionIcon = new ImageIcon(getClass().getResource("/assets/market-positioning.png"));
+        ImageIcon departementIcon = new ImageIcon(getClass().getResource("/assets/department.png"));
+        ImageIcon salaryMDIcon = new ImageIcon(getClass().getResource("/assets/budget.png"));
         
 
         MenuItem menuDashboard = new MenuItem(dashboardIcon, false, null, null, null, "Dashboard", new ActionListener() {
@@ -244,7 +249,7 @@ public class MainMenu extends javax.swing.JFrame {
         });
 
         // SubMenu dan Master Data
-        MenuItem masterEmployee = new MenuItem(null, true, null, null, null, "Employee", new ActionListener() {
+        MenuItem masterEmployee = new MenuItem(null, true, employeeIcon, null, null, "Employee", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 main_content_panel.removeAll();
@@ -253,7 +258,7 @@ public class MainMenu extends javax.swing.JFrame {
                 main_content_panel.revalidate();
             }
         });
-        MenuItem masterPosition = new MenuItem(null, true, null, null, null, "Position", new ActionListener() {
+        MenuItem masterPosition = new MenuItem(null, true, positionIcon, null, null, "Position", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 main_content_panel.removeAll();
@@ -262,7 +267,7 @@ public class MainMenu extends javax.swing.JFrame {
                 main_content_panel.revalidate();
             }
         });
-        MenuItem masterDepartement = new MenuItem(null, true, null, null, null, "Departement", new ActionListener() {
+        MenuItem masterDepartement = new MenuItem(null, true, departementIcon, null, null, "Departement", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 main_content_panel.removeAll();
@@ -271,7 +276,7 @@ public class MainMenu extends javax.swing.JFrame {
                 main_content_panel.revalidate();
             }
         });
-        MenuItem masterSalary = new MenuItem(null, true, null, null, null, "Salary", new ActionListener() {
+        MenuItem masterSalary = new MenuItem(null, true, salaryMDIcon, null, null, "Salary", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 main_content_panel.removeAll();
@@ -280,7 +285,7 @@ public class MainMenu extends javax.swing.JFrame {
                 main_content_panel.revalidate();
             }
         });
-        MenuItem masterAttendanceLimit = new MenuItem(null, true, null, null, null, "Attendance Limit", new ActionListener() {
+        MenuItem masterAttendanceLimit = new MenuItem(null, true, attendanceLimitIcon, null, null, "Attendance Limit", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                  main_content_panel.removeAll();

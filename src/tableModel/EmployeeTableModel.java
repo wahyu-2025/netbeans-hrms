@@ -67,7 +67,7 @@ public class EmployeeTableModel extends AbstractTableModel {
         return list.size();
     }
 
-    private final String[] columnNames = {"Id", "No", "NIK", "Nama","Alamat","Nomor Telepon", "Departemen", "Level"};
+    private final String[] columnNames = {"Id", "No", "NIK", "Employee Name","Address","Phone Number", "Department", "Position"};
 
     @Override
     public int getColumnCount() {

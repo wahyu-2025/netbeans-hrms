@@ -67,7 +67,7 @@ public class ResignTableModel extends AbstractTableModel {
         return list.size();
     }
 
-    private final String[] columnNames = {"Id", "Nama Karyawan", "Alasan Keluar"};
+    private final String[] columnNames = {"Id", "Employee Name", "Reason"};
 
     @Override
     public int getColumnCount() {

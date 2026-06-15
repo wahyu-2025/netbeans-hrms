@@ -103,7 +103,7 @@ public class ContentBg extends javax.swing.JPanel {
         jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(76, 122, 227)));
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel9.setText("Pegawai Masuk");
+        jLabel9.setText("Employees In");
 
         jLabel10.setBackground(new java.awt.Color(255, 255, 255));
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -137,7 +137,7 @@ public class ContentBg extends javax.swing.JPanel {
         jPanel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(76, 122, 227)));
 
         jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel13.setText("Pegawai Berhenti");
+        jLabel13.setText("Employees Resign");
 
         jLabel14.setBackground(new java.awt.Color(255, 255, 255));
         jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -161,7 +161,7 @@ public class ContentBg extends javax.swing.JPanel {
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel13)
+                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
                 .addContainerGap())
@@ -171,7 +171,7 @@ public class ContentBg extends javax.swing.JPanel {
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(76, 122, 227)));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel7.setText("Pegawai Aktif");
+        jLabel7.setText("Active Employees");
 
         jLabel8.setBackground(new java.awt.Color(255, 255, 255));
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -226,7 +226,7 @@ public class ContentBg extends javax.swing.JPanel {
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 30)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Selamat Datang");
+        jLabel3.setText("WELCOME STS HRMS!");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

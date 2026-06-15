@@ -61,7 +61,7 @@ public class SalaryMasterDataModel extends AbstractTableModel {
         return list.size();
     }
     
-      private final String[] columnNames = {"Id", "Nama", "Gaji Utama Karyawan"};
+      private final String[] columnNames = {"Id", "Employee Name", "Employee Salary"};
       
         @Override
     public int getColumnCount() {
