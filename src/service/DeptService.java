@@ -9,7 +9,7 @@ import model.DeptModel;
 
 /**
  *
- * @author wayan
+ * @author USer
  */
 public interface DeptService {
 

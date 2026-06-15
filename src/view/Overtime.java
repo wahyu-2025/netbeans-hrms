@@ -24,7 +24,7 @@ import java.time.temporal.ChronoUnit;
 
 /**
  *
- * @author wayan
+ * @author USer
  */
 public class Overtime extends javax.swing.JPanel {
 

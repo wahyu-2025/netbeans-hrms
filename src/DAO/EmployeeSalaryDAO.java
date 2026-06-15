@@ -23,6 +23,9 @@ import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.filechooser.FileSystemView;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
 //import net.sf.jasperreports.engine.JasperFillManager;
 //import net.sf.jasperreports.engine.JasperPrint;
 //import net.sf.jasperreports.view.JasperViewer;
@@ -32,7 +35,7 @@ import service.EmployeeSalaryService;
 
 /**
  *
- * @author wayan
+ * @author USer
  */
 public class EmployeeSalaryDAO implements EmployeeSalaryService {
 
@@ -45,7 +48,7 @@ public class EmployeeSalaryDAO implements EmployeeSalaryService {
     @Override
     public void addEmployeeSalary(EmployeeSalaryModel employeesalary) {
         PreparedStatement st = null;
-        String sql = "INSERT INTO salarypermonth(basicsalary,overtimebonus,cut_late,totalsalarythismonth,nik,idemployee) VALUES (?,?,?,?,?,?)";
+        String sql = "INSERT INTO salarypermonth(basicsalary,overtimebonus,cut_late,totalsalarythismonth,nik,idemployee, salary_period) VALUES (?,?,?,?,?,?,?)";
 
         try {
             st = conn.prepareStatement(sql);
@@ -56,6 +59,10 @@ public class EmployeeSalaryDAO implements EmployeeSalaryService {
             st.setInt(4, employeesalary.getSalaryThisMonth());
             st.setString(5, employeesalary.getEmployeeNik());
             st.setInt(6, employeesalary.getIdEmployee());
+            st.setDate(
+                7,
+                java.sql.Date.valueOf(employeesalary.getSalaryPeriod())
+            );
             st.executeUpdate();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Failed add data");
@@ -100,8 +107,8 @@ public class EmployeeSalaryDAO implements EmployeeSalaryService {
     public EmployeeSalaryModel getById(int id) {
         String sql = "select s.idsalarypermonth ,s.basicsalary ,s.overtimebonus,s.cut_late,e.nik, e.employeename, l.levelname, d.deptname,\n" +
                     " s.totalsalarythismonth,\n" +
-                    " MONTH(s.created_at) as month_number,\n" +
-                    " YEAR(s.created_at) AS year\n" +
+                    " MONTH(s.salary_period) as month_number,\n" +
+                    " YEAR(s.salary_period) AS year\n" +
                     " from salarypermonth s  left join employee as e on s.idemployee = e.idemployee \n" +
                     " left join departement as d on e.iddeptemployee=d.iddept \n" +
                     " left join level as l on e.idlevelemployee = l.idlevel where s.isdeleted=0 and s.idsalarypermonth = ?";
@@ -118,13 +125,26 @@ public class EmployeeSalaryDAO implements EmployeeSalaryService {
         PreparedStatement st = null;
         List list = new ArrayList();
         ResultSet rs = null;
-        String sql = "select s.idsalarypermonth ,s.basicsalary ,s.overtimebonus,s.cut_late,e.nik, e.employeename, l.levelname, d.deptname, \n" +
-                    " s.totalsalarythismonth,\n" +
-                    " MONTH(s.created_at) as month_number,\n" +
-                    " YEAR(s.created_at) AS year\n" +
-                    " from salarypermonth s  left join employee as e on s.idemployee = e.idemployee \n" +
-                    " left join departement as d on e.iddeptemployee=d.iddept \n" +
-                    " left join level as l on e.idlevelemployee = l.idlevel WHERE s.isdeleted=0 order by s.idsalarypermonth desc";
+        String sql =    "SELECT s.idsalarypermonth, " +
+                        "       s.basicsalary, " +
+                        "       s.overtimebonus, " +
+                        "       s.cut_late, " +
+                        "       e.nik, " +
+                        "       e.employeename, " +
+                        "       l.levelname, " +
+                        "       d.deptname, " +
+                        "       s.totalsalarythismonth, " +
+                        "       s.salary_period, " +
+                        "       MONTH(s.salary_period) AS month_number, " +
+                        "       YEAR(s.salary_period) AS year " +
+                        "FROM salarypermonth s " +
+                        "LEFT JOIN employee e ON s.idemployee = e.idemployee " +
+                        "LEFT JOIN departement d ON e.iddeptemployee = d.iddept " +
+                        "LEFT JOIN level l ON e.idlevelemployee = l.idlevel " +
+                        "WHERE s.isdeleted = 0 " +
+                        "  AND s.salary_period IS NOT NULL " +
+                        "ORDER BY s.idsalarypermonth DESC"
+                       ;
 
         try {
             st = conn.prepareStatement(sql);
@@ -141,14 +161,17 @@ public class EmployeeSalaryDAO implements EmployeeSalaryService {
                 employeesalarymodel.setOvertimeBonus(rs.getInt("overtimebonus"));
                 employeesalarymodel.setCutLate(rs.getInt("cut_late"));
                 employeesalarymodel.setSalaryThisMonth(rs.getInt("totalsalarythismonth"));
-                employeesalarymodel.setMonth(rs.getString("month_number"));
-                employeesalarymodel.setYear(rs.getString("year"));
+                java.sql.Date sqlDate = rs.getDate("salary_period");
+
+                if (sqlDate != null) {
+                    employeesalarymodel.setSalaryPeriod(sqlDate.toLocalDate());
+                }
                 list.add(employeesalarymodel);
             }
             return list;
         } catch (SQLException e) {
             System.out.println("Error get data employee salary per month : " + e);
-            return null;
+            return new ArrayList<>();
         } finally {
             if (st != null) {
                 try {
@@ -196,24 +219,27 @@ public class EmployeeSalaryDAO implements EmployeeSalaryService {
          employeesalarymodel.setOvertimeBonus(rs.getInt("overtimebonus"));
          employeesalarymodel.setCutLate(rs.getInt("cut_late"));
          employeesalarymodel.setSalaryThisMonth(rs.getInt("totalsalarythismonth"));
-         employeesalarymodel.setMonth(rs.getString("month_number"));
-         employeesalarymodel.setYear(rs.getString("year"));
+         java.sql.Date sqlDate = rs.getDate("salary_period");
+
+        if (sqlDate != null) {
+            employeesalarymodel.setSalaryPeriod(sqlDate.toLocalDate());
+        }
                 
         return employeesalarymodel;
     }
     
     @Override
     public void exportEmployeeSalaryToExcel() {
-//           try {
-//               String reportPath = "src/dao/Salary.jasper";
-//
-//               HashMap<String, Object> parameters = new HashMap<>();
-//               JasperPrint print = JasperFillManager.fillReport(reportPath, parameters, conn);
-//               JasperViewer viewer = new JasperViewer(print, false);
-//               viewer.setVisible(true);
-//           } catch (Exception e) {
-//               e.printStackTrace();
-//           }
-throw new UnsupportedOperationException("Not Supported Yet.");
+           try {
+               String reportPath = "src/report/Salary.jasper";
+
+               HashMap<String, Object> parameters = new HashMap<>();
+               JasperPrint print = JasperFillManager.fillReport(reportPath, parameters, conn);
+               JasperViewer viewer = new JasperViewer(print, false);
+               viewer.setVisible(true);
+           } catch (Exception e) {
+               e.printStackTrace();
+           }
+//throw new UnsupportedOperationException("Not Supported Yet.");
     }
 }

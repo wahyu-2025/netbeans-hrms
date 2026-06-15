@@ -9,7 +9,7 @@ import model.ResignModel;
 
 /**
  *
- * @author wayan
+ * @author USer
  */
 public interface ResignService {
 

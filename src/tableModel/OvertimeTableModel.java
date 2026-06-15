@@ -12,7 +12,7 @@ import model.OvertimeModel;
 
 /**
  *
- * @author wayan
+ * @author USer
  */
 public class OvertimeTableModel extends AbstractTableModel {
 

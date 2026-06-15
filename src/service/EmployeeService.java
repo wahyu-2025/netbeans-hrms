@@ -25,5 +25,5 @@ public interface EmployeeService {
 
     List<EmployeeModel> getData();
 
-    void exportEmployeeToExcel();
+    void exportEmployee();
 }

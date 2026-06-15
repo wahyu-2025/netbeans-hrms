@@ -4,6 +4,8 @@
  */
 package model;  
 
+import java.time.LocalDate;
+
 /**
  *
  * @author USer
@@ -20,8 +22,9 @@ public class EmployeeSalaryModel {
     private Integer idemployee;
     private String deptname;
     private String levelname;  
-    private String getmonth;
-    private String getyear;
+//    private String getmonth;
+//    private String getyear;
+    private LocalDate salaryPeriod;
 
     public Integer getId() {
         return id;
@@ -103,19 +106,27 @@ public class EmployeeSalaryModel {
         this.levelname = levelname;
     }
     
-    public String getMonth() {
-        return getmonth;
-    }
-
-    public void setMonth(String getmonth) {
-        this.getmonth = getmonth;
+//    public String getMonth() {
+//        return getmonth;
+//    }
+//
+//    public void setMonth(String getmonth) {
+//        this.getmonth = getmonth;
+//    }
+//    
+//     public String getYear() {
+//        return getyear;
+//    }
+//
+//    public void setYear(String getyear) {
+//        this.getyear = getyear;
+//    }
+    
+    public LocalDate getSalaryPeriod() {
+        return salaryPeriod;
     }
     
-     public String getYear() {
-        return getyear;
-    }
-
-    public void setYear(String getyear) {
-        this.getyear = getyear;
+    public void setSalaryPeriod(LocalDate salaryPeriod) {
+        this.salaryPeriod = salaryPeriod;
     }
 }

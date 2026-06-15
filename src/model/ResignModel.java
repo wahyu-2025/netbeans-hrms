@@ -6,7 +6,7 @@ package model;
 
 /**
  *
- * @author wayan
+ * @author USer
  */
 public class ResignModel {
 

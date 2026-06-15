@@ -10,11 +10,13 @@ import javax.swing.JOptionPane;
 import javax.swing.table.AbstractTableModel;
 import model.EmployeeSalaryModel;
 import java.text.NumberFormat;
+import java.time.LocalDate;
+import java.time.format.TextStyle;
 import java.util.Locale;
 
 /**
  *
- * @author wayan
+ * @author USer
  */
 public class EmployeeSalaryTableModel extends AbstractTableModel {
 
@@ -107,10 +109,21 @@ public class EmployeeSalaryTableModel extends AbstractTableModel {
             case 6 -> formatRupiah(list.get(rowIndex).getOvertimeBonus());
             case 7 -> formatRupiah(list.get(rowIndex).getCutLate());
             case 8 -> formatRupiah(list.get(rowIndex).getSalaryThisMonth());
-            case 9 -> getMonthName(list.get(rowIndex).getMonth());
-            case 10 -> list.get(rowIndex).getYear();
-            default -> null;
-        };
+            case 9 -> {
+                LocalDate period = list.get(rowIndex).getSalaryPeriod();
+                yield period != null
+                        ? period.getMonth().getDisplayName(
+                                TextStyle.FULL,
+                                new Locale("id", "ID"))
+                        : "-";
+            }
+
+            case 10 -> {
+                LocalDate period = list.get(rowIndex).getSalaryPeriod();
+                yield period != null ? period.getYear() : "-";
+            }
+                        default -> null;
+                    };
 
     }
 

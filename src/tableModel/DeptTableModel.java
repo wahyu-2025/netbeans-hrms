@@ -12,7 +12,7 @@ import model.DeptModel;
 
 /**
  *
- * @author wayan
+ * @author USer
  */
 public class DeptTableModel extends AbstractTableModel {
 

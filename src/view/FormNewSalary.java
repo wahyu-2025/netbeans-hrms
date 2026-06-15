@@ -36,6 +36,7 @@ public class FormNewSalary extends javax.swing.JPanel {
         btnEdit.setVisible(false);
         btnDelete.setVisible(false);
         btnCancel.setVisible(false);
+        btnAdd.setVisible(true);
  
         List<SalaryMasterData> list = salaryMasterDatas.getData();
         salaryMasterDataModel.setData(list);

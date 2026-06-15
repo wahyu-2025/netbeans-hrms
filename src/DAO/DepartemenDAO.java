@@ -30,7 +30,7 @@ import service.DeptService;
 
 /**
  *
- * @author wayan
+ * @author USer
  */
 public class DepartemenDAO implements DeptService {
 

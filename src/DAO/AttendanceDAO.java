@@ -23,6 +23,9 @@ import java.io.InputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.filechooser.FileSystemView;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
 import service.AttendanceService;
 
 
@@ -145,5 +148,35 @@ public class AttendanceDAO implements AttendanceService {
         bs.setCheckout(rs.getString("timecheckout"));
                 
         return bs;
+    }
+    
+     @Override
+    public void exportAttendance() {
+           try {
+               String reportPath = "src/report/Waves_Landscape_1 - Copy.jasper";
+
+               HashMap<String, Object> parameters = new HashMap<>();
+               JasperPrint print = JasperFillManager.fillReport(reportPath, parameters, conn);
+               JasperViewer viewer = new JasperViewer(print, false);
+               viewer.setVisible(true);
+           } catch (Exception e) {
+               e.printStackTrace();
+           }
+//throw new UnsupportedOperationException("Not Supported Yet.");
+    }
+    
+    @Override
+    public void exportLate() {
+           try {
+               String reportPath = "src/report/Late.jasper";
+
+               HashMap<String, Object> parameters = new HashMap<>();
+               JasperPrint print = JasperFillManager.fillReport(reportPath, parameters, conn);
+               JasperViewer viewer = new JasperViewer(print, false);
+               viewer.setVisible(true);
+           } catch (Exception e) {
+               e.printStackTrace();
+           }
+//throw new UnsupportedOperationException("Not Supported Yet.");
     }
 }

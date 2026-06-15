@@ -9,7 +9,7 @@ import model.EmployeeSalaryModel;
 
 /**
  *
- * @author wayan
+ * @author USer
  */
 public interface EmployeeSalaryService {
 

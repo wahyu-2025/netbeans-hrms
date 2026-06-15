@@ -12,7 +12,7 @@ import model.ResignModel;
 
 /**
  *
- * @author wayan
+ * @author USer
  */
 public class ResignTableModel extends AbstractTableModel {
 

@@ -21,11 +21,13 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.ZoneId;
 
 
 /**
  *
- * @author wayan
+ * @author USer
  */
 
 public class EmployeeSalaryPerMonth extends javax.swing.JPanel {
@@ -376,6 +378,18 @@ private void loadData() {
     private void createData() {
         Date selectedDate = dategenerate.getDate();
         if (selectedDate == null) {
+            JOptionPane.showMessageDialog(
+                null,
+                "Silakan pilih periode gaji terlebih dahulu!"
+            );
+            return;
+        }
+        LocalDate salaryPeriod = selectedDate
+        .toInstant()
+        .atZone(ZoneId.systemDefault())
+        .toLocalDate();
+        
+        if (selectedDate == null) {
             JOptionPane.showMessageDialog(null, "Please select date!");
             return;
         }
@@ -385,8 +399,8 @@ private void loadData() {
         int month = cal.get(Calendar.MONTH) + 1;
         int year = cal.get(Calendar.YEAR);
 
-        String checksql = "SELECT COUNT(*) FROM salarypermonth WHERE MONTH(created_at)=? AND YEAR(created_at)=? AND isdeleted=0";
-        String updatesql = "UPDATE salarypermonth SET isdeleted = 1 WHERE MONTH(created_at)=? AND YEAR(created_at)=? AND isdeleted = 0";
+        String checksql = "SELECT COUNT(*) FROM salarypermonth WHERE MONTH(salary_period)=? AND YEAR(salary_period)=? AND isdeleted=0";
+        String updatesql = "UPDATE salarypermonth SET isdeleted = 1 WHERE MONTH(salary_period)=? AND YEAR(salary_period)=? AND isdeleted = 0";
 
         // Tanpa alias
         String basicsalaryQuery = "SELECT basicsalary.basicsalary, employee.idemployee, employee.nik " +
@@ -459,6 +473,7 @@ private void loadData() {
                 employeesalarymodel.setOvertimeBonus(overtimebonus);
                 employeesalarymodel.setCutLate(cutlate);
                 employeesalarymodel.setSalaryThisMonth(totalsalarythismonth);
+                employeesalarymodel.setSalaryPeriod(salaryPeriod);
 
                 // Tambahkan ke service dan tabel
                 employeesalaryservice.addEmployeeSalary(employeesalarymodel);

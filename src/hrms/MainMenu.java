@@ -17,14 +17,16 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.BoxLayout;
 import javax.swing.JOptionPane;
+import view.Attendance;
 import view.Departement;
 import view.Employee;
 import view.EmployeeSalaryPerMonth;
-import view.FormAttendanceLimit;
+import view.AttendanceLimit;
 import view.FormNewSalary;
 import view.Login;
 import view.Level;
 import view.Overtime;
+import view.ReportForm;
 import view.Resign;
 /**
  *
@@ -221,16 +223,14 @@ public class MainMenu extends javax.swing.JFrame {
         // Icon Master
         ImageIcon masterIcon = new ImageIcon(getClass().getResource("/assets/master_icon.png"));
         ImageIcon dashboardIcon = new ImageIcon(getClass().getResource("/assets/dashboard_icon.png"));
-//        ImageIcon reportIcon = new ImageIcon(getClass().getResource("/asset/img/report_icon.png"));
-//        ImageIcon registIcon = new ImageIcon(getClass().getResource("/asset/img/regist_icon.png"));
-//        ImageIcon scheduleIcon = new ImageIcon(getClass().getResource("/asset/img/schedule_icon.png"));
-//        ImageIcon subIcon = new ImageIcon(getClass().getResource("/assets/sort_icon.png"));
+        ImageIcon reportIcon = new ImageIcon(getClass().getResource("/assets/report.png"));
         ImageIcon logoutIcon = new ImageIcon(getClass().getResource("/assets/logout.png"));
         ImageIcon rightArrow = new ImageIcon(getClass().getResource("/assets/next.png"));
         ImageIcon downArrow = new ImageIcon(getClass().getResource("/assets/down.png"));
         ImageIcon overtimeIcon = new ImageIcon(getClass().getResource("/assets/overtime.png"));
         ImageIcon salaryIcon = new ImageIcon(getClass().getResource("/assets/accounting.png"));
         ImageIcon resignIcon = new ImageIcon(getClass().getResource("/assets/resign_1.png"));
+        ImageIcon attendanceIcon = new ImageIcon(getClass().getResource("/assets/attendance.png"));
         
 
         MenuItem menuDashboard = new MenuItem(dashboardIcon, false, null, null, null, "Dashboard", new ActionListener() {
@@ -284,13 +284,23 @@ public class MainMenu extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                  main_content_panel.removeAll();
-                main_content_panel.add(new FormAttendanceLimit(), BorderLayout.CENTER);
+                main_content_panel.add(new AttendanceLimit(), BorderLayout.CENTER);
                 main_content_panel.repaint();
                 main_content_panel.revalidate();   
             }
         });
         MenuItem menuMaster = new MenuItem(masterIcon, false, null, rightArrow, downArrow, "Master Data", null, masterEmployee, masterPosition, masterDepartement, masterSalary, masterAttendanceLimit);
 
+        MenuItem menuAttendance = new MenuItem(attendanceIcon, false, null, null, null, "Attendance", new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                main_content_panel.removeAll();
+                main_content_panel.add(new Attendance(), BorderLayout.CENTER);
+                main_content_panel.repaint();
+                main_content_panel.revalidate();
+            }
+        });
+        
         MenuItem menuOvertime = new MenuItem(overtimeIcon, false, null, null, null, "Overtime", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -332,15 +342,15 @@ public class MainMenu extends javax.swing.JFrame {
 //        });
 
         // SubMenu dan Master Report
-//        MenuItem menuReport = new MenuItem(reportIcon, false, null, "Laporan", new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                main_content_panel.removeAll();
-//                main_content_panel.add(new ReportForm(), BorderLayout.CENTER);
-//                main_content_panel.repaint();
-//                main_content_panel.revalidate();
-//            }
-//        });
+        MenuItem menuReport = new MenuItem(reportIcon, false,null,null, null, "Report", new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                main_content_panel.removeAll();
+                main_content_panel.add(new ReportForm(), BorderLayout.CENTER);
+                main_content_panel.repaint();
+                main_content_panel.revalidate();
+            }
+        });
 
         MenuItem logout = new MenuItem(logoutIcon, false, null, null, null, "Logout", new ActionListener() {
                    @Override
@@ -378,9 +388,9 @@ public class MainMenu extends javax.swing.JFrame {
             if (hasil.next()) {
                 int levelId = hasil.getInt("idlevelemployee");
                 if (levelId == 6) {
-                    addMenu(menuDashboard, menuOvertime, menuResign, logout);
+                    addMenu(menuDashboard, menuAttendance, menuOvertime, menuResign, logout);
                 } else {
-                    addMenu(menuDashboard, menuMaster, menuOvertime, menuSalaryPerMonth, menuResign, logout);
+                    addMenu(menuDashboard, menuMaster, menuAttendance, menuOvertime, menuSalaryPerMonth, menuResign,menuReport, logout);
                 }
 
             }

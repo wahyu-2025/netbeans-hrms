@@ -12,9 +12,14 @@ import java.sql.ResultSet;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import javax.swing.JOptionPane;
 import model.EmployeeModel;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
 
 //import java.io.File;
 //import java.io.FileOutputStream;
@@ -28,7 +33,7 @@ import service.EmployeeService;
 
 /**
  *
- * @author wayan
+ * @author USet
  */
 public class EmployeeDAO implements EmployeeService {
 
@@ -255,8 +260,18 @@ public class EmployeeDAO implements EmployeeService {
     }
     
     @Override
-    public void exportEmployeeToExcel() {
-        throw new UnsupportedOperationException("Not Supported Yet");
+    public void exportEmployee() {
+           try {
+               String reportPath = "src/report/EmployeeReport.jasper";
+
+               HashMap<String, Object> parameters = new HashMap<>();
+               JasperPrint print = JasperFillManager.fillReport(reportPath, parameters, conn);
+//               JasperExportManager.exportReportToPdfFile(print, "EmployeeReport.pdf");
+               JasperViewer viewer = new JasperViewer(print, false);
+               viewer.setVisible(true);
+           } catch (Exception e) {
+               e.printStackTrace();
+           }
     }
 
 //    @Override

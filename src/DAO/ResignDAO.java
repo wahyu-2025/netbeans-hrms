@@ -19,7 +19,7 @@ import service.ResignService;
 
 /**
  *
- * @author wayan
+ * @author USer
  */
 public class ResignDAO implements ResignService {
 

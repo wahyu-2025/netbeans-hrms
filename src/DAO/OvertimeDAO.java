@@ -23,16 +23,16 @@ import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.filechooser.FileSystemView;
-//import net.sf.jasperreports.engine.JasperFillManager;
-//import net.sf.jasperreports.engine.JasperPrint;
-//import net.sf.jasperreports.view.JasperViewer;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
 //import org.apache.poi.ss.usermodel.*;
 //import org.apache.poi.xssf.usermodel.*;
 import service.OvertimeService;
 
 /**
  *
- * @author wayan
+ * @author USer
  */
 public class OvertimeDAO implements OvertimeService {
 
@@ -217,16 +217,16 @@ public class OvertimeDAO implements OvertimeService {
     
     @Override
     public void exportOvertimeToExcel() {
-//           try {
-//               String reportPath = "src/dao/Overtime.jasper";
-//
-//               HashMap<String, Object> parameters = new HashMap<>();
-//               JasperPrint print = JasperFillManager.fillReport(reportPath, parameters, conn);
-//               JasperViewer viewer = new JasperViewer(print, false);
-//               viewer.setVisible(true);
-//           } catch (Exception e) {
-//               e.printStackTrace();
-//           }
-throw new UnsupportedOperationException("Not Supported Yet.");
+           try {
+               String reportPath = "src/report/Overtime.jasper";
+
+               HashMap<String, Object> parameters = new HashMap<>();
+               JasperPrint print = JasperFillManager.fillReport(reportPath, parameters, conn);
+               JasperViewer viewer = new JasperViewer(print, false);
+               viewer.setVisible(true);
+           } catch (Exception e) {
+               e.printStackTrace();
+           }
+//throw new UnsupportedOperationException("Not Supported Yet.");
     }
 }

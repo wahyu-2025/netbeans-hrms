@@ -17,7 +17,7 @@ import service.ResignService;
 
 /**
  *
- * @author wayan
+ * @author USer
  */
 
 class ComboItemResign {

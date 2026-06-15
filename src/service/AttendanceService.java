@@ -15,6 +15,6 @@ public interface AttendanceService {
 //    void addAttendance(AttendanceModel attendancemodel);
     boolean addAttendance(AttendanceModel attendancemodel);
     List<AttendanceModel> getData();
-//    void exportAttendanceToExcel();
-//    void exportLateToExcel();
+    void exportAttendance();
+    void exportLate();
 }

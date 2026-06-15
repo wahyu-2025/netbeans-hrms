@@ -9,7 +9,7 @@ import model.OvertimeModel;
 
 /**
  *
- * @author wayan
+ * @author USer
  */
 public interface OvertimeService {
 
