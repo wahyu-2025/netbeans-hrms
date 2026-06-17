@@ -67,7 +67,7 @@ public class DeptTableModel extends AbstractTableModel {
         return list.size();
     }
 
-    private final String[] columnNames = {"Id", "Department Name"};
+    private final String[] columnNames = {"Id", "Department Name", "Department Code", "Description"};
 
     @Override
     public int getColumnCount() {
@@ -81,6 +81,10 @@ public class DeptTableModel extends AbstractTableModel {
                 list.get(rowIndex).getId();  // ID disimpan tapi akan disembunyikan di JTable
             case 1 ->
                 list.get(rowIndex).getDeptName();
+            case 2 ->
+                list.get(rowIndex).getDeptCode();
+            case 3 ->
+                list.get(rowIndex).getDescription();
             default ->
                 null;
         };

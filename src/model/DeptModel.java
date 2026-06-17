@@ -12,6 +12,8 @@ public class DeptModel {
 
     private Integer id;
     private String deptname;
+    private String deptcode;
+    private String description;
 
     public Integer getId() {
         return id;
@@ -27,5 +29,20 @@ public class DeptModel {
 
     public void setDeptName(String deptname) {
         this.deptname = deptname;
+    }
+    public String getDeptCode() {
+        return deptcode;
+    }
+
+    public void setDeptCode(String deptcode) {
+        this.deptcode = deptcode;
+    }
+    
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

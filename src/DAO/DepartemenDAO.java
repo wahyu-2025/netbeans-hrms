@@ -43,21 +43,23 @@ public class DepartemenDAO implements DeptService {
     @Override
     public void addDept(DeptModel deptmodel) {
         PreparedStatement st = null;
-        String sql = "INSERT INTO departement(deptname) VALUES (?)";
+        String sql = "INSERT INTO departement(deptname, deptcode, description) VALUES (?, ?, ?)";
 
         try {
             st = conn.prepareStatement(sql);
             st.setString(1, deptmodel.getDeptName());
+            st.setString(2, deptmodel.getDeptCode());
+            st.setString(3, deptmodel.getDescription());
             st.executeUpdate();
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Tambah data gagal");
-            System.err.println("Error add classes : " + e);
+            JOptionPane.showMessageDialog(null, "Failed add data!");
+            System.err.println("Error add department : " + e);
         } finally {
             if (st != null) {
                 try {
                     st.close();
                 } catch (SQLException e) {
-                    System.err.println("Error finally add departemen : " + e);
+                    System.err.println("Error finally add department : " + e);
                 }
             }
         }
@@ -66,18 +68,20 @@ public class DepartemenDAO implements DeptService {
     @Override
     public void editDept(DeptModel deptmodel) {
         PreparedStatement st = null;
-        String sql = "UPDATE departement SET deptname=?,updated_at=? WHERE iddept=?";
+        String sql = "UPDATE departement SET deptname=?, deptcode=?, description=?,updated_at=? WHERE iddept=?";
 
         try {
             st = conn.prepareStatement(sql);
 
             st.setString(1, deptmodel.getDeptName());
-            st.setTimestamp(2, Timestamp.valueOf(LocalDateTime.now())); 
-            st.setInt(3, deptmodel.getId()); // ID harus tipe integer sesuai DB
+            st.setString(2, deptmodel.getDeptCode());
+            st.setString(3, deptmodel.getDescription());
+            st.setTimestamp(4, Timestamp.valueOf(LocalDateTime.now())); 
+            st.setInt(5, deptmodel.getId()); // ID harus tipe integer sesuai DB
 
             st.executeUpdate();
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Perbarui data gagal");
+            JOptionPane.showMessageDialog(null, "Failed edit data");
             System.err.println("Error edit departement : " + e);
         } finally {
             if (st != null) {
@@ -103,14 +107,14 @@ public class DepartemenDAO implements DeptService {
 
             st.executeUpdate();
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Hapus data gagal");
-            System.err.println("Error delete classes : " + e);
+            JOptionPane.showMessageDialog(null, "Failed delete data!");
+            System.err.println("Error delete department : " + e);
         } finally {
             if (st != null) {
                 try {
                     st.close();
                 } catch (SQLException e) {
-                    System.err.println("Error finally hapus classes : " + e);
+                    System.err.println("Error finally delete department : " + e);
                 }
             }
         }
@@ -143,19 +147,21 @@ public class DepartemenDAO implements DeptService {
                 DeptModel deptmodel = new DeptModel();
                 deptmodel.setId(rs.getInt("iddept"));
                 deptmodel.setDeptName(rs.getString("deptname"));
+                deptmodel.setDeptCode(rs.getString("deptcode"));
+                deptmodel.setDescription(rs.getString("description"));
                 
                 list.add(deptmodel);
             }
             return list;
         } catch (SQLException e) {
-            System.out.println("Error get data departement : " + e);
+            System.out.println("Error get data department : " + e);
             return null;
         } finally {
             if (st != null) {
                 try {
                     st.close();
                 } catch (SQLException e) {
-                    System.out.println("Error close st get data departement : " + e);
+                    System.out.println("Error close st get data department : " + e);
                 }
             }
 
@@ -163,7 +169,7 @@ public class DepartemenDAO implements DeptService {
                 try {
                     rs.close();
                 } catch (SQLException e) {
-                    System.out.println("Error close rs get data departement : " + e);
+                    System.out.println("Error close rs get data department : " + e);
                 }
             }
         }
@@ -195,6 +201,8 @@ public class DepartemenDAO implements DeptService {
         DeptModel deptmodel = new DeptModel();
         deptmodel.setId(rs.getInt("iddept"));
         deptmodel.setDeptName(rs.getString("deptname"));
+        deptmodel.setDeptCode(rs.getString("deptcode"));
+        deptmodel.setDescription(rs.getString("description"));
        
         return deptmodel;
     }

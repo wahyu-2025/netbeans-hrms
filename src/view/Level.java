@@ -57,6 +57,10 @@ public class Level extends javax.swing.JPanel {
         position_label = new javax.swing.JLabel();
         add_on_modal = new javax.swing.JButton();
         cancel_on_modal = new javax.swing.JButton();
+        position_code_label = new javax.swing.JLabel();
+        position_code_fields = new javax.swing.JTextField();
+        position_desc_fields = new javax.swing.JTextField();
+        position_desc_label = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         table_position = new javax.swing.JTable();
         crud_panel = new javax.swing.JPanel();
@@ -98,22 +102,30 @@ public class Level extends javax.swing.JPanel {
             }
         });
 
+        position_code_label.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        position_code_label.setText("Position Code");
+
+        position_code_fields.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                position_code_fieldsActionPerformed(evt);
+            }
+        });
+
+        position_desc_fields.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                position_desc_fieldsActionPerformed(evt);
+            }
+        });
+
+        position_desc_label.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        position_desc_label.setText("Description");
+
         javax.swing.GroupLayout add_dialog_panelLayout = new javax.swing.GroupLayout(add_dialog_panel);
         add_dialog_panel.setLayout(add_dialog_panelLayout);
         add_dialog_panelLayout.setHorizontalGroup(
             add_dialog_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, add_dialog_panelLayout.createSequentialGroup()
                 .addGroup(add_dialog_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(add_dialog_panelLayout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addGroup(add_dialog_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(position_fields)
-                            .addGroup(add_dialog_panelLayout.createSequentialGroup()
-                                .addGap(0, 543, Short.MAX_VALUE)
-                                .addComponent(add_on_modal, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(cancel_on_modal, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(2, 2, 2))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, add_dialog_panelLayout.createSequentialGroup()
                         .addGroup(add_dialog_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, add_dialog_panelLayout.createSequentialGroup()
@@ -124,7 +136,27 @@ public class Level extends javax.swing.JPanel {
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, add_dialog_panelLayout.createSequentialGroup()
                                 .addGap(14, 14, 14)
                                 .addComponent(position_label, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, add_dialog_panelLayout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addGroup(add_dialog_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(add_dialog_panelLayout.createSequentialGroup()
+                                .addComponent(position_desc_label, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(add_dialog_panelLayout.createSequentialGroup()
+                                .addGroup(add_dialog_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(position_fields)
+                                    .addGroup(add_dialog_panelLayout.createSequentialGroup()
+                                        .addGap(0, 543, Short.MAX_VALUE)
+                                        .addComponent(add_on_modal, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(cancel_on_modal, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(position_code_fields)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, add_dialog_panelLayout.createSequentialGroup()
+                                        .addComponent(position_code_label, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(577, 577, 577))
+                                    .addComponent(position_desc_fields))
+                                .addGap(2, 2, 2)))))
                 .addGap(14, 14, 14))
         );
         add_dialog_panelLayout.setVerticalGroup(
@@ -138,7 +170,15 @@ public class Level extends javax.swing.JPanel {
                 .addComponent(position_label)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(position_fields, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 31, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(position_code_label)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(position_code_fields, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(position_desc_label)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addComponent(position_desc_fields, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(add_dialog_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancel_on_modal, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(add_on_modal, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -153,7 +193,9 @@ public class Level extends javax.swing.JPanel {
         );
         add_dialogLayout.setVerticalGroup(
             add_dialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(add_dialog_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(add_dialogLayout.createSequentialGroup()
+                .addComponent(add_dialog_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         setPreferredSize(new java.awt.Dimension(400, 600));
@@ -305,7 +347,10 @@ public class Level extends javax.swing.JPanel {
         // Ambil ID user dari tabel
         int levelId = (int) table_position.getModel().getValueAt(row, 0);
         LevelModel levelmodel = levelService.getById(levelId);
+        System.out.println("CEK LEVEL CODE AND DESC" + levelmodel.getLevelCode() + levelmodel.getDescription() + levelmodel.getLevelName());
         position_fields.setText(levelmodel.getLevelName());
+        position_code_fields.setText(levelmodel.getLevelCode());
+        position_desc_fields.setText(levelmodel.getDescription());
 
         // Aktifkan input form
 //        active();
@@ -382,6 +427,14 @@ public class Level extends javax.swing.JPanel {
         cancel_button.setVisible(true);
     }//GEN-LAST:event_table_positionMouseClicked
 
+    private void position_code_fieldsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_position_code_fieldsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_position_code_fieldsActionPerformed
+
+    private void position_desc_fieldsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_position_desc_fieldsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_position_desc_fieldsActionPerformed
+
     private void loadData() {
         delete_button.setVisible(false);
         cancel_button.setVisible(false);
@@ -399,9 +452,13 @@ public class Level extends javax.swing.JPanel {
     private void createData() {
         if(validasiInput()) {
             String position = position_fields.getText();
+            String positionCode = position_code_fields.getText();
+            String description = position_desc_fields.getText();
                   
                 LevelModel levelModel = new LevelModel();
                 levelModel.setLevelName(position);
+                levelModel.setLevelCode(positionCode);
+                levelModel.setDescription(description);
                 
                 levelService.addLevel(levelModel);
                 levelTableModel.addLevel(levelModel);
@@ -416,10 +473,14 @@ public class Level extends javax.swing.JPanel {
         int row = table_position.getSelectedRow();
         if (row != -1) {
             if (validasiInput() == true) {
-                String nama = position_fields.getText();
+                String position = position_fields.getText();
+                String positionCode = position_code_fields.getText();
+                String description = position_desc_fields.getText();
                 LevelModel levelmodel = new LevelModel();
                 levelmodel.setId((int) table_position.getModel().getValueAt(row, 0));
-                levelmodel.setLevelName(nama);
+                levelmodel.setLevelName(position);
+                levelmodel.setLevelCode(positionCode);
+                levelmodel.setDescription(description);
 
                 levelService.editLevel(levelmodel);
                 levelTableModel.editLevel(row, levelmodel);
@@ -465,6 +526,8 @@ public class Level extends javax.swing.JPanel {
     
     private void resetForm() {
         position_fields.setText("");
+        position_code_fields.setText("");
+        position_desc_fields.setText("");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -481,6 +544,10 @@ public class Level extends javax.swing.JPanel {
     private javax.swing.JPanel header_panel;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel line_icon;
+    private javax.swing.JTextField position_code_fields;
+    private javax.swing.JLabel position_code_label;
+    private javax.swing.JTextField position_desc_fields;
+    private javax.swing.JLabel position_desc_label;
     private javax.swing.JTextField position_fields;
     private javax.swing.JLabel position_label;
     private javax.swing.JTable table_position;

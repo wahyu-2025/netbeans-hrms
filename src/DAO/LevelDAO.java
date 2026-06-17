@@ -43,15 +43,17 @@ public class LevelDAO implements LevelService {
     @Override
     public void addLevel(LevelModel levelmodel) {
         PreparedStatement st = null;
-        String sql = "INSERT INTO level(levelname) VALUES (?)";
+        String sql = "INSERT INTO level(levelname, levelcode, description) VALUES (?,?,?)";
 
         try {
             st = conn.prepareStatement(sql);
 
             st.setString(1, levelmodel.getLevelName());
+            st.setString(2, levelmodel.getLevelCode());
+            st.setString(3, levelmodel.getDescription());
             st.executeUpdate();
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Tambah data gagal");
+            JOptionPane.showMessageDialog(null, "Failed add data!");
             System.err.println("Error add level : " + e);
         } finally {
             if (st != null) {
@@ -67,18 +69,20 @@ public class LevelDAO implements LevelService {
     @Override
     public void editLevel(LevelModel levelmodel) {
         PreparedStatement st = null;
-        String sql = "UPDATE level SET levelname=?,updated_at=? WHERE idlevel=?";
+        String sql = "UPDATE level SET levelname=?, levelcode=?, description=?,updated_at=? WHERE idlevel=?";
 
         try {
             st = conn.prepareStatement(sql);
 
             st.setString(1, levelmodel.getLevelName());
-            st.setTimestamp(2, Timestamp.valueOf(LocalDateTime.now())); 
-            st.setInt(3, levelmodel.getId()); // ID harus tipe integer sesuai DB
+            st.setString(2, levelmodel.getLevelCode());
+            st.setString(3, levelmodel.getDescription());
+            st.setTimestamp(4, Timestamp.valueOf(LocalDateTime.now())); 
+            st.setInt(5, levelmodel.getId()); // ID harus tipe integer sesuai DB
 
             st.executeUpdate();
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Perbarui data gagal");
+            JOptionPane.showMessageDialog(null, "Failed add data!");
             System.err.println("Error edit level : " + e);
         } finally {
             if (st != null) {
@@ -103,7 +107,7 @@ public class LevelDAO implements LevelService {
 
             st.executeUpdate();
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Hapus data gagal");
+            JOptionPane.showMessageDialog(null, "Failed delete data!");
             System.err.println("Error edit level : " + e);
         } finally {
             if (st != null) {
@@ -142,6 +146,8 @@ public class LevelDAO implements LevelService {
 
                 levelmodel.setId(rs.getInt("idlevel"));
                 levelmodel.setLevelName(rs.getString("levelname"));
+                levelmodel.setLevelCode(rs.getString("levelcode"));
+                levelmodel.setDescription(rs.getString("description"));
 
                 list.add(levelmodel);
             }
@@ -229,6 +235,8 @@ public class LevelDAO implements LevelService {
         LevelModel levelmodel = new LevelModel();
         levelmodel.setId(rs.getInt("idlevel"));
         levelmodel.setLevelName(rs.getString("levelname"));
+        levelmodel.setLevelCode(rs.getString("levelcode"));
+        levelmodel.setDescription(rs.getString("description"));
         return levelmodel;
     }
     

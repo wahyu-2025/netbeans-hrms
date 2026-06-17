@@ -26,7 +26,7 @@ import model.DeptModel;
 public class Departement extends javax.swing.JPanel {
 
     /**
-     * Creates new departement
+     * Creates new department
      */
     
     private DeptService departementService = new DepartemenDAO();
@@ -57,6 +57,10 @@ public class Departement extends javax.swing.JPanel {
         departement_label = new javax.swing.JLabel();
         add_on_modal = new javax.swing.JButton();
         cancel_on_modal = new javax.swing.JButton();
+        departement_code_label = new javax.swing.JLabel();
+        departement_code_fields = new javax.swing.JTextField();
+        departement_desc_label = new javax.swing.JLabel();
+        departement_desc_fields = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         table_departement = new javax.swing.JTable();
         crud_panel = new javax.swing.JPanel();
@@ -98,6 +102,24 @@ public class Departement extends javax.swing.JPanel {
             }
         });
 
+        departement_code_label.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        departement_code_label.setText("Departement Code");
+
+        departement_code_fields.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                departement_code_fieldsActionPerformed(evt);
+            }
+        });
+
+        departement_desc_label.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        departement_desc_label.setText("Description");
+
+        departement_desc_fields.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                departement_desc_fieldsActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout add_dialog_panelLayout = new javax.swing.GroupLayout(add_dialog_panel);
         add_dialog_panel.setLayout(add_dialog_panelLayout);
         add_dialog_panelLayout.setHorizontalGroup(
@@ -111,18 +133,27 @@ public class Departement extends javax.swing.JPanel {
             .addGroup(add_dialog_panelLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addGroup(add_dialog_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(add_dialog_panelLayout.createSequentialGroup()
-                        .addComponent(departement_label, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(add_dialog_panelLayout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, add_dialog_panelLayout.createSequentialGroup()
                         .addGroup(add_dialog_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(departement_code_fields, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(departement_fields)
                             .addGroup(add_dialog_panelLayout.createSequentialGroup()
-                                .addGap(0, 543, Short.MAX_VALUE)
-                                .addComponent(add_on_modal, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(cancel_on_modal, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(16, 16, 16))))
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(add_dialog_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, add_dialog_panelLayout.createSequentialGroup()
+                                        .addComponent(departement_desc_label, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(577, 577, 577))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, add_dialog_panelLayout.createSequentialGroup()
+                                        .addComponent(add_on_modal, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(cancel_on_modal, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(departement_desc_fields))
+                        .addGap(16, 16, 16))
+                    .addGroup(add_dialog_panelLayout.createSequentialGroup()
+                        .addGroup(add_dialog_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(departement_label, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(departement_code_label, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         add_dialog_panelLayout.setVerticalGroup(
             add_dialog_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -135,11 +166,23 @@ public class Departement extends javax.swing.JPanel {
                 .addComponent(departement_label)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(departement_fields, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 31, Short.MAX_VALUE)
-                .addGroup(add_dialog_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cancel_on_modal, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(add_on_modal, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21))
+                .addGap(18, 18, 18)
+                .addComponent(departement_code_label)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(departement_code_fields, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(add_dialog_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(add_dialog_panelLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(departement_desc_label)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(departement_desc_fields, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 72, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, add_dialog_panelLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(add_dialog_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(add_on_modal, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cancel_on_modal, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap())))
         );
 
         javax.swing.GroupLayout add_dialogLayout = new javax.swing.GroupLayout(add_dialog.getContentPane());
@@ -150,7 +193,9 @@ public class Departement extends javax.swing.JPanel {
         );
         add_dialogLayout.setVerticalGroup(
             add_dialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(add_dialog_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(add_dialogLayout.createSequentialGroup()
+                .addComponent(add_dialog_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         setPreferredSize(new java.awt.Dimension(400, 600));
@@ -290,7 +335,7 @@ public class Departement extends javax.swing.JPanel {
         
         int row = table_departement.getSelectedRow();
         if (row == -1) {
-            JOptionPane.showMessageDialog(null, "Pilih data dari tabel terlebih dahulu.");
+            JOptionPane.showMessageDialog(null, "Please select first.");
             return;
         }
 
@@ -299,7 +344,10 @@ public class Departement extends javax.swing.JPanel {
         // Ambil ID user dari tabel
         int levelId = (int) table_departement.getModel().getValueAt(row, 0);
         DeptModel departementModel = departementService.getById(levelId);
+        System.out.println("VALUE" + departementModel.getDeptName() + departementModel.getDeptCode() + departementModel.getDescription());
         departement_fields.setText(departementModel.getDeptName());
+        departement_code_fields.setText(departementModel.getDeptCode());
+        departement_desc_fields.setText(departementModel.getDescription());
 
         // Aktifkan input form
 //        active();
@@ -374,6 +422,14 @@ public class Departement extends javax.swing.JPanel {
         cancel_button.setVisible(true);
     }//GEN-LAST:event_table_departementMouseClicked
 
+    private void departement_code_fieldsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_departement_code_fieldsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_departement_code_fieldsActionPerformed
+
+    private void departement_desc_fieldsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_departement_desc_fieldsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_departement_desc_fieldsActionPerformed
+
     private void loadData() {
         delete_button.setVisible(false);
         cancel_button.setVisible(false);
@@ -390,10 +446,14 @@ public class Departement extends javax.swing.JPanel {
     
     private void createData() {
         if(validasiInput()) {
-            String position = departement_fields.getText();
+            String department = departement_fields.getText();
+            String departmentCode = departement_code_fields.getText();
+            String description = departement_desc_fields.getText();
                   
                 DeptModel departementModel = new DeptModel();
-                departementModel.setDeptName(position);
+                departementModel.setDeptName(department);
+                departementModel.setDeptCode(departmentCode);
+                departementModel.setDescription(description);
                 
                 departementService.addDept(departementModel);
                 departementTableModel.addDept(departementModel);
@@ -409,10 +469,14 @@ public class Departement extends javax.swing.JPanel {
         if (row != -1) {
             if (validasiInput() == true) {
                 String deptname = departement_fields.getText();
+                String deptcode = departement_code_fields.getText();
+                String description = departement_desc_fields.getText();
 
                 DeptModel deptmodel = new DeptModel();
                 deptmodel.setId((int) table_departement.getModel().getValueAt(row, 0));
                 deptmodel.setDeptName(deptname);
+                deptmodel.setDeptCode(deptcode);
+                deptmodel.setDescription(description);
 
                 departementService.editDept(deptmodel);
                 departementTableModel.editDept(row, deptmodel);
@@ -470,6 +534,10 @@ public class Departement extends javax.swing.JPanel {
     private javax.swing.JButton cancel_on_modal;
     private javax.swing.JPanel crud_panel;
     private javax.swing.JButton delete_button;
+    private javax.swing.JTextField departement_code_fields;
+    private javax.swing.JLabel departement_code_label;
+    private javax.swing.JTextField departement_desc_fields;
+    private javax.swing.JLabel departement_desc_label;
     private javax.swing.JTextField departement_fields;
     private javax.swing.JLabel departement_label;
     private javax.swing.JLabel header_name;

@@ -16,10 +16,12 @@ public class EmployeeModel {
     private String nama;
     private Integer iddept;
     private Integer idlevel;
+    private String state;
     private String address;
     private String phonenumber;
     private String deptname;
     private String levelname;
+    private String stateName;
 
     public Integer getId() {
         return id;
@@ -86,6 +88,14 @@ public class EmployeeModel {
         this.idlevel = idlevel;
     }
     
+    public void setState(String state) {
+        this.state = state;
+    }
+    
+    public String getState() {
+        return state;
+    }
+    
      public String getDeptName() {
         return deptname;
     }
@@ -100,5 +110,13 @@ public class EmployeeModel {
 
     public void setLevelName(String levelname) {
         this.levelname = levelname;
+    }
+    
+    public String getStateName() {
+        return stateName;
+    }
+
+    public void setStateName(String stateName) {
+        this.stateName = stateName;
     }
 }

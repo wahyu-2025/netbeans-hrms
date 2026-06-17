@@ -49,7 +49,7 @@ public class EmployeeDAO implements EmployeeService {
         ResultSet rs = null;
 
         String checkSql = "SELECT nik FROM employee WHERE nik = ? and isdeleted = 0";
-        String insertSql = "INSERT INTO employee(nik, employeename, address, phonenumber, iddeptemployee, idlevelemployee, password) VALUES (?,?,?,?,?,?,?)";
+        String insertSql = "INSERT INTO employee(nik, employeename, address, phonenumber, iddeptemployee, idlevelemployee, password, state) VALUES (?,?,?,?,?,?,?,?)";
 
         try {
             // Cek apakah NIK sudah ada
@@ -75,12 +75,14 @@ public class EmployeeDAO implements EmployeeService {
             st.setInt(5, userModel.getIdDept());
             st.setInt(6, userModel.getIdLevel());
             st.setString(7, userModel.getPassword());
+            st.setString(8, userModel.getState());
+            
 
             st.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Data berhasil ditambahkan");
+            JOptionPane.showMessageDialog(null, "Success add data!");
 
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Tambah data gagal");
+            JOptionPane.showMessageDialog(null, "Failed add data!");
             System.err.println("Error add employee : " + e);
         } finally {
             try {
@@ -99,7 +101,7 @@ public class EmployeeDAO implements EmployeeService {
         ResultSet rs = null;
 
         String checkNikSql = "SELECT COUNT(*) FROM employee WHERE nik = ? AND idemployee != ? AND isdeleted = 0";
-        String updateSql = "UPDATE employee SET nik=?, employeename=?, address=?, phonenumber=?, iddeptemployee=?, idlevelemployee=?, password=?, updated_at=? WHERE idemployee=?";
+        String updateSql = "UPDATE employee SET nik=?, employeename=?, address=?, phonenumber=?, iddeptemployee=?, idlevelemployee=?, password=?, state=?, updated_at=? WHERE idemployee=?";
 
         try {
             // Cek apakah NIK sudah digunakan oleh employee lain
@@ -108,7 +110,7 @@ public class EmployeeDAO implements EmployeeService {
             st.setInt(2, userModel.getId());
             rs = st.executeQuery();
             if (rs.next() && rs.getInt(1) > 0) {
-                JOptionPane.showMessageDialog(null, "NIK sudah ada");
+                JOptionPane.showMessageDialog(null, "Already have NIK!");
                 return;
             }
             st.close();
@@ -122,12 +124,13 @@ public class EmployeeDAO implements EmployeeService {
             st.setInt(5, userModel.getIdDept());
             st.setInt(6, userModel.getIdLevel());
             st.setString(7, userModel.getPassword());
-            st.setTimestamp(8, Timestamp.valueOf(LocalDateTime.now()));
-            st.setInt(9, userModel.getId());
+            st.setString(8, userModel.getState());
+            st.setTimestamp(9, Timestamp.valueOf(LocalDateTime.now()));
+            st.setInt(10, userModel.getId());
 
             st.executeUpdate();
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Perbarui data gagal");
+            JOptionPane.showMessageDialog(null, "Failed edit data!");
             System.err.println("Error edit employee: " + e);
         } finally {
             try {
@@ -167,8 +170,8 @@ public class EmployeeDAO implements EmployeeService {
 
     @Override
     public EmployeeModel getById(int id) {
-        String sql = "select e.idemployee,e.nik,e.iddeptemployee,d.deptname,e.idlevelemployee,l.levelname,e.employeename,e.address,e.phonenumber,e.password  \n" +
-                     "from employee as e left join level as l on e.idlevelemployee = l.idlevel left join departement as d on e.iddeptemployee = d.iddept where e.isdeleted=0 and e.idemployee = ?";
+        String sql = "select e.idemployee,e.nik,e.iddeptemployee,d.deptname,e.idlevelemployee,l.levelname,e.employeename,e.address,e.phonenumber,e.password, e.state,es.statename  \n" +
+                     "from employee as e left join level as l on e.idlevelemployee = l.idlevel left join departement as d on e.iddeptemployee = d.iddept left join employee_state as es on e.state = es.state where e.isdeleted=0 and e.idemployee = ?";
         return getUserByQuery(sql, id);
     }
 
@@ -182,8 +185,8 @@ public class EmployeeDAO implements EmployeeService {
         PreparedStatement st = null;
         List list = new ArrayList();
         ResultSet rs = null;
-        String sql = "select e.idemployee,e.nik,e.iddeptemployee,d.deptname,e.idlevelemployee,l.levelname,e.employeename,e.address,e.phonenumber,e.password  \n" +
-        "from employee as e left join level as l on e.idlevelemployee = l.idlevel left join departement as d on e.iddeptemployee = d.iddept where e.isdeleted=0 order by e.idemployee desc";
+        String sql = "select e.idemployee,e.nik,e.iddeptemployee,d.deptname,e.idlevelemployee,l.levelname,e.employeename,e.address,e.phonenumber,e.password, e.state, es.statename  \n" +
+        "from employee as e left join level as l on e.idlevelemployee = l.idlevel left join departement as d on e.iddeptemployee = d.iddept left join employee_state as es on e.state = es.state where e.isdeleted=0 order by e.idemployee desc";
 
         try {
             st = conn.prepareStatement(sql);
@@ -198,8 +201,10 @@ public class EmployeeDAO implements EmployeeService {
                 userModel.setPhoneNumber(rs.getString("phonenumber"));
                 userModel.setDeptName(rs.getString("deptname"));
                 userModel.setLevelName(rs.getString("levelname"));
+                userModel.setStateName(rs.getString("statename"));
                 userModel.setIdDept(rs.getInt("iddeptemployee"));
                 userModel.setIdLevel(rs.getInt("idlevelemployee"));
+                userModel.setState(rs.getString("state"));
 
                 list.add(userModel);
             }
@@ -253,9 +258,11 @@ public class EmployeeDAO implements EmployeeService {
         user.setPhoneNumber(rs.getString("phonenumber"));
         user.setDeptName(rs.getString("deptname"));
         user.setLevelName(rs.getString("levelname"));
+        user.setStateName(rs.getString("statename"));
         user.setPassword(rs.getString("password"));
         user.setIdDept(rs.getInt("iddeptemployee"));
         user.setIdLevel(rs.getInt("idlevelemployee"));
+        user.setState(rs.getString("state"));
         return user;
     }
     

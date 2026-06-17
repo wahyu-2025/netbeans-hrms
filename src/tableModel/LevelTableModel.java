@@ -26,19 +26,19 @@ public class LevelTableModel extends AbstractTableModel {
     public void addLevel(LevelModel levelmodel) {
         list.add(levelmodel);
         fireTableRowsInserted(list.size() - 1, list.size() - 1);
-        JOptionPane.showMessageDialog(null, "Data Berhasil ditambahkan");
+        JOptionPane.showMessageDialog(null, "Success add data!");
     }
 
     public void editLevel(int id, LevelModel levelmodel) {
         list.add(id, levelmodel);
         fireTableDataChanged();
-        JOptionPane.showMessageDialog(null, "Data Berhasil diperbarui");
+        JOptionPane.showMessageDialog(null, "Success update data!");
     }
 
     public void deleteLevel(int id) {
         list.remove(id);
         fireTableRowsDeleted(id, id);
-        JOptionPane.showMessageDialog(null, "Data Berhasil dihapus");
+        JOptionPane.showMessageDialog(null, "Success delete data!");
     }
 
     public void clear() {
@@ -67,7 +67,7 @@ public class LevelTableModel extends AbstractTableModel {
         return list.size();
     }
 
-    private final String[] columnNames = {"ID", "No", "Position Name"};
+    private final String[] columnNames = {"ID", "No", "Position Name", "Position Code", "Description"};
 
     @Override
     public int getColumnCount() {
@@ -84,6 +84,10 @@ public class LevelTableModel extends AbstractTableModel {
                 return " " + (rowIndex + 1);
             case 2:
                 return list.get(rowIndex).getLevelName();
+            case 3:
+                return list.get(rowIndex).getLevelCode();
+            case 4:
+                return list.get(rowIndex).getDescription();
             default:
                 return null;
         }

@@ -61,6 +61,25 @@ class ComboItemDept {
     }
 }
 
+class ComboItemState {
+    private String state;
+    private String stateName;
+
+    public ComboItemState(String state, String stateName) {
+        this.state = state;
+        this.stateName = stateName;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    @Override
+    public String toString() {
+        return stateName; // akan muncul di combobox
+    }
+}
+
 class ComboItemLevel {
     private int id;
     private String name;
@@ -95,9 +114,11 @@ public class Employee extends javax.swing.JPanel {
 
         departement_dropdown.removeAllItems();
         level_dropdown.removeAllItems();
+        employee_status_dropdown.removeAllItems();
         
         String sqlDept = "select iddept, deptname from departement where isdeleted = 0";
         String sqlLevel = "select idlevel, levelname from level where isdeleted = 0";
+        String sqlState = "select * from employee_state";
         
         
         
@@ -107,6 +128,9 @@ public class Employee extends javax.swing.JPanel {
             
             PreparedStatement stLevel = conn.prepareStatement(sqlLevel);
             ResultSet rsLevel = stLevel.executeQuery();
+            
+            PreparedStatement stState = conn.prepareStatement(sqlState);
+            ResultSet rsState = stState.executeQuery();
             
             while (rsDept.next()) {
                 int idDept = rsDept.getInt("iddept");
@@ -120,10 +144,18 @@ public class Employee extends javax.swing.JPanel {
                 level_dropdown.addItem(new ComboItemLevel(idLevel, nameLevel).toString());
             }
             
+            while (rsState.next()) {
+                String state = rsState.getString("state");
+                String stateName = rsState.getString("statename");
+                employee_status_dropdown.addItem(new ComboItemState(state, stateName).toString());
+            }
+            
             stDept.close();
             rsDept.close();
             stLevel.close();
             rsLevel.close();
+            stState.close();
+            rsState.close();
         } catch (Exception e) {
             e.printStackTrace();
         } 
@@ -161,6 +193,8 @@ public class Employee extends javax.swing.JPanel {
         add_on_modal = new javax.swing.JButton();
         cancel_on_modal = new javax.swing.JButton();
         password_fields = new javax.swing.JPasswordField();
+        employee_status_label = new javax.swing.JLabel();
+        employee_status_dropdown = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         table_user = new javax.swing.JTable();
         crud_panel = new javax.swing.JPanel();
@@ -248,6 +282,17 @@ public class Employee extends javax.swing.JPanel {
             }
         });
 
+        employee_status_label.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        employee_status_label.setText("Employee Status");
+
+        employee_status_dropdown.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        employee_status_dropdown.setMinimumSize(new java.awt.Dimension(64, 22));
+        employee_status_dropdown.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                employee_status_dropdownActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout add_dialog_panelLayout = new javax.swing.GroupLayout(add_dialog_panel);
         add_dialog_panel.setLayout(add_dialog_panelLayout);
         add_dialog_panelLayout.setHorizontalGroup(
@@ -260,43 +305,50 @@ public class Employee extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(header_new_employee, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, add_dialog_panelLayout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addGroup(add_dialog_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(add_dialog_panelLayout.createSequentialGroup()
-                                .addGroup(add_dialog_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(nik_fields, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(nik_label, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
-                                .addGroup(add_dialog_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(employee_name_fields, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(employee_name_label, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(add_dialog_panelLayout.createSequentialGroup()
-                                .addGroup(add_dialog_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(add_dialog_panelLayout.createSequentialGroup()
-                                        .addComponent(level_label, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGroup(add_dialog_panelLayout.createSequentialGroup()
-                                        .addComponent(level_dropdown, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGap(35, 35, 35)))
-                                .addGroup(add_dialog_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(departement_label, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(departement_dropdown, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(add_dialog_panelLayout.createSequentialGroup()
-                                .addGroup(add_dialog_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(alamat_label, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(password_label, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(password_fields))
-                                .addGap(35, 35, 35)
-                                .addGroup(add_dialog_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(no_telp_fields, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(no_telp_label, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(alamat_fields)))
                     .addGroup(add_dialog_panelLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(add_on_modal, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cancel_on_modal, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(add_dialog_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(add_dialog_panelLayout.createSequentialGroup()
+                                .addGap(14, 14, 14)
+                                .addGroup(add_dialog_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(add_dialog_panelLayout.createSequentialGroup()
+                                        .addGroup(add_dialog_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(nik_fields, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(nik_label, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                                        .addGroup(add_dialog_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(employee_name_fields, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(employee_name_label, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(add_dialog_panelLayout.createSequentialGroup()
+                                        .addGroup(add_dialog_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(add_dialog_panelLayout.createSequentialGroup()
+                                                .addComponent(level_label, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                            .addGroup(add_dialog_panelLayout.createSequentialGroup()
+                                                .addComponent(level_dropdown, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addGap(35, 35, 35)))
+                                        .addGroup(add_dialog_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(departement_label, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(departement_dropdown, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(add_dialog_panelLayout.createSequentialGroup()
+                                        .addGroup(add_dialog_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(employee_status_label, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(no_telp_fields, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(employee_status_dropdown, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(add_dialog_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(password_fields, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(alamat_fields, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(password_label, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(add_dialog_panelLayout.createSequentialGroup()
+                                        .addComponent(no_telp_label, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(alamat_label, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(266, 266, 266))))
+                            .addGroup(add_dialog_panelLayout.createSequentialGroup()
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(add_on_modal, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(cancel_on_modal, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(2, 2, 2)))
                 .addGap(14, 14, 14))
         );
@@ -324,19 +376,21 @@ public class Employee extends javax.swing.JPanel {
                     .addComponent(departement_dropdown, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(level_dropdown, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(add_dialog_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, add_dialog_panelLayout.createSequentialGroup()
-                        .addComponent(no_telp_label)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(no_telp_fields, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(add_dialog_panelLayout.createSequentialGroup()
-                        .addComponent(password_label)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(password_fields, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addComponent(alamat_label)
+                .addGroup(add_dialog_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(password_label)
+                    .addComponent(employee_status_label))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(alamat_fields, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(add_dialog_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(password_fields, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
+                    .addComponent(employee_status_dropdown, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(add_dialog_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(no_telp_label)
+                    .addComponent(alamat_label))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(add_dialog_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(alamat_fields, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(no_telp_fields, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addGroup(add_dialog_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancel_on_modal, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -520,13 +574,16 @@ public class Employee extends javax.swing.JPanel {
         // Query untuk ambil nama departemen dan level berdasarkan ID
         String sqldept = "SELECT deptname FROM departement WHERE iddept = ? AND isdeleted = 0";
         String sqllevel = "SELECT levelname FROM level WHERE idlevel = ? AND isdeleted = 0";
+        String sqlState = "SELECT * FROM employee_state where state = ?";
 
         String deptName = "";
         String levelName = "";
+        String stateName = "";
 
         try (
             PreparedStatement psDept = conn.prepareStatement(sqldept);
-            PreparedStatement psLevel = conn.prepareStatement(sqllevel)
+            PreparedStatement psLevel = conn.prepareStatement(sqllevel);
+            PreparedStatement psState = conn.prepareStatement(sqlState);
         ) {
             // Ambil deptname
             psDept.setInt(1, userModel.getIdDept());
@@ -543,6 +600,14 @@ public class Employee extends javax.swing.JPanel {
                     levelName = rsLevel.getString("levelname");
                 }
             }
+            
+            // Ambil stateName
+            psState.setString(1, userModel.getState());
+            try (ResultSet rsState = psState.executeQuery()) {
+                if (rsState.next()) {
+                    stateName = rsState.getString("statename");
+                }
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -557,6 +622,7 @@ public class Employee extends javax.swing.JPanel {
         no_telp_fields.setText(userModel.getPhoneNumber());
         departement_dropdown.setSelectedItem(deptName);
         level_dropdown.setSelectedItem(levelName);
+        employee_status_dropdown.setSelectedItem(stateName);
 
         // Aktifkan input form
 //        active();
@@ -650,6 +716,10 @@ public class Employee extends javax.swing.JPanel {
         resetForm();
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void employee_status_dropdownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_employee_status_dropdownActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_employee_status_dropdownActionPerformed
+
     private void loadData() {
         jButton2.setVisible(false);
         jButton3.setVisible(false);
@@ -673,12 +743,18 @@ public class Employee extends javax.swing.JPanel {
             String deptName = departement_dropdown.getSelectedItem().toString();
             String levelName = level_dropdown.getSelectedItem().toString();
             String password = password_fields.getText();
+            String stateName = employee_status_dropdown.getSelectedItem().toString();
+            
+            System.out.println("STATE: "+ stateName);
+            System.out.println("levelName: "+ levelName);
             
             String sqlDept = "select iddept from departement where deptname=? and isdeleted=0";
             String sqlLevel = "select idlevel from level where levelname=? and isdeleted=0";
+            String sqlState = "select state from employee_state where statename=?";
             
             Integer idDept = null;
             Integer idLevel = null;
+            String state = null;
             
             try {
                 try(PreparedStatement stDept = conn.prepareStatement(sqlDept)) {
@@ -705,6 +781,18 @@ public class Employee extends javax.swing.JPanel {
                          }
                      } 
                  }
+                 
+                 try(PreparedStatement stState = conn.prepareStatement(sqlState)) {
+                     stState.setString(1, stateName);
+                     try(ResultSet rsState = stState.executeQuery()) {
+                         if(rsState.next()) {
+                             state = rsState.getString("state");
+                         } else {
+                             JOptionPane.showMessageDialog(null, "State cannot found on database!");
+                             return;
+                         }
+                     } 
+                 }
                   
                 EmployeeModel employeeModel = new EmployeeModel();
                 employeeModel.setNik(nik);
@@ -714,6 +802,7 @@ public class Employee extends javax.swing.JPanel {
                 employeeModel.setIdLevel(idLevel);
                 employeeModel.setPassword(password);
                 employeeModel.setPhoneNumber(phoneNumber);
+                employeeModel.setState(state);
                 
                 userService.addEmployee(employeeModel);
                 userTableModel.addUser(employeeModel);
@@ -744,14 +833,17 @@ public class Employee extends javax.swing.JPanel {
                 String getlevel = level_dropdown.getSelectedItem().toString();
                 String nama = employee_name_fields.getText();
                 String getdepartemen = departement_dropdown.getSelectedItem().toString();
+                String getState = employee_status_dropdown.getSelectedItem().toString();
                 String address = alamat_fields.getText();
                 String phonenumber = no_telp_fields.getText();
 
                 String sqldept = "SELECT iddept FROM departement WHERE deptname = ? AND isdeleted = 0";
                 String sqllevel = "SELECT idlevel FROM level WHERE levelname = ? AND isdeleted = 0";
+                String sqlState = "SELECT state FROM employee_state where statename=?";
 
                 Integer idDept = null;
                 Integer idLevel = null;
+                String state = null;
 
                 try {
                     // 🔹 Ambil iddept dari nama departemen
@@ -761,20 +853,32 @@ public class Employee extends javax.swing.JPanel {
                             if (rsDept.next()) {
                                 idDept = rsDept.getInt("iddept");
                             } else {
-                                JOptionPane.showMessageDialog(null, "Departemen tidak ditemukan di database!");
+                                JOptionPane.showMessageDialog(null, "Departemen not found on database!");
                                 return;
                             }
                         }
                     }
 
-                    // 🔹 Ambil idlevel dari nama level
+                    // 🔹 Ambil state dari stateName
+                    try (PreparedStatement psState = conn.prepareStatement(sqlState)) {
+                        psState.setString(1, getState);
+                        try (ResultSet rsState = psState.executeQuery()) {
+                            if (rsState.next()) {
+                                state = rsState.getString("state");
+                            } else {
+                                JOptionPane.showMessageDialog(null, "State not found on database!");
+                                return;
+                            }
+                        }
+                    }
+                    
                     try (PreparedStatement psLevel = conn.prepareStatement(sqllevel)) {
                         psLevel.setString(1, getlevel);
                         try (ResultSet rsLevel = psLevel.executeQuery()) {
                             if (rsLevel.next()) {
                                 idLevel = rsLevel.getInt("idlevel");
                             } else {
-                                JOptionPane.showMessageDialog(null, "Level tidak ditemukan di database!");
+                                JOptionPane.showMessageDialog(null, "Level not found on database!");
                                 return;
                             }
                         }
@@ -792,6 +896,7 @@ public class Employee extends javax.swing.JPanel {
                     userModel.setNik(nik);
                     userModel.setIdLevel(idLevel); // gunakan integer id
                     userModel.setIdDept(idDept);   // gunakan integer id
+                    userModel.setState(state);   // gunakan integer id
                     userModel.setPassword(password);
                     userModel.setAddress(address);
                     userModel.setPhoneNumber(phonenumber);
@@ -806,16 +911,16 @@ public class Employee extends javax.swing.JPanel {
 //                    showPanel();
 //                    btnSimpan.setText("Tambah");
 
-                    JOptionPane.showMessageDialog(null, "Data karyawan berhasil diperbarui.");
+                    JOptionPane.showMessageDialog(null, "Success update data!.");
 
                 } catch (SQLException e) {
                     e.printStackTrace();
                     JOptionPane.showMessageDialog(null,
-                            "Terjadi kesalahan saat memperbarui data karyawan:\n" + e.getMessage());
+                            "Failed update employee data:\n" + e.getMessage());
                 }
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Pilih data dari tabel terlebih dahulu!");
+            JOptionPane.showMessageDialog(null, "Please select!");
         }
     }
 
@@ -828,14 +933,14 @@ public class Employee extends javax.swing.JPanel {
 
             EmployeeModel userModel = getUser;
 
-            if (JOptionPane.showConfirmDialog(null, "Yakin data akan dihapus?", "Konfirmasi", JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION) {
+            if (JOptionPane.showConfirmDialog(null, "Are you sure? you want delete this data?", "Confirm", JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION) {
                 userService.deleteEmployee(userModel);
                 userTableModel.deleteUser(index);
                 loadData();
                 resetForm();
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Pilih dahulu record yang akan dihapus");
+            JOptionPane.showMessageDialog(null, "Please select!");
         }
     }
 
@@ -844,6 +949,10 @@ public class Employee extends javax.swing.JPanel {
         boolean valid = false;
         if(nik_fields.getText().isEmpty() || nik_fields.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "NIK cannot be null!");
+        } else if(password_fields.getText().isEmpty() || password_fields.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Password cannot be null!");
+        } else if(employee_status_dropdown.getSelectedItem() == null) {
+            JOptionPane.showMessageDialog(null, "Please select status!");
         } else {
             valid = true;
         }
@@ -860,6 +969,7 @@ public class Employee extends javax.swing.JPanel {
         password_fields.setText("");
         departement_dropdown.setSelectedIndex(0);
         level_dropdown.setSelectedIndex(0);
+        employee_status_dropdown.setSelectedIndex(0);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -874,6 +984,8 @@ public class Employee extends javax.swing.JPanel {
     private javax.swing.JLabel departement_label;
     private javax.swing.JTextField employee_name_fields;
     private javax.swing.JLabel employee_name_label;
+    private javax.swing.JComboBox<String> employee_status_dropdown;
+    private javax.swing.JLabel employee_status_label;
     private javax.swing.JLabel header_new_employee;
     private javax.swing.JPanel header_panel;
     private javax.swing.JButton jButton1;
