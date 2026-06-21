@@ -153,7 +153,7 @@ public class AttendanceDAO implements AttendanceService {
      @Override
     public void exportAttendance() {
            try {
-               String reportPath = "src/report/Waves_Landscape_1 - Copy.jasper";
+               String reportPath = "src/report/Waves_Landscape_1 - Copy (Copy).jasper";
 
                HashMap<String, Object> parameters = new HashMap<>();
                JasperPrint print = JasperFillManager.fillReport(reportPath, parameters, conn);
@@ -168,7 +168,7 @@ public class AttendanceDAO implements AttendanceService {
     @Override
     public void exportLate() {
            try {
-               String reportPath = "src/report/Late.jasper";
+               String reportPath = "src/report/Late (Copy 2).jasper";
 
                HashMap<String, Object> parameters = new HashMap<>();
                JasperPrint print = JasperFillManager.fillReport(reportPath, parameters, conn);

@@ -231,7 +231,7 @@ public class EmployeeSalaryDAO implements EmployeeSalaryService {
     @Override
     public void exportEmployeeSalaryToExcel() {
            try {
-               String reportPath = "src/report/Salary.jasper";
+               String reportPath = "src/report/Salary (Copy 2).jasper";
 
                HashMap<String, Object> parameters = new HashMap<>();
                JasperPrint print = JasperFillManager.fillReport(reportPath, parameters, conn);
