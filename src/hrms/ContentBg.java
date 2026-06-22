@@ -33,6 +33,7 @@ public class ContentBg extends javax.swing.JPanel {
             ResultSet hasil = stmt.executeQuery(pegawaiaktif);
             if (hasil.next()) {
                 String a = hasil.getString("pegawaiaktif");
+                System.out.println(a);
                 jLabel8.setText(a);
             }
             hasil.close();
