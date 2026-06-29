@@ -75,9 +75,9 @@
                                           </Group>
                                           <Group type="102" attributes="0">
                                               <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="employee_status_label" min="-2" pref="109" max="-2" attributes="0"/>
                                                   <Component id="no_telp_fields" alignment="0" min="-2" pref="341" max="-2" attributes="0"/>
                                                   <Component id="employee_status_dropdown" min="-2" pref="341" max="-2" attributes="0"/>
+                                                  <Component id="employee_status_label" alignment="0" min="-2" pref="170" max="-2" attributes="0"/>
                                               </Group>
                                               <EmptySpace max="32767" attributes="0"/>
                                               <Group type="103" groupAlignment="0" attributes="0">
@@ -152,9 +152,9 @@
                           <Component id="alamat_label" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="alamat_fields" alignment="0" min="-2" pref="44" max="-2" attributes="0"/>
-                          <Component id="no_telp_fields" alignment="3" min="-2" pref="44" max="-2" attributes="0"/>
+                          <Component id="no_telp_fields" min="-2" pref="44" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="26" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">

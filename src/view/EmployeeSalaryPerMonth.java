@@ -448,7 +448,7 @@ private void loadData() {
                 ResultSet rsLate = psLate.executeQuery();
                 int cutlate = 0;
                 if (rsLate.next()) {
-                    cutlate = rsLate.getInt("totalLate") * 5000;
+                    cutlate = rsLate.getInt("totalLate") / 60 * 20000;
                 }
 
                 // Hitung bonus lembur
@@ -459,7 +459,7 @@ private void loadData() {
                 ResultSet rsOvertime = psOvertime.executeQuery();
                 int overtimebonus = 0;
                 if (rsOvertime.next()) {
-                    overtimebonus = rsOvertime.getInt("totalOvertime") * 5000;
+                    overtimebonus = rsOvertime.getInt("totalOvertime") / 60 * 50000;
                 }
 
                 // Hitung total gaji bulan ini
